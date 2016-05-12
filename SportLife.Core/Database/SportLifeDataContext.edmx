@@ -739,7 +739,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SportLifeEntitiesWork" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="SportLifeDataContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Abonements" EntityType="Self.Abonement" />
           <EntitySet Name="Adresses" EntityType="Self.Adress" />
           <EntitySet Name="Clients" EntityType="Self.Client" />
@@ -821,7 +821,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="SportLifeModelStoreContainer" CdmEntityContainer="SportLifeEntitiesWork">
+        <EntityContainerMapping StorageEntityContainer="SportLifeModelStoreContainer" CdmEntityContainer="SportLifeDataContext">
           <EntitySetMapping Name="Abonements">
             <EntityTypeMapping TypeName="SportLifeModel.Abonement">
               <MappingFragment StoreEntitySet="Abonements">

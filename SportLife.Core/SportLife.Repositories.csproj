@@ -30,8 +30,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,13 +51,99 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database\Abonement.cs">
+      <DependentUpon>SportLifeDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Adress.cs">
+      <DependentUpon>SportLifeDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Client.cs">
+      <DependentUpon>SportLifeDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Coach.cs">
+      <DependentUpon>SportLifeDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Group.cs">
+      <DependentUpon>SportLifeDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Hall.cs">
+      <DependentUpon>SportLifeDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Order.cs">
+      <DependentUpon>SportLifeDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Price.cs">
+      <DependentUpon>SportLifeDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Shedule.cs">
+      <DependentUpon>SportLifeDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\SportLifeDataContext.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SportLifeDataContext.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\SportLifeDataContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SportLifeDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\SportLifeDataContext.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SportLifeDataContext.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Sports_in_Abonements.cs">
+      <DependentUpon>SportLifeDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Sport_categories.cs">
+      <DependentUpon>SportLifeDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Sport_kinds.cs">
+      <DependentUpon>SportLifeDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\sysdiagram.cs">
+      <DependentUpon>SportLifeDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\User.cs">
+      <DependentUpon>SportLifeDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Visiting.cs">
+      <DependentUpon>SportLifeDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generic\GenericRepository.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Custom\" />
-    <Folder Include="Database\" />
-    <Folder Include="Generic\" />
-    <Folder Include="Interfaces\" />
+    <Folder Include="SportLifeRepositories\Interfaces\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <EntityDeploy Include="Database\SportLifeDataContext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SportLifeDataContext.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Database\SportLifeDataContext.edmx.diagram">
+      <DependentUpon>SportLifeDataContext.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Database\SportLifeDataContext.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SportLifeDataContext.edmx</DependentUpon>
+      <LastGenOutput>SportLifeDataContext.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Database\SportLifeDataContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SportLifeDataContext.edmx</DependentUpon>
+      <LastGenOutput>SportLifeDataContext.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

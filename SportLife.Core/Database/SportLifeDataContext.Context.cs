@@ -13,10 +13,10 @@ namespace SportLife.Core.Database
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class SportLifeEntitiesWork : DbContext
+    public partial class SportLifeDataContext : DbContext
     {
-        public SportLifeEntitiesWork()
-            : base("name=SportLifeEntitiesWork")
+        public SportLifeDataContext()
+            : base("name=SportLifeDataContext")
         {
         }
     
