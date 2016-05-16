@@ -17,15 +17,15 @@ namespace SportLife.Core.Database
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Price()
         {
-            this.Orders = new HashSet<Order>();
+            this.AbonementOrder = new HashSet<AbonementOrder>();
         }
     
-        public int price_id { get; set; }
-        public decimal price1 { get; set; }
-        public Nullable<int> abonement_id { get; set; }
+        public int PriceId { get; set; }
+        public decimal Price1 { get; set; }
+        public int AbonementId { get; set; }
     
         public virtual Abonement Abonement { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<AbonementOrder> AbonementOrder { get; set; }
     }
 }

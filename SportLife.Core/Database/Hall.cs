@@ -17,14 +17,14 @@ namespace SportLife.Core.Database
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Hall()
         {
-            this.Shedules = new HashSet<Shedule>();
+            this.Shedule = new HashSet<Shedule>();
         }
     
-        public int hall_id { get; set; }
-        public Nullable<int> adress_id { get; set; }
+        public int HallId { get; set; }
+        public Nullable<int> AdressId { get; set; }
     
         public virtual Adress Adress { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Shedule> Shedules { get; set; }
+        public virtual ICollection<Shedule> Shedule { get; set; }
     }
 }

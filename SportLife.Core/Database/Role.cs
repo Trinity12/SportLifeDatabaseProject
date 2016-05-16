@@ -12,13 +12,18 @@ namespace SportLife.Core.Database
     using System;
     using System.Collections.Generic;
     
-    public partial class Sports_in_Abonements
+    public partial class Role
     {
-        public int sport_in_abonement_id { get; set; }
-        public Nullable<int> abonement_id { get; set; }
-        public Nullable<int> sport_id { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Role()
+        {
+            this.User = new HashSet<User>();
+        }
     
-        public virtual Abonement Abonement { get; set; }
-        public virtual Sport_kinds Sport_kinds { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<User> User { get; set; }
     }
 }

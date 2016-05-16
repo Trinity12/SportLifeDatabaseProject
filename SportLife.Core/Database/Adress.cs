@@ -17,19 +17,19 @@ namespace SportLife.Core.Database
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Adress()
         {
-            this.Halls = new HashSet<Hall>();
+            this.Hall = new HashSet<Hall>();
         }
     
-        public int adress_id { get; set; }
-        public string adress_street { get; set; }
-        public string adress_city { get; set; }
-        public string adress_state { get; set; }
-        public string adress_building { get; set; }
-        public string adress_apartament { get; set; }
-        public string adress_latitude { get; set; }
-        public string adress_longtitude { get; set; }
+        public int AdressId { get; set; }
+        public string AdressStreet { get; set; }
+        public string AdressCity { get; set; }
+        public string AdressState { get; set; }
+        public string AdressBuilding { get; set; }
+        public string AdressApartament { get; set; }
+        public string AdressLatitude { get; set; }
+        public string AdressLongtitude { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Hall> Halls { get; set; }
+        public virtual ICollection<Hall> Hall { get; set; }
     }
 }

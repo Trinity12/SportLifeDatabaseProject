@@ -12,22 +12,18 @@ namespace SportLife.Core.Database
     using System;
     using System.Collections.Generic;
     
-    public partial class Group
+    public partial class SportCategory
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Group()
+        public SportCategory()
         {
-            this.Shedules = new HashSet<Shedule>();
+            this.SportKind = new HashSet<SportKind>();
         }
     
-        public int group_id { get; set; }
-        public Nullable<int> group_max_members { get; set; }
-        public Nullable<int> coach_id { get; set; }
-        public Nullable<int> sport_id { get; set; }
+        public int SportCategoryId { get; set; }
+        public string SportCategoryName { get; set; }
     
-        public virtual Coach Coach { get; set; }
-        public virtual Sport_kinds Sport_kinds { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Shedule> Shedules { get; set; }
+        public virtual ICollection<SportKind> SportKind { get; set; }
     }
 }

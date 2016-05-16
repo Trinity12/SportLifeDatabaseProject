@@ -12,12 +12,13 @@ namespace SportLife.Core.Database
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagram
+    public partial class UserClaim
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int Id { get; set; }
+        public int UserId { get; set; }
+        public string ClaimType { get; set; }
+        public string ClaimValue { get; set; }
+    
+        public virtual User User { get; set; }
     }
 }

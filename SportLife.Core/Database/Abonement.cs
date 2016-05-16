@@ -17,18 +17,21 @@ namespace SportLife.Core.Database
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Abonement()
         {
-            this.Prices = new HashSet<Price>();
-            this.Sports_in_Abonements = new HashSet<Sports_in_Abonements>();
+            this.Price = new HashSet<Price>();
+            this.SportKind = new HashSet<SportKind>();
+            this.User = new HashSet<User>();
         }
     
-        public int abonement_id { get; set; }
-        public string abonement_name { get; set; }
-        public Nullable<int> abonement_during { get; set; }
-        public Nullable<int> abonement_trainings { get; set; }
+        public int AbonementId { get; set; }
+        public string AbonementName { get; set; }
+        public int AbonementDuring { get; set; }
+        public int AbonementTrainings { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Price> Prices { get; set; }
+        public virtual ICollection<Price> Price { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sports_in_Abonements> Sports_in_Abonements { get; set; }
+        public virtual ICollection<SportKind> SportKind { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<User> User { get; set; }
     }
 }

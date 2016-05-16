@@ -12,23 +12,23 @@ namespace SportLife.Core.Database
     using System;
     using System.Collections.Generic;
     
-    public partial class Sport_kinds
+    public partial class SportKind
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Sport_kinds()
+        public SportKind()
         {
-            this.Groups = new HashSet<Group>();
-            this.Sports_in_Abonements = new HashSet<Sports_in_Abonements>();
+            this.SportGroup = new HashSet<SportGroup>();
+            this.Abonement = new HashSet<Abonement>();
         }
     
-        public int sport_id { get; set; }
-        public string sport_name { get; set; }
-        public Nullable<int> sport_category_id { get; set; }
+        public int SportId { get; set; }
+        public string SportName { get; set; }
+        public Nullable<int> SportCategoryId { get; set; }
     
+        public virtual SportCategory SportCategory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Group> Groups { get; set; }
-        public virtual Sport_categories Sport_categories { get; set; }
+        public virtual ICollection<SportGroup> SportGroup { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sports_in_Abonements> Sports_in_Abonements { get; set; }
+        public virtual ICollection<Abonement> Abonement { get; set; }
     }
 }

@@ -12,13 +12,12 @@ namespace SportLife.Core.Database
     using System;
     using System.Collections.Generic;
     
-    public partial class Order
+    public partial class UserLogin
     {
-        public int order_id { get; set; }
-        public Nullable<int> price_id { get; set; }
-        public Nullable<int> client_id { get; set; }
+        public int UserId { get; set; }
+        public string LoginProvider { get; set; }
+        public string ProviderKey { get; set; }
     
-        public virtual Client Client { get; set; }
-        public virtual Price Price { get; set; }
+        public virtual User User { get; set; }
     }
 }

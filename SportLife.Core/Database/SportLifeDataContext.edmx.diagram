@@ -4,37 +4,37 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e11f2d2381504832b0e35635a8fdc99e" Name="Diagram1">
-        <EntityTypeShape EntityType="SportLifeModel.Abonement" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SportLifeModel.Adress" Width="1.5" PointX="3" PointY="14.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SportLifeModel.Client" Width="1.5" PointX="7.5" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SportLifeModel.Coach" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SportLifeModel.Group" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SportLifeModel.Hall" Width="1.5" PointX="5.25" PointY="14.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SportLifeModel.Order" Width="1.5" PointX="9.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SportLifeModel.Price" Width="1.5" PointX="5.25" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SportLifeModel.Shedule" Width="1.5" PointX="7.5" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SportLifeModel.Sport_categories" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="SportLifeModel.Sport_kinds" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SportLifeModel.Sports_in_Abonements" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SportLifeModel.sysdiagram" Width="1.5" PointX="9.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SportLifeModel.User" Width="1.5" PointX="0.75" PointY="10.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SportLifeModel.Visiting" Width="1.5" PointX="9.75" PointY="3.75" IsExpanded="true" />
-        <AssociationConnector Association="SportLifeModel.FK__Prices__abonemen__286302EC" ManuallyRouted="false" />
-        <AssociationConnector Association="SportLifeModel.FK__Sports_in__abone__24927208" ManuallyRouted="false" />
-        <AssociationConnector Association="SportLifeModel.FK__Halls__adress_id__30F848ED" ManuallyRouted="false" />
-        <AssociationConnector Association="SportLifeModel.FK__Clients__user_id__15502E78" ManuallyRouted="false" />
-        <AssociationConnector Association="SportLifeModel.FK__Orders__client_i__2C3393D0" ManuallyRouted="false" />
-        <AssociationConnector Association="SportLifeModel.FK__Visitings__clien__3A81B327" ManuallyRouted="false" />
-        <AssociationConnector Association="SportLifeModel.FK__Coaches__user_id__1273C1CD" ManuallyRouted="false" />
-        <AssociationConnector Association="SportLifeModel.FK__Groups__coach_id__1CF15040" ManuallyRouted="false" />
-        <AssociationConnector Association="SportLifeModel.FK__Groups__sport_id__1DE57479" ManuallyRouted="false" />
-        <AssociationConnector Association="SportLifeModel.FK__Shedule__group_i__35BCFE0A" ManuallyRouted="false" />
-        <AssociationConnector Association="SportLifeModel.FK__Shedule__hall_id__36B12243" ManuallyRouted="false" />
-        <AssociationConnector Association="SportLifeModel.FK__Orders__price_id__2B3F6F97" ManuallyRouted="false" />
-        <AssociationConnector Association="SportLifeModel.FK__Visitings__shedu__398D8EEE" ManuallyRouted="false" />
-        <AssociationConnector Association="SportLifeModel.FK__Sport_kin__sport__1A14E395" ManuallyRouted="false" />
-        <AssociationConnector Association="SportLifeModel.FK__Sports_in__sport__25869641" ManuallyRouted="false" />
+      <Diagram DiagramId="57f0f73afba44efcad816b25abb1a255" Name="Diagram1">
+        <EntityTypeShape EntityType="SportLifeModel.Abonement" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SportLifeModel.AbonementOrder" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SportLifeModel.Adress" Width="1.5" PointX="6" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="SportLifeModel.Hall" Width="1.5" PointX="8.25" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SportLifeModel.Price" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SportLifeModel.Role" Width="1.5" PointX="0.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SportLifeModel.Shedule" Width="1.5" PointX="10.5" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="SportLifeModel.SportCategory" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SportLifeModel.SportGroup" Width="1.5" PointX="8.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SportLifeModel.SportKind" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SportLifeModel.User" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SportLifeModel.UserClaim" Width="1.5" PointX="5.25" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SportLifeModel.UserLogin" Width="1.5" PointX="5.25" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SportLifeModel.Visiting" Width="1.5" PointX="12.75" PointY="9.5" IsExpanded="true" />
+        <AssociationConnector Association="SportLifeModel.FK_Price_Abonement" ManuallyRouted="false" />
+        <AssociationConnector Association="SportLifeModel.FK_AbonementOrder_Price" ManuallyRouted="false" />
+        <AssociationConnector Association="SportLifeModel.FK_AbonementOrder_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SportLifeModel.FK_Hall_Adress" ManuallyRouted="false" />
+        <AssociationConnector Association="SportLifeModel.FK_Shedule_Hall" ManuallyRouted="false" />
+        <AssociationConnector Association="SportLifeModel.FK_Shedule_SportGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="SportLifeModel.FK_Visiting_Shedule" ManuallyRouted="false" />
+        <AssociationConnector Association="SportLifeModel.FK_SportKind_SportCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="SportLifeModel.FK_SportGroup_SportId" ManuallyRouted="false" />
+        <AssociationConnector Association="SportLifeModel.FK_SportGroup_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SportLifeModel.FK_UserClaim_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SportLifeModel.FK_UserLogin_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SportLifeModel.FK_Visiting_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SportLifeModel.SportAbonement" ManuallyRouted="false" />
+        <AssociationConnector Association="SportLifeModel.UserAbonement" ManuallyRouted="false" />
+        <AssociationConnector Association="SportLifeModel.UserRole" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

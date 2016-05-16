@@ -17,18 +17,18 @@ namespace SportLife.Core.Database
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Shedule()
         {
-            this.Visitings = new HashSet<Visiting>();
+            this.Visiting = new HashSet<Visiting>();
         }
     
-        public int shedule_id { get; set; }
-        public string shedule_day { get; set; }
-        public System.TimeSpan shedule_time { get; set; }
-        public Nullable<int> group_id { get; set; }
-        public Nullable<int> hall_id { get; set; }
+        public int ShedulId { get; set; }
+        public string SheduleDay { get; set; }
+        public System.TimeSpan SheduleTime { get; set; }
+        public Nullable<int> GroupId { get; set; }
+        public Nullable<int> HallId { get; set; }
     
-        public virtual Group Group { get; set; }
         public virtual Hall Hall { get; set; }
+        public virtual SportGroup SportGroup { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Visiting> Visitings { get; set; }
+        public virtual ICollection<Visiting> Visiting { get; set; }
     }
 }

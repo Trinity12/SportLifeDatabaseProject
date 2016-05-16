@@ -54,28 +54,34 @@
     <Compile Include="Database\Abonement.cs">
       <DependentUpon>SportLifeDataContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Database\AbonementOrder.cs">
+      <DependentUpon>SportLifeDataContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Database\Adress.cs">
-      <DependentUpon>SportLifeDataContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Database\Client.cs">
-      <DependentUpon>SportLifeDataContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Database\Coach.cs">
-      <DependentUpon>SportLifeDataContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Database\Group.cs">
       <DependentUpon>SportLifeDataContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Hall.cs">
       <DependentUpon>SportLifeDataContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Database\Order.cs">
-      <DependentUpon>SportLifeDataContext.tt</DependentUpon>
-    </Compile>
     <Compile Include="Database\Price.cs">
       <DependentUpon>SportLifeDataContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Database\Role.cs">
+      <DependentUpon>SportLifeDataContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Database\Shedule.cs">
+      <DependentUpon>SportLifeDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\SportAbonement.cs">
+      <DependentUpon>SportLifeDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\SportCategory.cs">
+      <DependentUpon>SportLifeDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\SportGroup.cs">
+      <DependentUpon>SportLifeDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\SportKind.cs">
       <DependentUpon>SportLifeDataContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\SportLifeDataContext.Context.cs">
@@ -93,19 +99,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SportLifeDataContext.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Database\Sports_in_Abonements.cs">
-      <DependentUpon>SportLifeDataContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Database\Sport_categories.cs">
-      <DependentUpon>SportLifeDataContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Database\Sport_kinds.cs">
-      <DependentUpon>SportLifeDataContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Database\sysdiagram.cs">
-      <DependentUpon>SportLifeDataContext.tt</DependentUpon>
-    </Compile>
     <Compile Include="Database\User.cs">
+      <DependentUpon>SportLifeDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\UserClaim.cs">
+      <DependentUpon>SportLifeDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\UserLogin.cs">
       <DependentUpon>SportLifeDataContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Visiting.cs">
@@ -134,6 +134,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Database\Scripts\SportLifeDatabaseCreating.sql" />
     <Content Include="Database\SportLifeDataContext.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SportLifeDataContext.edmx</DependentUpon>

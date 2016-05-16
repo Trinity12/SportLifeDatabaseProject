@@ -5,392 +5,490 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="SportLifeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Abonements">
+        <EntityType Name="Abonement">
           <Key>
-            <PropertyRef Name="abonement_id" />
+            <PropertyRef Name="AbonementId" />
           </Key>
-          <Property Name="abonement_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="abonement_name" Type="varchar" MaxLength="200" />
-          <Property Name="abonement_during" Type="int" />
-          <Property Name="abonement_trainings" Type="int" />
+          <Property Name="AbonementId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AbonementName" Type="varchar(max)" Nullable="false" />
+          <Property Name="AbonementDuring" Type="int" Nullable="false" />
+          <Property Name="AbonementTrainings" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="Adresses">
+        <EntityType Name="AbonementOrder">
           <Key>
-            <PropertyRef Name="adress_id" />
+            <PropertyRef Name="OrderId" />
           </Key>
-          <Property Name="adress_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="adress_street" Type="varchar" MaxLength="200" />
-          <Property Name="adress_city" Type="varchar" MaxLength="200" />
-          <Property Name="adress_state" Type="varchar" MaxLength="200" />
-          <Property Name="adress_building" Type="varchar" MaxLength="10" />
-          <Property Name="adress_apartament" Type="varchar" MaxLength="10" />
-          <Property Name="adress_latitude" Type="varchar" MaxLength="15" />
-          <Property Name="adress_longtitude" Type="varchar" MaxLength="15" />
+          <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PriceId" Type="int" Nullable="false" />
+          <Property Name="ClientId" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="Clients">
+        <EntityType Name="Adress">
           <Key>
-            <PropertyRef Name="client_id" />
+            <PropertyRef Name="AdressId" />
           </Key>
-          <Property Name="client_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="user_id" Type="int" />
+          <Property Name="AdressId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdressStreet" Type="varchar(max)" />
+          <Property Name="AdressCity" Type="varchar(max)" />
+          <Property Name="AdressState" Type="varchar(max)" />
+          <Property Name="AdressBuilding" Type="varchar" MaxLength="10" />
+          <Property Name="AdressApartament" Type="varchar" MaxLength="10" />
+          <Property Name="AdressLatitude" Type="varchar" MaxLength="15" />
+          <Property Name="AdressLongtitude" Type="varchar" MaxLength="15" />
         </EntityType>
-        <EntityType Name="Coaches">
+        <EntityType Name="Hall">
           <Key>
-            <PropertyRef Name="coach_id" />
+            <PropertyRef Name="HallId" />
           </Key>
-          <Property Name="coach_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="user_id" Type="int" />
-          <Property Name="coach_comm" Type="real" />
+          <Property Name="HallId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdressId" Type="int" />
         </EntityType>
-        <EntityType Name="Groups">
+        <EntityType Name="Price">
           <Key>
-            <PropertyRef Name="group_id" />
+            <PropertyRef Name="PriceId" />
           </Key>
-          <Property Name="group_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="group_max_members" Type="int" />
-          <Property Name="coach_id" Type="int" />
-          <Property Name="sport_id" Type="int" />
+          <Property Name="PriceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Price" Type="money" Nullable="false" />
+          <Property Name="AbonementId" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="Halls">
+        <EntityType Name="Role">
           <Key>
-            <PropertyRef Name="hall_id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="hall_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="adress_id" Type="int" />
-        </EntityType>
-        <EntityType Name="Orders">
-          <Key>
-            <PropertyRef Name="order_id" />
-          </Key>
-          <Property Name="order_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="price_id" Type="int" />
-          <Property Name="client_id" Type="int" />
-        </EntityType>
-        <EntityType Name="Prices">
-          <Key>
-            <PropertyRef Name="price_id" />
-          </Key>
-          <Property Name="price_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="price" Type="money" Nullable="false" />
-          <Property Name="abonement_id" Type="int" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Shedule">
           <Key>
-            <PropertyRef Name="shedule_id" />
+            <PropertyRef Name="ShedulId" />
           </Key>
-          <Property Name="shedule_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="shedule_day" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="shedule_time" Type="time" Precision="7" Nullable="false" />
-          <Property Name="group_id" Type="int" />
-          <Property Name="hall_id" Type="int" />
+          <Property Name="ShedulId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SheduleDay" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="SheduleTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="GroupId" Type="int" />
+          <Property Name="HallId" Type="int" />
         </EntityType>
-        <EntityType Name="Sport_categories">
+        <EntityType Name="SportAbonement">
           <Key>
-            <PropertyRef Name="sport_category_id" />
+            <PropertyRef Name="AbonementId" />
+            <PropertyRef Name="SportId" />
           </Key>
-          <Property Name="sport_category_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="sport_category_name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="AbonementId" Type="int" Nullable="false" />
+          <Property Name="SportId" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="Sport_kinds">
+        <EntityType Name="SportCategory">
           <Key>
-            <PropertyRef Name="sport_id" />
+            <PropertyRef Name="SportCategoryId" />
           </Key>
-          <Property Name="sport_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="sport_name" Type="varchar" MaxLength="200" Nullable="false" />
-          <Property Name="sport_category_id" Type="int" />
+          <Property Name="SportCategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SportCategoryName" Type="varchar(max)" Nullable="false" />
         </EntityType>
-        <EntityType Name="Sports_in_Abonements">
+        <EntityType Name="SportGroup">
           <Key>
-            <PropertyRef Name="sport_in_abonement_id" />
+            <PropertyRef Name="GroupId" />
           </Key>
-          <Property Name="sport_in_abonement_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="abonement_id" Type="int" />
-          <Property Name="sport_id" Type="int" />
+          <Property Name="GroupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupMaxMembers" Type="int" />
+          <Property Name="CoachId" Type="int" Nullable="false" />
+          <Property Name="SportId" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
+        <EntityType Name="SportKind">
           <Key>
-            <PropertyRef Name="diagram_id" />
+            <PropertyRef Name="SportId" />
           </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
+          <Property Name="SportId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SportName" Type="varchar(max)" Nullable="false" />
+          <Property Name="SportCategoryId" Type="int" />
         </EntityType>
-        <EntityType Name="Users">
+        <EntityType Name="User">
           <Key>
-            <PropertyRef Name="user_id" />
+            <PropertyRef Name="UserId" />
           </Key>
-          <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="user_name" Type="varchar" MaxLength="200" />
-          <Property Name="user_birthdate" Type="date" />
-          <Property Name="user_phone" Type="varchar" MaxLength="13" />
-          <Property Name="user_mail" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="user_password" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar" MaxLength="100" />
+          <Property Name="SecurityStamp" Type="nvarchar" MaxLength="100" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="25" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="Visitings">
+        <EntityType Name="UserAbonement">
           <Key>
-            <PropertyRef Name="visiting_id" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="AbonementId" />
           </Key>
-          <Property Name="visiting_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="shedule_id" Type="int" />
-          <Property Name="client_id" Type="int" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="AbonementId" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Clients__user_id__15502E78">
-          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
-          <End Role="Clients" Type="Self.Clients" Multiplicity="*" />
+        <EntityType Name="UserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="UserLogin">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Visiting">
+          <Key>
+            <PropertyRef Name="VisitingId" />
+          </Key>
+          <Property Name="VisitingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VisitingDateTime" Type="datetime" Nullable="false" />
+          <Property Name="SheduleId" Type="int" Nullable="false" />
+          <Property Name="ClientId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AbonementOrder_Price">
+          <End Role="Price" Type="Self.Price" Multiplicity="1" />
+          <End Role="AbonementOrder" Type="Self.AbonementOrder" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="user_id" />
+            <Principal Role="Price">
+              <PropertyRef Name="PriceId" />
             </Principal>
-            <Dependent Role="Clients">
-              <PropertyRef Name="user_id" />
+            <Dependent Role="AbonementOrder">
+              <PropertyRef Name="PriceId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Coaches__user_id__1273C1CD">
-          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
-          <End Role="Coaches" Type="Self.Coaches" Multiplicity="*" />
+        <Association Name="FK_AbonementOrder_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="AbonementOrder" Type="Self.AbonementOrder" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="user_id" />
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
             </Principal>
-            <Dependent Role="Coaches">
-              <PropertyRef Name="user_id" />
+            <Dependent Role="AbonementOrder">
+              <PropertyRef Name="ClientId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Groups__coach_id__1CF15040">
-          <End Role="Coaches" Type="Self.Coaches" Multiplicity="0..1" />
-          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
+        <Association Name="FK_Hall_Adress">
+          <End Role="Adress" Type="Self.Adress" Multiplicity="0..1" />
+          <End Role="Hall" Type="Self.Hall" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Coaches">
-              <PropertyRef Name="coach_id" />
+            <Principal Role="Adress">
+              <PropertyRef Name="AdressId" />
             </Principal>
-            <Dependent Role="Groups">
-              <PropertyRef Name="coach_id" />
+            <Dependent Role="Hall">
+              <PropertyRef Name="AdressId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Groups__sport_id__1DE57479">
-          <End Role="Sport_kinds" Type="Self.Sport_kinds" Multiplicity="0..1" />
-          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
+        <Association Name="FK_Price_Abonement">
+          <End Role="Abonement" Type="Self.Abonement" Multiplicity="1" />
+          <End Role="Price" Type="Self.Price" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Sport_kinds">
-              <PropertyRef Name="sport_id" />
+            <Principal Role="Abonement">
+              <PropertyRef Name="AbonementId" />
             </Principal>
-            <Dependent Role="Groups">
-              <PropertyRef Name="sport_id" />
+            <Dependent Role="Price">
+              <PropertyRef Name="AbonementId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Halls__adress_id__30F848ED">
-          <End Role="Adresses" Type="Self.Adresses" Multiplicity="0..1" />
-          <End Role="Halls" Type="Self.Halls" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Adresses">
-              <PropertyRef Name="adress_id" />
-            </Principal>
-            <Dependent Role="Halls">
-              <PropertyRef Name="adress_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Orders__client_i__2C3393D0">
-          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
-          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Clients">
-              <PropertyRef Name="client_id" />
-            </Principal>
-            <Dependent Role="Orders">
-              <PropertyRef Name="client_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Orders__price_id__2B3F6F97">
-          <End Role="Prices" Type="Self.Prices" Multiplicity="0..1" />
-          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Prices">
-              <PropertyRef Name="price_id" />
-            </Principal>
-            <Dependent Role="Orders">
-              <PropertyRef Name="price_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Prices__abonemen__286302EC">
-          <End Role="Abonements" Type="Self.Abonements" Multiplicity="0..1" />
-          <End Role="Prices" Type="Self.Prices" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Abonements">
-              <PropertyRef Name="abonement_id" />
-            </Principal>
-            <Dependent Role="Prices">
-              <PropertyRef Name="abonement_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Shedule__group_i__35BCFE0A">
-          <End Role="Groups" Type="Self.Groups" Multiplicity="0..1" />
+        <Association Name="FK_Shedule_Hall">
+          <End Role="Hall" Type="Self.Hall" Multiplicity="0..1" />
           <End Role="Shedule" Type="Self.Shedule" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Groups">
-              <PropertyRef Name="group_id" />
+            <Principal Role="Hall">
+              <PropertyRef Name="HallId" />
             </Principal>
             <Dependent Role="Shedule">
-              <PropertyRef Name="group_id" />
+              <PropertyRef Name="HallId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Shedule__hall_id__36B12243">
-          <End Role="Halls" Type="Self.Halls" Multiplicity="0..1" />
+        <Association Name="FK_Shedule_SportGroup">
+          <End Role="SportGroup" Type="Self.SportGroup" Multiplicity="0..1" />
           <End Role="Shedule" Type="Self.Shedule" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Halls">
-              <PropertyRef Name="hall_id" />
+            <Principal Role="SportGroup">
+              <PropertyRef Name="GroupId" />
             </Principal>
             <Dependent Role="Shedule">
-              <PropertyRef Name="hall_id" />
+              <PropertyRef Name="GroupId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Sport_kin__sport__1A14E395">
-          <End Role="Sport_categories" Type="Self.Sport_categories" Multiplicity="0..1" />
-          <End Role="Sport_kinds" Type="Self.Sport_kinds" Multiplicity="*" />
+        <Association Name="FK_SportAbonement_Abonement">
+          <End Role="Abonement" Type="Self.Abonement" Multiplicity="1" />
+          <End Role="SportAbonement" Type="Self.SportAbonement" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Sport_categories">
-              <PropertyRef Name="sport_category_id" />
+            <Principal Role="Abonement">
+              <PropertyRef Name="AbonementId" />
             </Principal>
-            <Dependent Role="Sport_kinds">
-              <PropertyRef Name="sport_category_id" />
+            <Dependent Role="SportAbonement">
+              <PropertyRef Name="AbonementId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Sports_in__abone__24927208">
-          <End Role="Abonements" Type="Self.Abonements" Multiplicity="0..1" />
-          <End Role="Sports_in_Abonements" Type="Self.Sports_in_Abonements" Multiplicity="*" />
+        <Association Name="FK_SportAbonement_Sport">
+          <End Role="SportKind" Type="Self.SportKind" Multiplicity="1" />
+          <End Role="SportAbonement" Type="Self.SportAbonement" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Abonements">
-              <PropertyRef Name="abonement_id" />
+            <Principal Role="SportKind">
+              <PropertyRef Name="SportId" />
             </Principal>
-            <Dependent Role="Sports_in_Abonements">
-              <PropertyRef Name="abonement_id" />
+            <Dependent Role="SportAbonement">
+              <PropertyRef Name="SportId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Sports_in__sport__25869641">
-          <End Role="Sport_kinds" Type="Self.Sport_kinds" Multiplicity="0..1" />
-          <End Role="Sports_in_Abonements" Type="Self.Sports_in_Abonements" Multiplicity="*" />
+        <Association Name="FK_SportGroup_SportId">
+          <End Role="SportKind" Type="Self.SportKind" Multiplicity="1" />
+          <End Role="SportGroup" Type="Self.SportGroup" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Sport_kinds">
-              <PropertyRef Name="sport_id" />
+            <Principal Role="SportKind">
+              <PropertyRef Name="SportId" />
             </Principal>
-            <Dependent Role="Sports_in_Abonements">
-              <PropertyRef Name="sport_id" />
+            <Dependent Role="SportGroup">
+              <PropertyRef Name="SportId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Visitings__clien__3A81B327">
-          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
-          <End Role="Visitings" Type="Self.Visitings" Multiplicity="*" />
+        <Association Name="FK_SportGroup_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="SportGroup" Type="Self.SportGroup" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Clients">
-              <PropertyRef Name="client_id" />
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
             </Principal>
-            <Dependent Role="Visitings">
-              <PropertyRef Name="client_id" />
+            <Dependent Role="SportGroup">
+              <PropertyRef Name="CoachId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Visitings__shedu__398D8EEE">
-          <End Role="Shedule" Type="Self.Shedule" Multiplicity="0..1" />
-          <End Role="Visitings" Type="Self.Visitings" Multiplicity="*" />
+        <Association Name="FK_SportKind_SportCategory">
+          <End Role="SportCategory" Type="Self.SportCategory" Multiplicity="0..1" />
+          <End Role="SportKind" Type="Self.SportKind" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SportCategory">
+              <PropertyRef Name="SportCategoryId" />
+            </Principal>
+            <Dependent Role="SportKind">
+              <PropertyRef Name="SportCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserAbonement_Abonement">
+          <End Role="Abonement" Type="Self.Abonement" Multiplicity="1" />
+          <End Role="UserAbonement" Type="Self.UserAbonement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Abonement">
+              <PropertyRef Name="AbonementId" />
+            </Principal>
+            <Dependent Role="UserAbonement">
+              <PropertyRef Name="AbonementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserAbonement_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserAbonement" Type="Self.UserAbonement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserAbonement">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserClaim_User">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserClaim" Type="Self.UserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserClaim">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserLogin_User">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserLogin" Type="Self.UserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserLogin">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRole_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRole_User">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Visiting_Shedule">
+          <End Role="Shedule" Type="Self.Shedule" Multiplicity="1" />
+          <End Role="Visiting" Type="Self.Visiting" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Shedule">
-              <PropertyRef Name="shedule_id" />
+              <PropertyRef Name="ShedulId" />
             </Principal>
-            <Dependent Role="Visitings">
-              <PropertyRef Name="shedule_id" />
+            <Dependent Role="Visiting">
+              <PropertyRef Name="SheduleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Visiting_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Visiting" Type="Self.Visiting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Visiting">
+              <PropertyRef Name="ClientId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="SportLifeModelStoreContainer">
-          <EntitySet Name="Abonements" EntityType="Self.Abonements" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Adresses" EntityType="Self.Adresses" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Coaches" EntityType="Self.Coaches" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Halls" EntityType="Self.Halls" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Prices" EntityType="Self.Prices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Abonement" EntityType="Self.Abonement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AbonementOrder" EntityType="Self.AbonementOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Adress" EntityType="Self.Adress" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hall" EntityType="Self.Hall" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Price" EntityType="Self.Price" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shedule" EntityType="Self.Shedule" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Sport_categories" EntityType="Self.Sport_categories" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Sport_kinds" EntityType="Self.Sport_kinds" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Sports_in_Abonements" EntityType="Self.Sports_in_Abonements" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Visitings" EntityType="Self.Visitings" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Clients__user_id__15502E78" Association="Self.FK__Clients__user_id__15502E78">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Clients" EntitySet="Clients" />
+          <EntitySet Name="SportAbonement" EntityType="Self.SportAbonement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SportCategory" EntityType="Self.SportCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SportGroup" EntityType="Self.SportGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SportKind" EntityType="Self.SportKind" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserAbonement" EntityType="Self.UserAbonement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserClaim" EntityType="Self.UserClaim" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserLogin" EntityType="Self.UserLogin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Visiting" EntityType="Self.Visiting" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AbonementOrder_Price" Association="Self.FK_AbonementOrder_Price">
+            <End Role="Price" EntitySet="Price" />
+            <End Role="AbonementOrder" EntitySet="AbonementOrder" />
           </AssociationSet>
-          <AssociationSet Name="FK__Coaches__user_id__1273C1CD" Association="Self.FK__Coaches__user_id__1273C1CD">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Coaches" EntitySet="Coaches" />
+          <AssociationSet Name="FK_AbonementOrder_User" Association="Self.FK_AbonementOrder_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="AbonementOrder" EntitySet="AbonementOrder" />
           </AssociationSet>
-          <AssociationSet Name="FK__Groups__coach_id__1CF15040" Association="Self.FK__Groups__coach_id__1CF15040">
-            <End Role="Coaches" EntitySet="Coaches" />
-            <End Role="Groups" EntitySet="Groups" />
+          <AssociationSet Name="FK_Hall_Adress" Association="Self.FK_Hall_Adress">
+            <End Role="Adress" EntitySet="Adress" />
+            <End Role="Hall" EntitySet="Hall" />
           </AssociationSet>
-          <AssociationSet Name="FK__Groups__sport_id__1DE57479" Association="Self.FK__Groups__sport_id__1DE57479">
-            <End Role="Sport_kinds" EntitySet="Sport_kinds" />
-            <End Role="Groups" EntitySet="Groups" />
+          <AssociationSet Name="FK_Price_Abonement" Association="Self.FK_Price_Abonement">
+            <End Role="Abonement" EntitySet="Abonement" />
+            <End Role="Price" EntitySet="Price" />
           </AssociationSet>
-          <AssociationSet Name="FK__Halls__adress_id__30F848ED" Association="Self.FK__Halls__adress_id__30F848ED">
-            <End Role="Adresses" EntitySet="Adresses" />
-            <End Role="Halls" EntitySet="Halls" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Orders__client_i__2C3393D0" Association="Self.FK__Orders__client_i__2C3393D0">
-            <End Role="Clients" EntitySet="Clients" />
-            <End Role="Orders" EntitySet="Orders" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Orders__price_id__2B3F6F97" Association="Self.FK__Orders__price_id__2B3F6F97">
-            <End Role="Prices" EntitySet="Prices" />
-            <End Role="Orders" EntitySet="Orders" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Prices__abonemen__286302EC" Association="Self.FK__Prices__abonemen__286302EC">
-            <End Role="Abonements" EntitySet="Abonements" />
-            <End Role="Prices" EntitySet="Prices" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Shedule__group_i__35BCFE0A" Association="Self.FK__Shedule__group_i__35BCFE0A">
-            <End Role="Groups" EntitySet="Groups" />
+          <AssociationSet Name="FK_Shedule_Hall" Association="Self.FK_Shedule_Hall">
+            <End Role="Hall" EntitySet="Hall" />
             <End Role="Shedule" EntitySet="Shedule" />
           </AssociationSet>
-          <AssociationSet Name="FK__Shedule__hall_id__36B12243" Association="Self.FK__Shedule__hall_id__36B12243">
-            <End Role="Halls" EntitySet="Halls" />
+          <AssociationSet Name="FK_Shedule_SportGroup" Association="Self.FK_Shedule_SportGroup">
+            <End Role="SportGroup" EntitySet="SportGroup" />
             <End Role="Shedule" EntitySet="Shedule" />
           </AssociationSet>
-          <AssociationSet Name="FK__Sport_kin__sport__1A14E395" Association="Self.FK__Sport_kin__sport__1A14E395">
-            <End Role="Sport_categories" EntitySet="Sport_categories" />
-            <End Role="Sport_kinds" EntitySet="Sport_kinds" />
+          <AssociationSet Name="FK_SportAbonement_Abonement" Association="Self.FK_SportAbonement_Abonement">
+            <End Role="Abonement" EntitySet="Abonement" />
+            <End Role="SportAbonement" EntitySet="SportAbonement" />
           </AssociationSet>
-          <AssociationSet Name="FK__Sports_in__abone__24927208" Association="Self.FK__Sports_in__abone__24927208">
-            <End Role="Abonements" EntitySet="Abonements" />
-            <End Role="Sports_in_Abonements" EntitySet="Sports_in_Abonements" />
+          <AssociationSet Name="FK_SportAbonement_Sport" Association="Self.FK_SportAbonement_Sport">
+            <End Role="SportKind" EntitySet="SportKind" />
+            <End Role="SportAbonement" EntitySet="SportAbonement" />
           </AssociationSet>
-          <AssociationSet Name="FK__Sports_in__sport__25869641" Association="Self.FK__Sports_in__sport__25869641">
-            <End Role="Sport_kinds" EntitySet="Sport_kinds" />
-            <End Role="Sports_in_Abonements" EntitySet="Sports_in_Abonements" />
+          <AssociationSet Name="FK_SportGroup_SportId" Association="Self.FK_SportGroup_SportId">
+            <End Role="SportKind" EntitySet="SportKind" />
+            <End Role="SportGroup" EntitySet="SportGroup" />
           </AssociationSet>
-          <AssociationSet Name="FK__Visitings__clien__3A81B327" Association="Self.FK__Visitings__clien__3A81B327">
-            <End Role="Clients" EntitySet="Clients" />
-            <End Role="Visitings" EntitySet="Visitings" />
+          <AssociationSet Name="FK_SportGroup_User" Association="Self.FK_SportGroup_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="SportGroup" EntitySet="SportGroup" />
           </AssociationSet>
-          <AssociationSet Name="FK__Visitings__shedu__398D8EEE" Association="Self.FK__Visitings__shedu__398D8EEE">
+          <AssociationSet Name="FK_SportKind_SportCategory" Association="Self.FK_SportKind_SportCategory">
+            <End Role="SportCategory" EntitySet="SportCategory" />
+            <End Role="SportKind" EntitySet="SportKind" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserAbonement_Abonement" Association="Self.FK_UserAbonement_Abonement">
+            <End Role="Abonement" EntitySet="Abonement" />
+            <End Role="UserAbonement" EntitySet="UserAbonement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserAbonement_User" Association="Self.FK_UserAbonement_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserAbonement" EntitySet="UserAbonement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserClaim_User" Association="Self.FK_UserClaim_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserClaim" EntitySet="UserClaim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserLogin_User" Association="Self.FK_UserLogin_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserLogin" EntitySet="UserLogin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRole_Role" Association="Self.FK_UserRole_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="UserRole" EntitySet="UserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRole_User" Association="Self.FK_UserRole_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserRole" EntitySet="UserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Visiting_Shedule" Association="Self.FK_Visiting_Shedule">
             <End Role="Shedule" EntitySet="Shedule" />
-            <End Role="Visitings" EntitySet="Visitings" />
+            <End Role="Visiting" EntitySet="Visiting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Visiting_User" Association="Self.FK_Visiting_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Visiting" EntitySet="Visiting" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -400,420 +498,417 @@
       <Schema Namespace="SportLifeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Abonement">
           <Key>
-            <PropertyRef Name="abonement_id" />
+            <PropertyRef Name="AbonementId" />
           </Key>
-          <Property Name="abonement_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="abonement_name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="abonement_during" Type="Int32" />
-          <Property Name="abonement_trainings" Type="Int32" />
-          <NavigationProperty Name="Prices" Relationship="Self.FK__Prices__abonemen__286302EC" FromRole="Abonements" ToRole="Prices" />
-          <NavigationProperty Name="Sports_in_Abonements" Relationship="Self.FK__Sports_in__abone__24927208" FromRole="Abonements" ToRole="Sports_in_Abonements" />
+          <Property Name="AbonementId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AbonementName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AbonementDuring" Type="Int32" Nullable="false" />
+          <Property Name="AbonementTrainings" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Price" Relationship="Self.FK_Price_Abonement" FromRole="Abonement" ToRole="Price" />
+          <NavigationProperty Name="SportKind" Relationship="Self.SportAbonement" FromRole="Abonement" ToRole="SportKind" />
+          <NavigationProperty Name="User" Relationship="Self.UserAbonement" FromRole="Abonement" ToRole="User" />
+        </EntityType>
+        <EntityType Name="AbonementOrder">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PriceId" Type="Int32" Nullable="false" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Price" Relationship="Self.FK_AbonementOrder_Price" FromRole="AbonementOrder" ToRole="Price" />
+          <NavigationProperty Name="User" Relationship="Self.FK_AbonementOrder_User" FromRole="AbonementOrder" ToRole="User" />
         </EntityType>
         <EntityType Name="Adress">
           <Key>
-            <PropertyRef Name="adress_id" />
+            <PropertyRef Name="AdressId" />
           </Key>
-          <Property Name="adress_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="adress_street" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="adress_city" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="adress_state" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="adress_building" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="adress_apartament" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="adress_latitude" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="adress_longtitude" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Halls" Relationship="Self.FK__Halls__adress_id__30F848ED" FromRole="Adresses" ToRole="Halls" />
-        </EntityType>
-        <EntityType Name="Client">
-          <Key>
-            <PropertyRef Name="client_id" />
-          </Key>
-          <Property Name="client_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="user_id" Type="Int32" />
-          <NavigationProperty Name="User" Relationship="Self.FK__Clients__user_id__15502E78" FromRole="Clients" ToRole="Users" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__client_i__2C3393D0" FromRole="Clients" ToRole="Orders" />
-          <NavigationProperty Name="Visitings" Relationship="Self.FK__Visitings__clien__3A81B327" FromRole="Clients" ToRole="Visitings" />
-        </EntityType>
-        <EntityType Name="Coach">
-          <Key>
-            <PropertyRef Name="coach_id" />
-          </Key>
-          <Property Name="coach_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="user_id" Type="Int32" />
-          <Property Name="coach_comm" Type="Single" />
-          <NavigationProperty Name="User" Relationship="Self.FK__Coaches__user_id__1273C1CD" FromRole="Coaches" ToRole="Users" />
-          <NavigationProperty Name="Groups" Relationship="Self.FK__Groups__coach_id__1CF15040" FromRole="Coaches" ToRole="Groups" />
-        </EntityType>
-        <EntityType Name="Group">
-          <Key>
-            <PropertyRef Name="group_id" />
-          </Key>
-          <Property Name="group_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="group_max_members" Type="Int32" />
-          <Property Name="coach_id" Type="Int32" />
-          <Property Name="sport_id" Type="Int32" />
-          <NavigationProperty Name="Coach" Relationship="Self.FK__Groups__coach_id__1CF15040" FromRole="Groups" ToRole="Coaches" />
-          <NavigationProperty Name="Sport_kinds" Relationship="Self.FK__Groups__sport_id__1DE57479" FromRole="Groups" ToRole="Sport_kinds" />
-          <NavigationProperty Name="Shedules" Relationship="Self.FK__Shedule__group_i__35BCFE0A" FromRole="Groups" ToRole="Shedule" />
+          <Property Name="AdressId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdressStreet" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="AdressCity" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="AdressState" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="AdressBuilding" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="AdressApartament" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="AdressLatitude" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="AdressLongtitude" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Hall" Relationship="Self.FK_Hall_Adress" FromRole="Adress" ToRole="Hall" />
         </EntityType>
         <EntityType Name="Hall">
           <Key>
-            <PropertyRef Name="hall_id" />
+            <PropertyRef Name="HallId" />
           </Key>
-          <Property Name="hall_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="adress_id" Type="Int32" />
-          <NavigationProperty Name="Adress" Relationship="Self.FK__Halls__adress_id__30F848ED" FromRole="Halls" ToRole="Adresses" />
-          <NavigationProperty Name="Shedules" Relationship="Self.FK__Shedule__hall_id__36B12243" FromRole="Halls" ToRole="Shedule" />
-        </EntityType>
-        <EntityType Name="Order">
-          <Key>
-            <PropertyRef Name="order_id" />
-          </Key>
-          <Property Name="order_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="price_id" Type="Int32" />
-          <Property Name="client_id" Type="Int32" />
-          <NavigationProperty Name="Client" Relationship="Self.FK__Orders__client_i__2C3393D0" FromRole="Orders" ToRole="Clients" />
-          <NavigationProperty Name="Price" Relationship="Self.FK__Orders__price_id__2B3F6F97" FromRole="Orders" ToRole="Prices" />
+          <Property Name="HallId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdressId" Type="Int32" />
+          <NavigationProperty Name="Adress" Relationship="Self.FK_Hall_Adress" FromRole="Hall" ToRole="Adress" />
+          <NavigationProperty Name="Shedule" Relationship="Self.FK_Shedule_Hall" FromRole="Hall" ToRole="Shedule" />
         </EntityType>
         <EntityType Name="Price">
           <Key>
-            <PropertyRef Name="price_id" />
+            <PropertyRef Name="PriceId" />
           </Key>
-          <Property Name="price_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="price1" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="abonement_id" Type="Int32" />
-          <NavigationProperty Name="Abonement" Relationship="Self.FK__Prices__abonemen__286302EC" FromRole="Prices" ToRole="Abonements" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__price_id__2B3F6F97" FromRole="Prices" ToRole="Orders" />
+          <Property Name="PriceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Price1" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="AbonementId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Abonement" Relationship="Self.FK_Price_Abonement" FromRole="Price" ToRole="Abonement" />
+          <NavigationProperty Name="AbonementOrder" Relationship="Self.FK_AbonementOrder_Price" FromRole="Price" ToRole="AbonementOrder" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.UserRole" FromRole="Role" ToRole="User" />
         </EntityType>
         <EntityType Name="Shedule">
           <Key>
-            <PropertyRef Name="shedule_id" />
+            <PropertyRef Name="ShedulId" />
           </Key>
-          <Property Name="shedule_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="shedule_day" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="shedule_time" Type="Time" Nullable="false" Precision="7" />
-          <Property Name="group_id" Type="Int32" />
-          <Property Name="hall_id" Type="Int32" />
-          <NavigationProperty Name="Group" Relationship="Self.FK__Shedule__group_i__35BCFE0A" FromRole="Shedule" ToRole="Groups" />
-          <NavigationProperty Name="Hall" Relationship="Self.FK__Shedule__hall_id__36B12243" FromRole="Shedule" ToRole="Halls" />
-          <NavigationProperty Name="Visitings" Relationship="Self.FK__Visitings__shedu__398D8EEE" FromRole="Shedule" ToRole="Visitings" />
+          <Property Name="ShedulId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SheduleDay" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SheduleTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="GroupId" Type="Int32" />
+          <Property Name="HallId" Type="Int32" />
+          <NavigationProperty Name="Hall" Relationship="Self.FK_Shedule_Hall" FromRole="Shedule" ToRole="Hall" />
+          <NavigationProperty Name="SportGroup" Relationship="Self.FK_Shedule_SportGroup" FromRole="Shedule" ToRole="SportGroup" />
+          <NavigationProperty Name="Visiting" Relationship="Self.FK_Visiting_Shedule" FromRole="Shedule" ToRole="Visiting" />
         </EntityType>
-        <EntityType Name="Sport_categories">
+        <EntityType Name="SportCategory">
           <Key>
-            <PropertyRef Name="sport_category_id" />
+            <PropertyRef Name="SportCategoryId" />
           </Key>
-          <Property Name="sport_category_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="sport_category_name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Sport_kinds" Relationship="Self.FK__Sport_kin__sport__1A14E395" FromRole="Sport_categories" ToRole="Sport_kinds" />
+          <Property Name="SportCategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SportCategoryName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="SportKind" Relationship="Self.FK_SportKind_SportCategory" FromRole="SportCategory" ToRole="SportKind" />
         </EntityType>
-        <EntityType Name="Sport_kinds">
+        <EntityType Name="SportGroup">
           <Key>
-            <PropertyRef Name="sport_id" />
+            <PropertyRef Name="GroupId" />
           </Key>
-          <Property Name="sport_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="sport_name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="sport_category_id" Type="Int32" />
-          <NavigationProperty Name="Groups" Relationship="Self.FK__Groups__sport_id__1DE57479" FromRole="Sport_kinds" ToRole="Groups" />
-          <NavigationProperty Name="Sport_categories" Relationship="Self.FK__Sport_kin__sport__1A14E395" FromRole="Sport_kinds" ToRole="Sport_categories" />
-          <NavigationProperty Name="Sports_in_Abonements" Relationship="Self.FK__Sports_in__sport__25869641" FromRole="Sport_kinds" ToRole="Sports_in_Abonements" />
+          <Property Name="GroupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupMaxMembers" Type="Int32" />
+          <Property Name="CoachId" Type="Int32" Nullable="false" />
+          <Property Name="SportId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Shedule" Relationship="Self.FK_Shedule_SportGroup" FromRole="SportGroup" ToRole="Shedule" />
+          <NavigationProperty Name="SportKind" Relationship="Self.FK_SportGroup_SportId" FromRole="SportGroup" ToRole="SportKind" />
+          <NavigationProperty Name="User" Relationship="Self.FK_SportGroup_User" FromRole="SportGroup" ToRole="User" />
         </EntityType>
-        <EntityType Name="Sports_in_Abonements">
+        <EntityType Name="SportKind">
           <Key>
-            <PropertyRef Name="sport_in_abonement_id" />
+            <PropertyRef Name="SportId" />
           </Key>
-          <Property Name="sport_in_abonement_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="abonement_id" Type="Int32" />
-          <Property Name="sport_id" Type="Int32" />
-          <NavigationProperty Name="Abonement" Relationship="Self.FK__Sports_in__abone__24927208" FromRole="Sports_in_Abonements" ToRole="Abonements" />
-          <NavigationProperty Name="Sport_kinds" Relationship="Self.FK__Sports_in__sport__25869641" FromRole="Sports_in_Abonements" ToRole="Sport_kinds" />
-        </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="SportId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SportName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SportCategoryId" Type="Int32" />
+          <NavigationProperty Name="SportCategory" Relationship="Self.FK_SportKind_SportCategory" FromRole="SportKind" ToRole="SportCategory" />
+          <NavigationProperty Name="SportGroup" Relationship="Self.FK_SportGroup_SportId" FromRole="SportKind" ToRole="SportGroup" />
+          <NavigationProperty Name="Abonement" Relationship="Self.SportAbonement" FromRole="SportKind" ToRole="Abonement" />
         </EntityType>
         <EntityType Name="User">
           <Key>
-            <PropertyRef Name="user_id" />
+            <PropertyRef Name="UserId" />
           </Key>
-          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="user_name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="user_birthdate" Type="DateTime" Precision="0" />
-          <Property Name="user_phone" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
-          <Property Name="user_mail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="user_password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Clients" Relationship="Self.FK__Clients__user_id__15502E78" FromRole="Users" ToRole="Clients" />
-          <NavigationProperty Name="Coaches" Relationship="Self.FK__Coaches__user_id__1273C1CD" FromRole="Users" ToRole="Coaches" />
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AbonementOrder" Relationship="Self.FK_AbonementOrder_User" FromRole="User" ToRole="AbonementOrder" />
+          <NavigationProperty Name="SportGroup" Relationship="Self.FK_SportGroup_User" FromRole="User" ToRole="SportGroup" />
+          <NavigationProperty Name="UserClaim" Relationship="Self.FK_UserClaim_User" FromRole="User" ToRole="UserClaim" />
+          <NavigationProperty Name="UserLogin" Relationship="Self.FK_UserLogin_User" FromRole="User" ToRole="UserLogin" />
+          <NavigationProperty Name="Visiting" Relationship="Self.FK_Visiting_User" FromRole="User" ToRole="Visiting" />
+          <NavigationProperty Name="Abonement" Relationship="Self.UserAbonement" FromRole="User" ToRole="Abonement" />
+          <NavigationProperty Name="Role" Relationship="Self.UserRole" FromRole="User" ToRole="Role" />
+        </EntityType>
+        <EntityType Name="UserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="Self.FK_UserClaim_User" FromRole="UserClaim" ToRole="User" />
+        </EntityType>
+        <EntityType Name="UserLogin">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_UserLogin_User" FromRole="UserLogin" ToRole="User" />
         </EntityType>
         <EntityType Name="Visiting">
           <Key>
-            <PropertyRef Name="visiting_id" />
+            <PropertyRef Name="VisitingId" />
           </Key>
-          <Property Name="visiting_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="shedule_id" Type="Int32" />
-          <Property Name="client_id" Type="Int32" />
-          <NavigationProperty Name="Client" Relationship="Self.FK__Visitings__clien__3A81B327" FromRole="Visitings" ToRole="Clients" />
-          <NavigationProperty Name="Shedule" Relationship="Self.FK__Visitings__shedu__398D8EEE" FromRole="Visitings" ToRole="Shedule" />
+          <Property Name="VisitingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VisitingDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SheduleId" Type="Int32" Nullable="false" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Shedule" Relationship="Self.FK_Visiting_Shedule" FromRole="Visiting" ToRole="Shedule" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Visiting_User" FromRole="Visiting" ToRole="User" />
         </EntityType>
-        <Association Name="FK__Prices__abonemen__286302EC">
-          <End Role="Abonements" Type="Self.Abonement" Multiplicity="0..1" />
-          <End Role="Prices" Type="Self.Price" Multiplicity="*" />
+        <Association Name="FK_Price_Abonement">
+          <End Role="Abonement" Type="Self.Abonement" Multiplicity="1" />
+          <End Role="Price" Type="Self.Price" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Abonements">
-              <PropertyRef Name="abonement_id" />
+            <Principal Role="Abonement">
+              <PropertyRef Name="AbonementId" />
             </Principal>
-            <Dependent Role="Prices">
-              <PropertyRef Name="abonement_id" />
+            <Dependent Role="Price">
+              <PropertyRef Name="AbonementId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Sports_in__abone__24927208">
-          <End Role="Abonements" Type="Self.Abonement" Multiplicity="0..1" />
-          <End Role="Sports_in_Abonements" Type="Self.Sports_in_Abonements" Multiplicity="*" />
+        <Association Name="FK_AbonementOrder_Price">
+          <End Role="Price" Type="Self.Price" Multiplicity="1" />
+          <End Role="AbonementOrder" Type="Self.AbonementOrder" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Abonements">
-              <PropertyRef Name="abonement_id" />
+            <Principal Role="Price">
+              <PropertyRef Name="PriceId" />
             </Principal>
-            <Dependent Role="Sports_in_Abonements">
-              <PropertyRef Name="abonement_id" />
+            <Dependent Role="AbonementOrder">
+              <PropertyRef Name="PriceId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Halls__adress_id__30F848ED">
-          <End Role="Adresses" Type="Self.Adress" Multiplicity="0..1" />
-          <End Role="Halls" Type="Self.Hall" Multiplicity="*" />
+        <Association Name="FK_AbonementOrder_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="AbonementOrder" Type="Self.AbonementOrder" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Adresses">
-              <PropertyRef Name="adress_id" />
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
             </Principal>
-            <Dependent Role="Halls">
-              <PropertyRef Name="adress_id" />
+            <Dependent Role="AbonementOrder">
+              <PropertyRef Name="ClientId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Clients__user_id__15502E78">
-          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
-          <End Role="Clients" Type="Self.Client" Multiplicity="*" />
+        <Association Name="FK_Hall_Adress">
+          <End Role="Adress" Type="Self.Adress" Multiplicity="0..1" />
+          <End Role="Hall" Type="Self.Hall" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="user_id" />
+            <Principal Role="Adress">
+              <PropertyRef Name="AdressId" />
             </Principal>
-            <Dependent Role="Clients">
-              <PropertyRef Name="user_id" />
+            <Dependent Role="Hall">
+              <PropertyRef Name="AdressId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Orders__client_i__2C3393D0">
-          <End Role="Clients" Type="Self.Client" Multiplicity="0..1" />
-          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Clients">
-              <PropertyRef Name="client_id" />
-            </Principal>
-            <Dependent Role="Orders">
-              <PropertyRef Name="client_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Visitings__clien__3A81B327">
-          <End Role="Clients" Type="Self.Client" Multiplicity="0..1" />
-          <End Role="Visitings" Type="Self.Visiting" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Clients">
-              <PropertyRef Name="client_id" />
-            </Principal>
-            <Dependent Role="Visitings">
-              <PropertyRef Name="client_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Coaches__user_id__1273C1CD">
-          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
-          <End Role="Coaches" Type="Self.Coach" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="user_id" />
-            </Principal>
-            <Dependent Role="Coaches">
-              <PropertyRef Name="user_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Groups__coach_id__1CF15040">
-          <End Role="Coaches" Type="Self.Coach" Multiplicity="0..1" />
-          <End Role="Groups" Type="Self.Group" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Coaches">
-              <PropertyRef Name="coach_id" />
-            </Principal>
-            <Dependent Role="Groups">
-              <PropertyRef Name="coach_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Groups__sport_id__1DE57479">
-          <End Role="Sport_kinds" Type="Self.Sport_kinds" Multiplicity="0..1" />
-          <End Role="Groups" Type="Self.Group" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sport_kinds">
-              <PropertyRef Name="sport_id" />
-            </Principal>
-            <Dependent Role="Groups">
-              <PropertyRef Name="sport_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Shedule__group_i__35BCFE0A">
-          <End Role="Groups" Type="Self.Group" Multiplicity="0..1" />
+        <Association Name="FK_Shedule_Hall">
+          <End Role="Hall" Type="Self.Hall" Multiplicity="0..1" />
           <End Role="Shedule" Type="Self.Shedule" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Groups">
-              <PropertyRef Name="group_id" />
+            <Principal Role="Hall">
+              <PropertyRef Name="HallId" />
             </Principal>
             <Dependent Role="Shedule">
-              <PropertyRef Name="group_id" />
+              <PropertyRef Name="HallId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Shedule__hall_id__36B12243">
-          <End Role="Halls" Type="Self.Hall" Multiplicity="0..1" />
+        <Association Name="FK_Shedule_SportGroup">
+          <End Role="SportGroup" Type="Self.SportGroup" Multiplicity="0..1" />
           <End Role="Shedule" Type="Self.Shedule" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Halls">
-              <PropertyRef Name="hall_id" />
+            <Principal Role="SportGroup">
+              <PropertyRef Name="GroupId" />
             </Principal>
             <Dependent Role="Shedule">
-              <PropertyRef Name="hall_id" />
+              <PropertyRef Name="GroupId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Orders__price_id__2B3F6F97">
-          <End Role="Prices" Type="Self.Price" Multiplicity="0..1" />
-          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Prices">
-              <PropertyRef Name="price_id" />
-            </Principal>
-            <Dependent Role="Orders">
-              <PropertyRef Name="price_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Visitings__shedu__398D8EEE">
-          <End Role="Shedule" Type="Self.Shedule" Multiplicity="0..1" />
-          <End Role="Visitings" Type="Self.Visiting" Multiplicity="*" />
+        <Association Name="FK_Visiting_Shedule">
+          <End Role="Shedule" Type="Self.Shedule" Multiplicity="1" />
+          <End Role="Visiting" Type="Self.Visiting" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Shedule">
-              <PropertyRef Name="shedule_id" />
+              <PropertyRef Name="ShedulId" />
             </Principal>
-            <Dependent Role="Visitings">
-              <PropertyRef Name="shedule_id" />
+            <Dependent Role="Visiting">
+              <PropertyRef Name="SheduleId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Sport_kin__sport__1A14E395">
-          <End Role="Sport_categories" Type="Self.Sport_categories" Multiplicity="0..1" />
-          <End Role="Sport_kinds" Type="Self.Sport_kinds" Multiplicity="*" />
+        <Association Name="FK_SportKind_SportCategory">
+          <End Role="SportCategory" Type="Self.SportCategory" Multiplicity="0..1" />
+          <End Role="SportKind" Type="Self.SportKind" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Sport_categories">
-              <PropertyRef Name="sport_category_id" />
+            <Principal Role="SportCategory">
+              <PropertyRef Name="SportCategoryId" />
             </Principal>
-            <Dependent Role="Sport_kinds">
-              <PropertyRef Name="sport_category_id" />
+            <Dependent Role="SportKind">
+              <PropertyRef Name="SportCategoryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Sports_in__sport__25869641">
-          <End Role="Sport_kinds" Type="Self.Sport_kinds" Multiplicity="0..1" />
-          <End Role="Sports_in_Abonements" Type="Self.Sports_in_Abonements" Multiplicity="*" />
+        <Association Name="FK_SportGroup_SportId">
+          <End Role="SportKind" Type="Self.SportKind" Multiplicity="1" />
+          <End Role="SportGroup" Type="Self.SportGroup" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Sport_kinds">
-              <PropertyRef Name="sport_id" />
+            <Principal Role="SportKind">
+              <PropertyRef Name="SportId" />
             </Principal>
-            <Dependent Role="Sports_in_Abonements">
-              <PropertyRef Name="sport_id" />
+            <Dependent Role="SportGroup">
+              <PropertyRef Name="SportId" />
             </Dependent>
           </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SportGroup_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="SportGroup" Type="Self.SportGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="SportGroup">
+              <PropertyRef Name="CoachId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserClaim_User">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserClaim" Type="Self.UserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserClaim">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserLogin_User">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserLogin" Type="Self.UserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserLogin">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Visiting_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Visiting" Type="Self.Visiting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Visiting">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SportAbonement">
+          <End Role="Abonement" Type="Self.Abonement" Multiplicity="*" />
+          <End Role="SportKind" Type="Self.SportKind" Multiplicity="*" />
+        </Association>
+        <Association Name="UserAbonement">
+          <End Role="Abonement" Type="Self.Abonement" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+        </Association>
+        <Association Name="UserRole">
+          <End Role="Role" Type="Self.Role" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
         </Association>
         <EntityContainer Name="SportLifeDataContext" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Abonements" EntityType="Self.Abonement" />
-          <EntitySet Name="Adresses" EntityType="Self.Adress" />
-          <EntitySet Name="Clients" EntityType="Self.Client" />
-          <EntitySet Name="Coaches" EntityType="Self.Coach" />
-          <EntitySet Name="Groups" EntityType="Self.Group" />
-          <EntitySet Name="Halls" EntityType="Self.Hall" />
-          <EntitySet Name="Orders" EntityType="Self.Order" />
-          <EntitySet Name="Prices" EntityType="Self.Price" />
-          <EntitySet Name="Shedules" EntityType="Self.Shedule" />
-          <EntitySet Name="Sport_categories" EntityType="Self.Sport_categories" />
-          <EntitySet Name="Sport_kinds" EntityType="Self.Sport_kinds" />
-          <EntitySet Name="Sports_in_Abonements" EntityType="Self.Sports_in_Abonements" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <EntitySet Name="Users" EntityType="Self.User" />
-          <EntitySet Name="Visitings" EntityType="Self.Visiting" />
-          <AssociationSet Name="FK__Prices__abonemen__286302EC" Association="Self.FK__Prices__abonemen__286302EC">
-            <End Role="Abonements" EntitySet="Abonements" />
-            <End Role="Prices" EntitySet="Prices" />
+          <EntitySet Name="Abonement" EntityType="Self.Abonement" />
+          <EntitySet Name="AbonementOrder" EntityType="Self.AbonementOrder" />
+          <EntitySet Name="Adress" EntityType="Self.Adress" />
+          <EntitySet Name="Hall" EntityType="Self.Hall" />
+          <EntitySet Name="Price" EntityType="Self.Price" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="Shedule" EntityType="Self.Shedule" />
+          <EntitySet Name="SportCategory" EntityType="Self.SportCategory" />
+          <EntitySet Name="SportGroup" EntityType="Self.SportGroup" />
+          <EntitySet Name="SportKind" EntityType="Self.SportKind" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="UserClaim" EntityType="Self.UserClaim" />
+          <EntitySet Name="UserLogin" EntityType="Self.UserLogin" />
+          <EntitySet Name="Visiting" EntityType="Self.Visiting" />
+          <AssociationSet Name="FK_Price_Abonement" Association="Self.FK_Price_Abonement">
+            <End Role="Abonement" EntitySet="Abonement" />
+            <End Role="Price" EntitySet="Price" />
           </AssociationSet>
-          <AssociationSet Name="FK__Sports_in__abone__24927208" Association="Self.FK__Sports_in__abone__24927208">
-            <End Role="Abonements" EntitySet="Abonements" />
-            <End Role="Sports_in_Abonements" EntitySet="Sports_in_Abonements" />
+          <AssociationSet Name="FK_AbonementOrder_Price" Association="Self.FK_AbonementOrder_Price">
+            <End Role="Price" EntitySet="Price" />
+            <End Role="AbonementOrder" EntitySet="AbonementOrder" />
           </AssociationSet>
-          <AssociationSet Name="FK__Halls__adress_id__30F848ED" Association="Self.FK__Halls__adress_id__30F848ED">
-            <End Role="Adresses" EntitySet="Adresses" />
-            <End Role="Halls" EntitySet="Halls" />
+          <AssociationSet Name="FK_AbonementOrder_User" Association="Self.FK_AbonementOrder_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="AbonementOrder" EntitySet="AbonementOrder" />
           </AssociationSet>
-          <AssociationSet Name="FK__Clients__user_id__15502E78" Association="Self.FK__Clients__user_id__15502E78">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Clients" EntitySet="Clients" />
+          <AssociationSet Name="FK_Hall_Adress" Association="Self.FK_Hall_Adress">
+            <End Role="Adress" EntitySet="Adress" />
+            <End Role="Hall" EntitySet="Hall" />
           </AssociationSet>
-          <AssociationSet Name="FK__Orders__client_i__2C3393D0" Association="Self.FK__Orders__client_i__2C3393D0">
-            <End Role="Clients" EntitySet="Clients" />
-            <End Role="Orders" EntitySet="Orders" />
+          <AssociationSet Name="FK_Shedule_Hall" Association="Self.FK_Shedule_Hall">
+            <End Role="Hall" EntitySet="Hall" />
+            <End Role="Shedule" EntitySet="Shedule" />
           </AssociationSet>
-          <AssociationSet Name="FK__Visitings__clien__3A81B327" Association="Self.FK__Visitings__clien__3A81B327">
-            <End Role="Clients" EntitySet="Clients" />
-            <End Role="Visitings" EntitySet="Visitings" />
+          <AssociationSet Name="FK_Shedule_SportGroup" Association="Self.FK_Shedule_SportGroup">
+            <End Role="SportGroup" EntitySet="SportGroup" />
+            <End Role="Shedule" EntitySet="Shedule" />
           </AssociationSet>
-          <AssociationSet Name="FK__Coaches__user_id__1273C1CD" Association="Self.FK__Coaches__user_id__1273C1CD">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Coaches" EntitySet="Coaches" />
+          <AssociationSet Name="FK_Visiting_Shedule" Association="Self.FK_Visiting_Shedule">
+            <End Role="Shedule" EntitySet="Shedule" />
+            <End Role="Visiting" EntitySet="Visiting" />
           </AssociationSet>
-          <AssociationSet Name="FK__Groups__coach_id__1CF15040" Association="Self.FK__Groups__coach_id__1CF15040">
-            <End Role="Coaches" EntitySet="Coaches" />
-            <End Role="Groups" EntitySet="Groups" />
+          <AssociationSet Name="FK_SportKind_SportCategory" Association="Self.FK_SportKind_SportCategory">
+            <End Role="SportCategory" EntitySet="SportCategory" />
+            <End Role="SportKind" EntitySet="SportKind" />
           </AssociationSet>
-          <AssociationSet Name="FK__Groups__sport_id__1DE57479" Association="Self.FK__Groups__sport_id__1DE57479">
-            <End Role="Sport_kinds" EntitySet="Sport_kinds" />
-            <End Role="Groups" EntitySet="Groups" />
+          <AssociationSet Name="FK_SportGroup_SportId" Association="Self.FK_SportGroup_SportId">
+            <End Role="SportKind" EntitySet="SportKind" />
+            <End Role="SportGroup" EntitySet="SportGroup" />
           </AssociationSet>
-          <AssociationSet Name="FK__Shedule__group_i__35BCFE0A" Association="Self.FK__Shedule__group_i__35BCFE0A">
-            <End Role="Groups" EntitySet="Groups" />
-            <End Role="Shedule" EntitySet="Shedules" />
+          <AssociationSet Name="FK_SportGroup_User" Association="Self.FK_SportGroup_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="SportGroup" EntitySet="SportGroup" />
           </AssociationSet>
-          <AssociationSet Name="FK__Shedule__hall_id__36B12243" Association="Self.FK__Shedule__hall_id__36B12243">
-            <End Role="Halls" EntitySet="Halls" />
-            <End Role="Shedule" EntitySet="Shedules" />
+          <AssociationSet Name="FK_UserClaim_User" Association="Self.FK_UserClaim_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserClaim" EntitySet="UserClaim" />
           </AssociationSet>
-          <AssociationSet Name="FK__Orders__price_id__2B3F6F97" Association="Self.FK__Orders__price_id__2B3F6F97">
-            <End Role="Prices" EntitySet="Prices" />
-            <End Role="Orders" EntitySet="Orders" />
+          <AssociationSet Name="FK_UserLogin_User" Association="Self.FK_UserLogin_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserLogin" EntitySet="UserLogin" />
           </AssociationSet>
-          <AssociationSet Name="FK__Visitings__shedu__398D8EEE" Association="Self.FK__Visitings__shedu__398D8EEE">
-            <End Role="Shedule" EntitySet="Shedules" />
-            <End Role="Visitings" EntitySet="Visitings" />
+          <AssociationSet Name="FK_Visiting_User" Association="Self.FK_Visiting_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Visiting" EntitySet="Visiting" />
           </AssociationSet>
-          <AssociationSet Name="FK__Sport_kin__sport__1A14E395" Association="Self.FK__Sport_kin__sport__1A14E395">
-            <End Role="Sport_categories" EntitySet="Sport_categories" />
-            <End Role="Sport_kinds" EntitySet="Sport_kinds" />
+          <AssociationSet Name="SportAbonement" Association="Self.SportAbonement">
+            <End Role="Abonement" EntitySet="Abonement" />
+            <End Role="SportKind" EntitySet="SportKind" />
           </AssociationSet>
-          <AssociationSet Name="FK__Sports_in__sport__25869641" Association="Self.FK__Sports_in__sport__25869641">
-            <End Role="Sport_kinds" EntitySet="Sport_kinds" />
-            <End Role="Sports_in_Abonements" EntitySet="Sports_in_Abonements" />
+          <AssociationSet Name="UserAbonement" Association="Self.UserAbonement">
+            <End Role="Abonement" EntitySet="Abonement" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="UserRole" Association="Self.UserRole">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -822,152 +917,173 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="SportLifeModelStoreContainer" CdmEntityContainer="SportLifeDataContext">
-          <EntitySetMapping Name="Abonements">
+          <EntitySetMapping Name="Abonement">
             <EntityTypeMapping TypeName="SportLifeModel.Abonement">
-              <MappingFragment StoreEntitySet="Abonements">
-                <ScalarProperty Name="abonement_id" ColumnName="abonement_id" />
-                <ScalarProperty Name="abonement_name" ColumnName="abonement_name" />
-                <ScalarProperty Name="abonement_during" ColumnName="abonement_during" />
-                <ScalarProperty Name="abonement_trainings" ColumnName="abonement_trainings" />
+              <MappingFragment StoreEntitySet="Abonement">
+                <ScalarProperty Name="AbonementId" ColumnName="AbonementId" />
+                <ScalarProperty Name="AbonementName" ColumnName="AbonementName" />
+                <ScalarProperty Name="AbonementDuring" ColumnName="AbonementDuring" />
+                <ScalarProperty Name="AbonementTrainings" ColumnName="AbonementTrainings" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Adresses">
+          <EntitySetMapping Name="AbonementOrder">
+            <EntityTypeMapping TypeName="SportLifeModel.AbonementOrder">
+              <MappingFragment StoreEntitySet="AbonementOrder">
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="PriceId" ColumnName="PriceId" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Adress">
             <EntityTypeMapping TypeName="SportLifeModel.Adress">
-              <MappingFragment StoreEntitySet="Adresses">
-                <ScalarProperty Name="adress_id" ColumnName="adress_id" />
-                <ScalarProperty Name="adress_street" ColumnName="adress_street" />
-                <ScalarProperty Name="adress_city" ColumnName="adress_city" />
-                <ScalarProperty Name="adress_state" ColumnName="adress_state" />
-                <ScalarProperty Name="adress_building" ColumnName="adress_building" />
-                <ScalarProperty Name="adress_apartament" ColumnName="adress_apartament" />
-                <ScalarProperty Name="adress_latitude" ColumnName="adress_latitude" />
-                <ScalarProperty Name="adress_longtitude" ColumnName="adress_longtitude" />
+              <MappingFragment StoreEntitySet="Adress">
+                <ScalarProperty Name="AdressId" ColumnName="AdressId" />
+                <ScalarProperty Name="AdressStreet" ColumnName="AdressStreet" />
+                <ScalarProperty Name="AdressCity" ColumnName="AdressCity" />
+                <ScalarProperty Name="AdressState" ColumnName="AdressState" />
+                <ScalarProperty Name="AdressBuilding" ColumnName="AdressBuilding" />
+                <ScalarProperty Name="AdressApartament" ColumnName="AdressApartament" />
+                <ScalarProperty Name="AdressLatitude" ColumnName="AdressLatitude" />
+                <ScalarProperty Name="AdressLongtitude" ColumnName="AdressLongtitude" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Clients">
-            <EntityTypeMapping TypeName="SportLifeModel.Client">
-              <MappingFragment StoreEntitySet="Clients">
-                <ScalarProperty Name="client_id" ColumnName="client_id" />
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Coaches">
-            <EntityTypeMapping TypeName="SportLifeModel.Coach">
-              <MappingFragment StoreEntitySet="Coaches">
-                <ScalarProperty Name="coach_id" ColumnName="coach_id" />
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
-                <ScalarProperty Name="coach_comm" ColumnName="coach_comm" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Groups">
-            <EntityTypeMapping TypeName="SportLifeModel.Group">
-              <MappingFragment StoreEntitySet="Groups">
-                <ScalarProperty Name="group_id" ColumnName="group_id" />
-                <ScalarProperty Name="group_max_members" ColumnName="group_max_members" />
-                <ScalarProperty Name="coach_id" ColumnName="coach_id" />
-                <ScalarProperty Name="sport_id" ColumnName="sport_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Halls">
+          <EntitySetMapping Name="Hall">
             <EntityTypeMapping TypeName="SportLifeModel.Hall">
-              <MappingFragment StoreEntitySet="Halls">
-                <ScalarProperty Name="hall_id" ColumnName="hall_id" />
-                <ScalarProperty Name="adress_id" ColumnName="adress_id" />
+              <MappingFragment StoreEntitySet="Hall">
+                <ScalarProperty Name="HallId" ColumnName="HallId" />
+                <ScalarProperty Name="AdressId" ColumnName="AdressId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="SportLifeModel.Order">
-              <MappingFragment StoreEntitySet="Orders">
-                <ScalarProperty Name="order_id" ColumnName="order_id" />
-                <ScalarProperty Name="price_id" ColumnName="price_id" />
-                <ScalarProperty Name="client_id" ColumnName="client_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Prices">
+          <EntitySetMapping Name="Price">
             <EntityTypeMapping TypeName="SportLifeModel.Price">
-              <MappingFragment StoreEntitySet="Prices">
-                <ScalarProperty Name="price_id" ColumnName="price_id" />
-                <ScalarProperty Name="price1" ColumnName="price" />
-                <ScalarProperty Name="abonement_id" ColumnName="abonement_id" />
+              <MappingFragment StoreEntitySet="Price">
+                <ScalarProperty Name="PriceId" ColumnName="PriceId" />
+                <ScalarProperty Name="Price1" ColumnName="Price" />
+                <ScalarProperty Name="AbonementId" ColumnName="AbonementId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Shedules">
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="SportLifeModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shedule">
             <EntityTypeMapping TypeName="SportLifeModel.Shedule">
               <MappingFragment StoreEntitySet="Shedule">
-                <ScalarProperty Name="shedule_id" ColumnName="shedule_id" />
-                <ScalarProperty Name="shedule_day" ColumnName="shedule_day" />
-                <ScalarProperty Name="shedule_time" ColumnName="shedule_time" />
-                <ScalarProperty Name="group_id" ColumnName="group_id" />
-                <ScalarProperty Name="hall_id" ColumnName="hall_id" />
+                <ScalarProperty Name="ShedulId" ColumnName="ShedulId" />
+                <ScalarProperty Name="SheduleDay" ColumnName="SheduleDay" />
+                <ScalarProperty Name="SheduleTime" ColumnName="SheduleTime" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="HallId" ColumnName="HallId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Sport_categories">
-            <EntityTypeMapping TypeName="SportLifeModel.Sport_categories">
-              <MappingFragment StoreEntitySet="Sport_categories">
-                <ScalarProperty Name="sport_category_id" ColumnName="sport_category_id" />
-                <ScalarProperty Name="sport_category_name" ColumnName="sport_category_name" />
+          <EntitySetMapping Name="SportCategory">
+            <EntityTypeMapping TypeName="SportLifeModel.SportCategory">
+              <MappingFragment StoreEntitySet="SportCategory">
+                <ScalarProperty Name="SportCategoryId" ColumnName="SportCategoryId" />
+                <ScalarProperty Name="SportCategoryName" ColumnName="SportCategoryName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Sport_kinds">
-            <EntityTypeMapping TypeName="SportLifeModel.Sport_kinds">
-              <MappingFragment StoreEntitySet="Sport_kinds">
-                <ScalarProperty Name="sport_id" ColumnName="sport_id" />
-                <ScalarProperty Name="sport_name" ColumnName="sport_name" />
-                <ScalarProperty Name="sport_category_id" ColumnName="sport_category_id" />
+          <EntitySetMapping Name="SportGroup">
+            <EntityTypeMapping TypeName="SportLifeModel.SportGroup">
+              <MappingFragment StoreEntitySet="SportGroup">
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="GroupMaxMembers" ColumnName="GroupMaxMembers" />
+                <ScalarProperty Name="CoachId" ColumnName="CoachId" />
+                <ScalarProperty Name="SportId" ColumnName="SportId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Sports_in_Abonements">
-            <EntityTypeMapping TypeName="SportLifeModel.Sports_in_Abonements">
-              <MappingFragment StoreEntitySet="Sports_in_Abonements">
-                <ScalarProperty Name="sport_in_abonement_id" ColumnName="sport_in_abonement_id" />
-                <ScalarProperty Name="abonement_id" ColumnName="abonement_id" />
-                <ScalarProperty Name="sport_id" ColumnName="sport_id" />
+          <EntitySetMapping Name="SportKind">
+            <EntityTypeMapping TypeName="SportLifeModel.SportKind">
+              <MappingFragment StoreEntitySet="SportKind">
+                <ScalarProperty Name="SportId" ColumnName="SportId" />
+                <ScalarProperty Name="SportName" ColumnName="SportName" />
+                <ScalarProperty Name="SportCategoryId" ColumnName="SportCategoryId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="SportLifeModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Users">
+          <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="SportLifeModel.User">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
-                <ScalarProperty Name="user_name" ColumnName="user_name" />
-                <ScalarProperty Name="user_birthdate" ColumnName="user_birthdate" />
-                <ScalarProperty Name="user_phone" ColumnName="user_phone" />
-                <ScalarProperty Name="user_mail" ColumnName="user_mail" />
-                <ScalarProperty Name="user_password" ColumnName="user_password" />
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Visitings">
+          <EntitySetMapping Name="UserClaim">
+            <EntityTypeMapping TypeName="SportLifeModel.UserClaim">
+              <MappingFragment StoreEntitySet="UserClaim">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserLogin">
+            <EntityTypeMapping TypeName="SportLifeModel.UserLogin">
+              <MappingFragment StoreEntitySet="UserLogin">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Visiting">
             <EntityTypeMapping TypeName="SportLifeModel.Visiting">
-              <MappingFragment StoreEntitySet="Visitings">
-                <ScalarProperty Name="visiting_id" ColumnName="visiting_id" />
-                <ScalarProperty Name="shedule_id" ColumnName="shedule_id" />
-                <ScalarProperty Name="client_id" ColumnName="client_id" />
+              <MappingFragment StoreEntitySet="Visiting">
+                <ScalarProperty Name="VisitingId" ColumnName="VisitingId" />
+                <ScalarProperty Name="VisitingDateTime" ColumnName="VisitingDateTime" />
+                <ScalarProperty Name="SheduleId" ColumnName="SheduleId" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="SportAbonement" TypeName="SportLifeModel.SportAbonement" StoreEntitySet="SportAbonement">
+            <EndProperty Name="Abonement">
+              <ScalarProperty Name="AbonementId" ColumnName="AbonementId" />
+            </EndProperty>
+            <EndProperty Name="SportKind">
+              <ScalarProperty Name="SportId" ColumnName="SportId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="UserAbonement" TypeName="SportLifeModel.UserAbonement" StoreEntitySet="UserAbonement">
+            <EndProperty Name="Abonement">
+              <ScalarProperty Name="AbonementId" ColumnName="AbonementId" />
+            </EndProperty>
+            <EndProperty Name="User">
+              <ScalarProperty Name="UserId" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="UserRole" TypeName="SportLifeModel.UserRole" StoreEntitySet="UserRole">
+            <EndProperty Name="Role">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="User">
+              <ScalarProperty Name="UserId" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -982,7 +1098,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

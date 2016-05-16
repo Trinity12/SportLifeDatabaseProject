@@ -25,20 +25,19 @@ namespace SportLife.Core.Database
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Abonement> Abonements { get; set; }
-        public virtual DbSet<Adress> Adresses { get; set; }
-        public virtual DbSet<Client> Clients { get; set; }
-        public virtual DbSet<Coach> Coaches { get; set; }
-        public virtual DbSet<Group> Groups { get; set; }
-        public virtual DbSet<Hall> Halls { get; set; }
-        public virtual DbSet<Order> Orders { get; set; }
-        public virtual DbSet<Price> Prices { get; set; }
-        public virtual DbSet<Shedule> Shedules { get; set; }
-        public virtual DbSet<Sport_categories> Sport_categories { get; set; }
-        public virtual DbSet<Sport_kinds> Sport_kinds { get; set; }
-        public virtual DbSet<Sports_in_Abonements> Sports_in_Abonements { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<Visiting> Visitings { get; set; }
+        public virtual DbSet<Abonement> Abonement { get; set; }
+        public virtual DbSet<AbonementOrder> AbonementOrder { get; set; }
+        public virtual DbSet<Adress> Adress { get; set; }
+        public virtual DbSet<Hall> Hall { get; set; }
+        public virtual DbSet<Price> Price { get; set; }
+        public virtual DbSet<Role> Role { get; set; }
+        public virtual DbSet<Shedule> Shedule { get; set; }
+        public virtual DbSet<SportCategory> SportCategory { get; set; }
+        public virtual DbSet<SportGroup> SportGroup { get; set; }
+        public virtual DbSet<SportKind> SportKind { get; set; }
+        public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<UserClaim> UserClaim { get; set; }
+        public virtual DbSet<UserLogin> UserLogin { get; set; }
+        public virtual DbSet<Visiting> Visiting { get; set; }
     }
 }
