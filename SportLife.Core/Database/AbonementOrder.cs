@@ -18,7 +18,7 @@ namespace SportLife.Core.Database
         public int PriceId { get; set; }
         public int ClientId { get; set; }
     
+        public virtual Client Client { get; set; }
         public virtual Price Price { get; set; }
-        public virtual User User { get; set; }
     }
 }

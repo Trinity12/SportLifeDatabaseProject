@@ -60,6 +60,12 @@
     <Compile Include="Database\Adress.cs">
       <DependentUpon>SportLifeDataContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Database\Client.cs">
+      <DependentUpon>SportLifeDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Coach.cs">
+      <DependentUpon>SportLifeDataContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Database\Hall.cs">
       <DependentUpon>SportLifeDataContext.tt</DependentUpon>
     </Compile>
@@ -70,9 +76,6 @@
       <DependentUpon>SportLifeDataContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Shedule.cs">
-      <DependentUpon>SportLifeDataContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Database\SportAbonement.cs">
       <DependentUpon>SportLifeDataContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\SportCategory.cs">
@@ -112,13 +115,23 @@
       <DependentUpon>SportLifeDataContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Generic\GenericRepository.cs" />
+    <Compile Include="Generic\UnitOfWork.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SportLifeRepositories\Interfaces\IAbonementOrderRepository.cs" />
+    <Compile Include="SportLifeRepositories\Interfaces\IAbonementRepository.cs" />
+    <Compile Include="SportLifeRepositories\Interfaces\IClientRepository.cs" />
+    <Compile Include="SportLifeRepositories\Interfaces\ICoachRepository.cs" />
+    <Compile Include="SportLifeRepositories\Interfaces\IHallRepository.cs" />
+    <Compile Include="SportLifeRepositories\Interfaces\IPriceRepository.cs" />
+    <Compile Include="SportLifeRepositories\Interfaces\ISheduleRepository.cs" />
+    <Compile Include="SportLifeRepositories\Interfaces\ISportGroupRepository.cs" />
+    <Compile Include="SportLifeRepositories\Interfaces\ISportRepository.cs" />
+    <Compile Include="SportLifeRepositories\Interfaces\IUserRepository.cs" />
+    <Compile Include="SportLifeRepositories\Interfaces\IVisitingRepository.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="SportLifeRepositories\Interfaces\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.Config" />
     <EntityDeploy Include="Database\SportLifeDataContext.edmx">
@@ -135,6 +148,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Database\Scripts\SportLifeDatabaseCreating.sql" />
+    <Content Include="Database\Scripts\SportLifeUndatingScript.sql" />
     <Content Include="Database\SportLifeDataContext.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SportLifeDataContext.edmx</DependentUpon>

@@ -18,8 +18,8 @@ namespace SportLife.Core.Database
         public Abonement()
         {
             this.Price = new HashSet<Price>();
+            this.Client = new HashSet<Client>();
             this.SportKind = new HashSet<SportKind>();
-            this.User = new HashSet<User>();
         }
     
         public int AbonementId { get; set; }
@@ -30,8 +30,8 @@ namespace SportLife.Core.Database
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Price> Price { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SportKind> SportKind { get; set; }
+        public virtual ICollection<Client> Client { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> User { get; set; }
+        public virtual ICollection<SportKind> SportKind { get; set; }
     }
 }

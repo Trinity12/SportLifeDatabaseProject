@@ -12,25 +12,18 @@ namespace SportLife.Core.Database
     using System;
     using System.Collections.Generic;
     
-    public partial class SportGroup
+    public partial class Coach
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public SportGroup()
+        public Coach()
         {
-            this.Client = new HashSet<Client>();
-            this.Shedule = new HashSet<Shedule>();
+            this.SportGroup = new HashSet<SportGroup>();
         }
     
-        public int GroupId { get; set; }
-        public Nullable<int> GroupMaxMembers { get; set; }
         public int CoachId { get; set; }
-        public int SportId { get; set; }
     
+        public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Client> Client { get; set; }
-        public virtual Coach Coach { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Shedule> Shedule { get; set; }
-        public virtual SportKind SportKind { get; set; }
+        public virtual ICollection<SportGroup> SportGroup { get; set; }
     }
 }

@@ -19,7 +19,7 @@ namespace SportLife.Core.Database
         public int SheduleId { get; set; }
         public int ClientId { get; set; }
     
+        public virtual Client Client { get; set; }
         public virtual Shedule Shedule { get; set; }
-        public virtual User User { get; set; }
     }
 }

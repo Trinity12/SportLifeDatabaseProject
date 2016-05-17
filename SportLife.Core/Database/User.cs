@@ -17,17 +17,15 @@ namespace SportLife.Core.Database
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
-            this.AbonementOrder = new HashSet<AbonementOrder>();
-            this.SportGroup = new HashSet<SportGroup>();
             this.UserClaim = new HashSet<UserClaim>();
             this.UserLogin = new HashSet<UserLogin>();
-            this.Visiting = new HashSet<Visiting>();
-            this.Abonement = new HashSet<Abonement>();
             this.Role = new HashSet<Role>();
         }
     
         public int UserId { get; set; }
         public string UserName { get; set; }
+        public string UserFirstName { get; set; }
+        public string UserSurname { get; set; }
         public string Email { get; set; }
         public bool EmailConfirmed { get; set; }
         public string PasswordHash { get; set; }
@@ -39,18 +37,12 @@ namespace SportLife.Core.Database
         public bool LockoutEnabled { get; set; }
         public int AccessFailedCount { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AbonementOrder> AbonementOrder { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SportGroup> SportGroup { get; set; }
+        public virtual Client Client { get; set; }
+        public virtual Coach Coach { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserClaim> UserClaim { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserLogin> UserLogin { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Visiting> Visiting { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Abonement> Abonement { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Role> Role { get; set; }
     }

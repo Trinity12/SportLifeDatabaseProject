@@ -13,10 +13,10 @@ namespace SportLife.Core.Database
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class SportLifeDataContext : DbContext
+    public partial class SportLifeEntities : DbContext
     {
-        public SportLifeDataContext()
-            : base("name=SportLifeDataContext")
+        public SportLifeEntities()
+            : base("name=SportLifeEntities")
         {
         }
     
@@ -28,6 +28,8 @@ namespace SportLife.Core.Database
         public virtual DbSet<Abonement> Abonement { get; set; }
         public virtual DbSet<AbonementOrder> AbonementOrder { get; set; }
         public virtual DbSet<Adress> Adress { get; set; }
+        public virtual DbSet<Client> Client { get; set; }
+        public virtual DbSet<Coach> Coach { get; set; }
         public virtual DbSet<Hall> Hall { get; set; }
         public virtual DbSet<Price> Price { get; set; }
         public virtual DbSet<Role> Role { get; set; }

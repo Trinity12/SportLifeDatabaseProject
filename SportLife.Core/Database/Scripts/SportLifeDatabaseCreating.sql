@@ -1,86 +1,9 @@
-CREATE TYPE [dbo].[Flag]
-    FROM BIT NOT NULL;
-GO
-
-CREATE TYPE [dbo].[Name]
-    FROM NVARCHAR (50) NOT NULL;
-GO
-
-CREATE TYPE [dbo].[Email]
-    FROM NVARCHAR (100) NULL;
-GO
-
-CREATE TYPE [dbo].[Phone]
-    FROM NVARCHAR (25) NULL;
-GO
-
-CREATE TABLE [dbo].[User]
-(
-    [UserId]               INT IDENTITY (1000, 1) NOT NULL,
-    [UserName]             [dbo].[Name]           NOT NULL,
-    [Email]                [dbo].[Email]          NULL,
-    [EmailConfirmed]       [dbo].[Flag]           NOT NULL,
-    [PasswordHash]         NVARCHAR (100)         NULL,
-    [SecurityStamp]        NVARCHAR (100)         NULL,
-    [PhoneNumber]          [dbo].[Phone]          NULL,
-    [PhoneNumberConfirmed] [dbo].[Flag]           NOT NULL,
-    [TwoFactorEnabled]     [dbo].[Flag]           NOT NULL,
-    [LockoutEndDateUtc]    DATETIME               NULL,
-    [LockoutEnabled]       [dbo].[Flag]           NOT NULL,
-    [AccessFailedCount]    INT                    NOT NULL,
-
-    CONSTRAINT [PK_User_UserID] PRIMARY KEY CLUSTERED ([UserID] ASC),
-    CONSTRAINT [UK_User_UserName] UNIQUE NONCLUSTERED ([UserName] ASC)
-)
-
-CREATE TABLE [dbo].[Role] (
-    [Id]   INT IDENTITY (1, 1) NOT NULL,
-    [Name] NVARCHAR (MAX) NOT NULL,
-    CONSTRAINT [PK_Role] PRIMARY KEY CLUSTERED ([Id] ASC)
-)
-
-CREATE TABLE [dbo].[UserRole] (
+CREATE TABLE [dbo].[Coach] (
+    [CoachId] INT IDENTITY(1,1) NOT NULL,
     [UserId] INT NOT NULL,
-    [RoleId] INT NOT NULL,
-    CONSTRAINT [PK_UserRole] PRIMARY KEY CLUSTERED ([UserId] ASC, [RoleId] ASC),
-    CONSTRAINT [FK_UserRole_Role] FOREIGN KEY ([RoleId]) REFERENCES [dbo].[Role] ([Id]) ON DELETE CASCADE,
-    CONSTRAINT [FK_UserRole_User] FOREIGN KEY ([UserId]) REFERENCES [dbo].[User] ([UserId]) ON DELETE CASCADE
-)
-CREATE NONCLUSTERED INDEX [IX_RoleId]
-    ON [dbo].[UserRole]([RoleId] ASC);
-GO
-
-CREATE NONCLUSTERED INDEX [IX_UserId]
-    ON [dbo].[UserRole]([UserId] ASC);
-GO
-
-CREATE TABLE [dbo].[UserLogin] (
-    [UserId]        INT NOT NULL,
-    [LoginProvider] NVARCHAR (128) NOT NULL,
-    [ProviderKey]   NVARCHAR (128) NOT NULL,
-    CONSTRAINT [PK_UserLogin] PRIMARY KEY CLUSTERED ([UserId] ASC, [LoginProvider] ASC, [ProviderKey] ASC),
-    CONSTRAINT [FK_UserLogin_User] FOREIGN KEY ([UserId]) REFERENCES [dbo].[User] ([UserId]) ON DELETE CASCADE
-)
-GO
-
-CREATE NONCLUSTERED INDEX [IX_UserId]
-    ON [dbo].[UserLogin]([UserId] ASC);
-GO
-
-CREATE TABLE [dbo].[UserClaim] (
-    [Id]         INT IDENTITY (1, 1) NOT NULL,
-    [UserId]     INT NOT NULL,
-    [ClaimType]  NVARCHAR (MAX) NULL,
-    [ClaimValue] NVARCHAR (MAX) NULL,
-    CONSTRAINT [PK_UserClaim] PRIMARY KEY CLUSTERED ([Id] ASC),
-    CONSTRAINT [FK_UserClaim_User] FOREIGN KEY ([UserId]) REFERENCES [dbo].[User] ([UserId]) ON DELETE CASCADE
-)
-GO
-
-CREATE NONCLUSTERED INDEX [IX_User_Id]
-    ON [dbo].[UserClaim]([UserId] ASC);
-
-GO
+    CONSTRAINT [PK_Coaches] PRIMARY KEY CLUSTERED ([CoachId] ASC),
+    CONSTRAINT [FK_Coach_User] FOREIGN KEY ([UserId]) REFERENCES [dbo].[User] ([UserId])
+);
 
 CREATE TABLE [dbo].[SportCategory] (
     [SportCategoryId]   INT           IDENTITY (1, 1) NOT NULL,
@@ -102,7 +25,7 @@ CREATE TABLE [dbo].[SportGroup] (
     [CoachId]         INT NOT NULL,
     [SportId]         INT NOT NULL,
     CONSTRAINT [PK_SportGroup] PRIMARY KEY CLUSTERED ([GroupId] ASC),
-    CONSTRAINT [FK_SportGroup_User] FOREIGN KEY ([CoachId]) REFERENCES [dbo].[User] ([UserId]),
+    CONSTRAINT [FK_SportGroup_Coach] FOREIGN KEY ([CoachId]) REFERENCES [dbo].[Coach] ([CoachId]),
     CONSTRAINT [FK_SportGroup_SportId] FOREIGN KEY ([SportId]) REFERENCES [dbo].[SportKind] ([SportId])
 )
 
@@ -171,8 +94,8 @@ CREATE TABLE [dbo].[Shedule] (
 
 CREATE TABLE [dbo].[UserAbonement] (
     [UserId]	 INT	NOT NULL,
-    [Abonement] INT NOT NULL,
-    CONSTRAINT [PK_UserAbonement] PRIMARY KEY CLUSTERED ([UserId] ASC, [Abonement] ASC),
+    [AbonementId] INT NOT NULL,
+    CONSTRAINT [PK_UserAbonement] PRIMARY KEY CLUSTERED ([UserId] ASC, [AbonementId] ASC),
     CONSTRAINT [FK_UserAbonement_User] FOREIGN KEY ([UserId]) REFERENCES [dbo].[User] ([UserId]),
     CONSTRAINT [FK_UserAbonement_Abonement] FOREIGN KEY ([AbonementId]) REFERENCES [dbo].[Abonement] ([AbonementId])
 )
@@ -186,4 +109,13 @@ CREATE TABLE [dbo].[Visiting] (
     CONSTRAINT [FK_Visiting_Shedule] FOREIGN KEY ([SheduleId]) REFERENCES [dbo].[Shedule] ([ShedulId]),
     CONSTRAINT [FK_Visiting_User] FOREIGN KEY ([ClientId]) REFERENCES [dbo].[User] ([UserId])
 )
+
+CREATE TABLE [dbo].[UserSportGroup] (
+    [UserId]       INT NOT NULL,
+    [GroupId]	    INT NOT NULL,
+    CONSTRAINT [PK_UserClientGroup] PRIMARY KEY CLUSTERED ([UserId] ASC, [GroupId] ASC),
+    CONSTRAINT [FK_UserClientGroup_User] FOREIGN KEY ([UserId]) REFERENCES [dbo].[User] ([UserId]),
+    CONSTRAINT [FK_UserClientGroup_SportGroup] FOREIGN KEY ([UserId]) REFERENCES [dbo].[SportGroup] ([GroupId])
+);
+
 

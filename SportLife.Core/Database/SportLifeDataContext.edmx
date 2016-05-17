@@ -35,6 +35,28 @@
           <Property Name="AdressLatitude" Type="varchar" MaxLength="15" />
           <Property Name="AdressLongtitude" Type="varchar" MaxLength="15" />
         </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ClientId" />
+          </Key>
+          <Property Name="ClientId" Type="int" Nullable="false" />
+          <Property Name="GroupId" Type="int" />
+          <Property Name="BirthDate" Type="date" />
+        </EntityType>
+        <EntityType Name="ClientAbonement">
+          <Key>
+            <PropertyRef Name="ClientId" />
+            <PropertyRef Name="AbonementId" />
+          </Key>
+          <Property Name="ClientId" Type="int" Nullable="false" />
+          <Property Name="AbonementId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Coach">
+          <Key>
+            <PropertyRef Name="CoachId" />
+          </Key>
+          <Property Name="CoachId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Hall">
           <Key>
             <PropertyRef Name="HallId" />
@@ -105,6 +127,8 @@
           </Key>
           <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserFirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserSurname" Type="nvarchar" MaxLength="50" />
           <Property Name="Email" Type="nvarchar" MaxLength="100" />
           <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
           <Property Name="PasswordHash" Type="nvarchar" MaxLength="100" />
@@ -115,14 +139,6 @@
           <Property Name="LockoutEndDateUtc" Type="datetime" />
           <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="UserAbonement">
-          <Key>
-            <PropertyRef Name="UserId" />
-            <PropertyRef Name="AbonementId" />
-          </Key>
-          <Property Name="UserId" Type="int" Nullable="false" />
-          <Property Name="AbonementId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="UserClaim">
           <Key>
@@ -160,6 +176,18 @@
           <Property Name="SheduleId" Type="int" Nullable="false" />
           <Property Name="ClientId" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK_AbonementOrder_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="AbonementOrder" Type="Self.AbonementOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ClientId" />
+            </Principal>
+            <Dependent Role="AbonementOrder">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_AbonementOrder_Price">
           <End Role="Price" Type="Self.Price" Multiplicity="1" />
           <End Role="AbonementOrder" Type="Self.AbonementOrder" Multiplicity="*" />
@@ -172,15 +200,63 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_AbonementOrder_User">
+        <Association Name="FK_Client_SportGroup">
+          <End Role="SportGroup" Type="Self.SportGroup" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SportGroup">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="AbonementOrder" Type="Self.AbonementOrder" Multiplicity="*" />
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="UserId" />
             </Principal>
-            <Dependent Role="AbonementOrder">
+            <Dependent Role="Client">
               <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientAbonement_Abonement">
+          <End Role="Abonement" Type="Self.Abonement" Multiplicity="1" />
+          <End Role="ClientAbonement" Type="Self.ClientAbonement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Abonement">
+              <PropertyRef Name="AbonementId" />
+            </Principal>
+            <Dependent Role="ClientAbonement">
+              <PropertyRef Name="AbonementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientAbonement_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="ClientAbonement" Type="Self.ClientAbonement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ClientId" />
+            </Principal>
+            <Dependent Role="ClientAbonement">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Coach_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Coach" Type="Self.Coach" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Coach">
+              <PropertyRef Name="CoachId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -256,6 +332,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SportGroup_Coach">
+          <End Role="Coach" Type="Self.Coach" Multiplicity="1" />
+          <End Role="SportGroup" Type="Self.SportGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Coach">
+              <PropertyRef Name="CoachId" />
+            </Principal>
+            <Dependent Role="SportGroup">
+              <PropertyRef Name="CoachId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SportGroup_SportId">
           <End Role="SportKind" Type="Self.SportKind" Multiplicity="1" />
           <End Role="SportGroup" Type="Self.SportGroup" Multiplicity="*" />
@@ -268,18 +356,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SportGroup_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="SportGroup" Type="Self.SportGroup" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="SportGroup">
-              <PropertyRef Name="CoachId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SportKind_SportCategory">
           <End Role="SportCategory" Type="Self.SportCategory" Multiplicity="0..1" />
           <End Role="SportKind" Type="Self.SportKind" Multiplicity="*" />
@@ -289,30 +365,6 @@
             </Principal>
             <Dependent Role="SportKind">
               <PropertyRef Name="SportCategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserAbonement_Abonement">
-          <End Role="Abonement" Type="Self.Abonement" Multiplicity="1" />
-          <End Role="UserAbonement" Type="Self.UserAbonement" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Abonement">
-              <PropertyRef Name="AbonementId" />
-            </Principal>
-            <Dependent Role="UserAbonement">
-              <PropertyRef Name="AbonementId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserAbonement_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="UserAbonement" Type="Self.UserAbonement" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="UserAbonement">
-              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -372,6 +424,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Visiting_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Visiting" Type="Self.Visiting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ClientId" />
+            </Principal>
+            <Dependent Role="Visiting">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Visiting_Shedule">
           <End Role="Shedule" Type="Self.Shedule" Multiplicity="1" />
           <End Role="Visiting" Type="Self.Visiting" Multiplicity="*" />
@@ -384,22 +448,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Visiting_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="Visiting" Type="Self.Visiting" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="Visiting">
-              <PropertyRef Name="ClientId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="SportLifeModelStoreContainer">
           <EntitySet Name="Abonement" EntityType="Self.Abonement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AbonementOrder" EntityType="Self.AbonementOrder" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Adress" EntityType="Self.Adress" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClientAbonement" EntityType="Self.ClientAbonement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Coach" EntityType="Self.Coach" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hall" EntityType="Self.Hall" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Price" EntityType="Self.Price" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
@@ -409,18 +464,37 @@
           <EntitySet Name="SportGroup" EntityType="Self.SportGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SportKind" EntityType="Self.SportKind" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UserAbonement" EntityType="Self.UserAbonement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserClaim" EntityType="Self.UserClaim" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserLogin" EntityType="Self.UserLogin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Visiting" EntityType="Self.Visiting" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AbonementOrder_Client" Association="Self.FK_AbonementOrder_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="AbonementOrder" EntitySet="AbonementOrder" />
+          </AssociationSet>
           <AssociationSet Name="FK_AbonementOrder_Price" Association="Self.FK_AbonementOrder_Price">
             <End Role="Price" EntitySet="Price" />
             <End Role="AbonementOrder" EntitySet="AbonementOrder" />
           </AssociationSet>
-          <AssociationSet Name="FK_AbonementOrder_User" Association="Self.FK_AbonementOrder_User">
+          <AssociationSet Name="FK_Client_SportGroup" Association="Self.FK_Client_SportGroup">
+            <End Role="SportGroup" EntitySet="SportGroup" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_User" Association="Self.FK_Client_User">
             <End Role="User" EntitySet="User" />
-            <End Role="AbonementOrder" EntitySet="AbonementOrder" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientAbonement_Abonement" Association="Self.FK_ClientAbonement_Abonement">
+            <End Role="Abonement" EntitySet="Abonement" />
+            <End Role="ClientAbonement" EntitySet="ClientAbonement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientAbonement_Client" Association="Self.FK_ClientAbonement_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="ClientAbonement" EntitySet="ClientAbonement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Coach_User" Association="Self.FK_Coach_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Coach" EntitySet="Coach" />
           </AssociationSet>
           <AssociationSet Name="FK_Hall_Adress" Association="Self.FK_Hall_Adress">
             <End Role="Adress" EntitySet="Adress" />
@@ -446,25 +520,17 @@
             <End Role="SportKind" EntitySet="SportKind" />
             <End Role="SportAbonement" EntitySet="SportAbonement" />
           </AssociationSet>
-          <AssociationSet Name="FK_SportGroup_SportId" Association="Self.FK_SportGroup_SportId">
-            <End Role="SportKind" EntitySet="SportKind" />
+          <AssociationSet Name="FK_SportGroup_Coach" Association="Self.FK_SportGroup_Coach">
+            <End Role="Coach" EntitySet="Coach" />
             <End Role="SportGroup" EntitySet="SportGroup" />
           </AssociationSet>
-          <AssociationSet Name="FK_SportGroup_User" Association="Self.FK_SportGroup_User">
-            <End Role="User" EntitySet="User" />
+          <AssociationSet Name="FK_SportGroup_SportId" Association="Self.FK_SportGroup_SportId">
+            <End Role="SportKind" EntitySet="SportKind" />
             <End Role="SportGroup" EntitySet="SportGroup" />
           </AssociationSet>
           <AssociationSet Name="FK_SportKind_SportCategory" Association="Self.FK_SportKind_SportCategory">
             <End Role="SportCategory" EntitySet="SportCategory" />
             <End Role="SportKind" EntitySet="SportKind" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserAbonement_Abonement" Association="Self.FK_UserAbonement_Abonement">
-            <End Role="Abonement" EntitySet="Abonement" />
-            <End Role="UserAbonement" EntitySet="UserAbonement" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserAbonement_User" Association="Self.FK_UserAbonement_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="UserAbonement" EntitySet="UserAbonement" />
           </AssociationSet>
           <AssociationSet Name="FK_UserClaim_User" Association="Self.FK_UserClaim_User">
             <End Role="User" EntitySet="User" />
@@ -482,12 +548,12 @@
             <End Role="User" EntitySet="User" />
             <End Role="UserRole" EntitySet="UserRole" />
           </AssociationSet>
-          <AssociationSet Name="FK_Visiting_Shedule" Association="Self.FK_Visiting_Shedule">
-            <End Role="Shedule" EntitySet="Shedule" />
+          <AssociationSet Name="FK_Visiting_Client" Association="Self.FK_Visiting_Client">
+            <End Role="Client" EntitySet="Client" />
             <End Role="Visiting" EntitySet="Visiting" />
           </AssociationSet>
-          <AssociationSet Name="FK_Visiting_User" Association="Self.FK_Visiting_User">
-            <End Role="User" EntitySet="User" />
+          <AssociationSet Name="FK_Visiting_Shedule" Association="Self.FK_Visiting_Shedule">
+            <End Role="Shedule" EntitySet="Shedule" />
             <End Role="Visiting" EntitySet="Visiting" />
           </AssociationSet>
         </EntityContainer>
@@ -505,8 +571,8 @@
           <Property Name="AbonementDuring" Type="Int32" Nullable="false" />
           <Property Name="AbonementTrainings" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Price" Relationship="Self.FK_Price_Abonement" FromRole="Abonement" ToRole="Price" />
+          <NavigationProperty Name="Client" Relationship="Self.ClientAbonement" FromRole="Abonement" ToRole="Client" />
           <NavigationProperty Name="SportKind" Relationship="Self.SportAbonement" FromRole="Abonement" ToRole="SportKind" />
-          <NavigationProperty Name="User" Relationship="Self.UserAbonement" FromRole="Abonement" ToRole="User" />
         </EntityType>
         <EntityType Name="AbonementOrder">
           <Key>
@@ -515,8 +581,8 @@
           <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PriceId" Type="Int32" Nullable="false" />
           <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_AbonementOrder_Client" FromRole="AbonementOrder" ToRole="Client" />
           <NavigationProperty Name="Price" Relationship="Self.FK_AbonementOrder_Price" FromRole="AbonementOrder" ToRole="Price" />
-          <NavigationProperty Name="User" Relationship="Self.FK_AbonementOrder_User" FromRole="AbonementOrder" ToRole="User" />
         </EntityType>
         <EntityType Name="Adress">
           <Key>
@@ -531,6 +597,27 @@
           <Property Name="AdressLatitude" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="AdressLongtitude" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Hall" Relationship="Self.FK_Hall_Adress" FromRole="Adress" ToRole="Hall" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ClientId" />
+          </Key>
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <Property Name="GroupId" Type="Int32" />
+          <Property Name="BirthDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="AbonementOrder" Relationship="Self.FK_AbonementOrder_Client" FromRole="Client" ToRole="AbonementOrder" />
+          <NavigationProperty Name="SportGroup" Relationship="Self.FK_Client_SportGroup" FromRole="Client" ToRole="SportGroup" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Client_User" FromRole="Client" ToRole="User" />
+          <NavigationProperty Name="Visiting" Relationship="Self.FK_Visiting_Client" FromRole="Client" ToRole="Visiting" />
+          <NavigationProperty Name="Abonement" Relationship="Self.ClientAbonement" FromRole="Client" ToRole="Abonement" />
+        </EntityType>
+        <EntityType Name="Coach">
+          <Key>
+            <PropertyRef Name="CoachId" />
+          </Key>
+          <Property Name="CoachId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Coach_User" FromRole="Coach" ToRole="User" />
+          <NavigationProperty Name="SportGroup" Relationship="Self.FK_SportGroup_Coach" FromRole="Coach" ToRole="SportGroup" />
         </EntityType>
         <EntityType Name="Hall">
           <Key>
@@ -588,9 +675,10 @@
           <Property Name="GroupMaxMembers" Type="Int32" />
           <Property Name="CoachId" Type="Int32" Nullable="false" />
           <Property Name="SportId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Client_SportGroup" FromRole="SportGroup" ToRole="Client" />
+          <NavigationProperty Name="Coach" Relationship="Self.FK_SportGroup_Coach" FromRole="SportGroup" ToRole="Coach" />
           <NavigationProperty Name="Shedule" Relationship="Self.FK_Shedule_SportGroup" FromRole="SportGroup" ToRole="Shedule" />
           <NavigationProperty Name="SportKind" Relationship="Self.FK_SportGroup_SportId" FromRole="SportGroup" ToRole="SportKind" />
-          <NavigationProperty Name="User" Relationship="Self.FK_SportGroup_User" FromRole="SportGroup" ToRole="User" />
         </EntityType>
         <EntityType Name="SportKind">
           <Key>
@@ -609,6 +697,8 @@
           </Key>
           <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
           <Property Name="PasswordHash" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -619,12 +709,10 @@
           <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
           <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
           <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="AbonementOrder" Relationship="Self.FK_AbonementOrder_User" FromRole="User" ToRole="AbonementOrder" />
-          <NavigationProperty Name="SportGroup" Relationship="Self.FK_SportGroup_User" FromRole="User" ToRole="SportGroup" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Client_User" FromRole="User" ToRole="Client" />
+          <NavigationProperty Name="Coach" Relationship="Self.FK_Coach_User" FromRole="User" ToRole="Coach" />
           <NavigationProperty Name="UserClaim" Relationship="Self.FK_UserClaim_User" FromRole="User" ToRole="UserClaim" />
           <NavigationProperty Name="UserLogin" Relationship="Self.FK_UserLogin_User" FromRole="User" ToRole="UserLogin" />
-          <NavigationProperty Name="Visiting" Relationship="Self.FK_Visiting_User" FromRole="User" ToRole="Visiting" />
-          <NavigationProperty Name="Abonement" Relationship="Self.UserAbonement" FromRole="User" ToRole="Abonement" />
           <NavigationProperty Name="Role" Relationship="Self.UserRole" FromRole="User" ToRole="Role" />
         </EntityType>
         <EntityType Name="UserClaim">
@@ -656,8 +744,8 @@
           <Property Name="VisitingDateTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="SheduleId" Type="Int32" Nullable="false" />
           <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Visiting_Client" FromRole="Visiting" ToRole="Client" />
           <NavigationProperty Name="Shedule" Relationship="Self.FK_Visiting_Shedule" FromRole="Visiting" ToRole="Shedule" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Visiting_User" FromRole="Visiting" ToRole="User" />
         </EntityType>
         <Association Name="FK_Price_Abonement">
           <End Role="Abonement" Type="Self.Abonement" Multiplicity="1" />
@@ -668,6 +756,18 @@
             </Principal>
             <Dependent Role="Price">
               <PropertyRef Name="AbonementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AbonementOrder_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="AbonementOrder" Type="Self.AbonementOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ClientId" />
+            </Principal>
+            <Dependent Role="AbonementOrder">
+              <PropertyRef Name="ClientId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -683,18 +783,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_AbonementOrder_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="AbonementOrder" Type="Self.AbonementOrder" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="AbonementOrder">
-              <PropertyRef Name="ClientId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Hall_Adress">
           <End Role="Adress" Type="Self.Adress" Multiplicity="0..1" />
           <End Role="Hall" Type="Self.Hall" Multiplicity="*" />
@@ -704,6 +792,66 @@
             </Principal>
             <Dependent Role="Hall">
               <PropertyRef Name="AdressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_SportGroup">
+          <End Role="SportGroup" Type="Self.SportGroup" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SportGroup">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Visiting_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Visiting" Type="Self.Visiting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ClientId" />
+            </Principal>
+            <Dependent Role="Visiting">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Coach_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Coach" Type="Self.Coach" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Coach">
+              <PropertyRef Name="CoachId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SportGroup_Coach">
+          <End Role="Coach" Type="Self.Coach" Multiplicity="1" />
+          <End Role="SportGroup" Type="Self.SportGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Coach">
+              <PropertyRef Name="CoachId" />
+            </Principal>
+            <Dependent Role="SportGroup">
+              <PropertyRef Name="CoachId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -767,18 +915,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SportGroup_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="SportGroup" Type="Self.SportGroup" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="SportGroup">
-              <PropertyRef Name="CoachId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_UserClaim_User">
           <End Role="User" Type="Self.User" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -807,34 +943,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Visiting_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="Visiting" Type="Self.Visiting" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="Visiting">
-              <PropertyRef Name="ClientId" />
-            </Dependent>
-          </ReferentialConstraint>
+        <Association Name="ClientAbonement">
+          <End Role="Abonement" Type="Self.Abonement" Multiplicity="*" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
         </Association>
         <Association Name="SportAbonement">
           <End Role="Abonement" Type="Self.Abonement" Multiplicity="*" />
           <End Role="SportKind" Type="Self.SportKind" Multiplicity="*" />
         </Association>
-        <Association Name="UserAbonement">
-          <End Role="Abonement" Type="Self.Abonement" Multiplicity="*" />
-          <End Role="User" Type="Self.User" Multiplicity="*" />
-        </Association>
         <Association Name="UserRole">
           <End Role="Role" Type="Self.Role" Multiplicity="*" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="SportLifeDataContext" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="SportLifeEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Abonement" EntityType="Self.Abonement" />
           <EntitySet Name="AbonementOrder" EntityType="Self.AbonementOrder" />
           <EntitySet Name="Adress" EntityType="Self.Adress" />
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="Coach" EntityType="Self.Coach" />
           <EntitySet Name="Hall" EntityType="Self.Hall" />
           <EntitySet Name="Price" EntityType="Self.Price" />
           <EntitySet Name="Role" EntityType="Self.Role" />
@@ -850,17 +976,37 @@
             <End Role="Abonement" EntitySet="Abonement" />
             <End Role="Price" EntitySet="Price" />
           </AssociationSet>
-          <AssociationSet Name="FK_AbonementOrder_Price" Association="Self.FK_AbonementOrder_Price">
-            <End Role="Price" EntitySet="Price" />
+          <AssociationSet Name="FK_AbonementOrder_Client" Association="Self.FK_AbonementOrder_Client">
+            <End Role="Client" EntitySet="Client" />
             <End Role="AbonementOrder" EntitySet="AbonementOrder" />
           </AssociationSet>
-          <AssociationSet Name="FK_AbonementOrder_User" Association="Self.FK_AbonementOrder_User">
-            <End Role="User" EntitySet="User" />
+          <AssociationSet Name="FK_AbonementOrder_Price" Association="Self.FK_AbonementOrder_Price">
+            <End Role="Price" EntitySet="Price" />
             <End Role="AbonementOrder" EntitySet="AbonementOrder" />
           </AssociationSet>
           <AssociationSet Name="FK_Hall_Adress" Association="Self.FK_Hall_Adress">
             <End Role="Adress" EntitySet="Adress" />
             <End Role="Hall" EntitySet="Hall" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_SportGroup" Association="Self.FK_Client_SportGroup">
+            <End Role="SportGroup" EntitySet="SportGroup" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_User" Association="Self.FK_Client_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Visiting_Client" Association="Self.FK_Visiting_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Visiting" EntitySet="Visiting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Coach_User" Association="Self.FK_Coach_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Coach" EntitySet="Coach" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SportGroup_Coach" Association="Self.FK_SportGroup_Coach">
+            <End Role="Coach" EntitySet="Coach" />
+            <End Role="SportGroup" EntitySet="SportGroup" />
           </AssociationSet>
           <AssociationSet Name="FK_Shedule_Hall" Association="Self.FK_Shedule_Hall">
             <End Role="Hall" EntitySet="Hall" />
@@ -882,10 +1028,6 @@
             <End Role="SportKind" EntitySet="SportKind" />
             <End Role="SportGroup" EntitySet="SportGroup" />
           </AssociationSet>
-          <AssociationSet Name="FK_SportGroup_User" Association="Self.FK_SportGroup_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="SportGroup" EntitySet="SportGroup" />
-          </AssociationSet>
           <AssociationSet Name="FK_UserClaim_User" Association="Self.FK_UserClaim_User">
             <End Role="User" EntitySet="User" />
             <End Role="UserClaim" EntitySet="UserClaim" />
@@ -894,17 +1036,13 @@
             <End Role="User" EntitySet="User" />
             <End Role="UserLogin" EntitySet="UserLogin" />
           </AssociationSet>
-          <AssociationSet Name="FK_Visiting_User" Association="Self.FK_Visiting_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="Visiting" EntitySet="Visiting" />
+          <AssociationSet Name="ClientAbonement" Association="Self.ClientAbonement">
+            <End Role="Abonement" EntitySet="Abonement" />
+            <End Role="Client" EntitySet="Client" />
           </AssociationSet>
           <AssociationSet Name="SportAbonement" Association="Self.SportAbonement">
             <End Role="Abonement" EntitySet="Abonement" />
             <End Role="SportKind" EntitySet="SportKind" />
-          </AssociationSet>
-          <AssociationSet Name="UserAbonement" Association="Self.UserAbonement">
-            <End Role="Abonement" EntitySet="Abonement" />
-            <End Role="User" EntitySet="User" />
           </AssociationSet>
           <AssociationSet Name="UserRole" Association="Self.UserRole">
             <End Role="Role" EntitySet="Role" />
@@ -916,7 +1054,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="SportLifeModelStoreContainer" CdmEntityContainer="SportLifeDataContext">
+        <EntityContainerMapping StorageEntityContainer="SportLifeModelStoreContainer" CdmEntityContainer="SportLifeEntities">
           <EntitySetMapping Name="Abonement">
             <EntityTypeMapping TypeName="SportLifeModel.Abonement">
               <MappingFragment StoreEntitySet="Abonement">
@@ -947,6 +1085,22 @@
                 <ScalarProperty Name="AdressApartament" ColumnName="AdressApartament" />
                 <ScalarProperty Name="AdressLatitude" ColumnName="AdressLatitude" />
                 <ScalarProperty Name="AdressLongtitude" ColumnName="AdressLongtitude" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="SportLifeModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Coach">
+            <EntityTypeMapping TypeName="SportLifeModel.Coach">
+              <MappingFragment StoreEntitySet="Coach">
+                <ScalarProperty Name="CoachId" ColumnName="CoachId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1018,6 +1172,8 @@
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserFirstName" ColumnName="UserFirstName" />
+                <ScalarProperty Name="UserSurname" ColumnName="UserSurname" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
                 <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
@@ -1060,20 +1216,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="ClientAbonement" TypeName="SportLifeModel.ClientAbonement" StoreEntitySet="ClientAbonement">
+            <EndProperty Name="Abonement">
+              <ScalarProperty Name="AbonementId" ColumnName="AbonementId" />
+            </EndProperty>
+            <EndProperty Name="Client">
+              <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+            </EndProperty>
+          </AssociationSetMapping>
           <AssociationSetMapping Name="SportAbonement" TypeName="SportLifeModel.SportAbonement" StoreEntitySet="SportAbonement">
             <EndProperty Name="Abonement">
               <ScalarProperty Name="AbonementId" ColumnName="AbonementId" />
             </EndProperty>
             <EndProperty Name="SportKind">
               <ScalarProperty Name="SportId" ColumnName="SportId" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="UserAbonement" TypeName="SportLifeModel.UserAbonement" StoreEntitySet="UserAbonement">
-            <EndProperty Name="Abonement">
-              <ScalarProperty Name="AbonementId" ColumnName="AbonementId" />
-            </EndProperty>
-            <EndProperty Name="User">
-              <ScalarProperty Name="UserId" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="UserRole" TypeName="SportLifeModel.UserRole" StoreEntitySet="UserRole">

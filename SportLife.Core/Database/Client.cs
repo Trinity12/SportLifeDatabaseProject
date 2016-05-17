@@ -12,25 +12,27 @@ namespace SportLife.Core.Database
     using System;
     using System.Collections.Generic;
     
-    public partial class SportGroup
+    public partial class Client
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public SportGroup()
+        public Client()
         {
-            this.Client = new HashSet<Client>();
-            this.Shedule = new HashSet<Shedule>();
+            this.AbonementOrder = new HashSet<AbonementOrder>();
+            this.Visiting = new HashSet<Visiting>();
+            this.Abonement = new HashSet<Abonement>();
         }
     
-        public int GroupId { get; set; }
-        public Nullable<int> GroupMaxMembers { get; set; }
-        public int CoachId { get; set; }
-        public int SportId { get; set; }
+        public int ClientId { get; set; }
+        public Nullable<int> GroupId { get; set; }
+        public Nullable<System.DateTime> BirthDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Client> Client { get; set; }
-        public virtual Coach Coach { get; set; }
+        public virtual ICollection<AbonementOrder> AbonementOrder { get; set; }
+        public virtual SportGroup SportGroup { get; set; }
+        public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Shedule> Shedule { get; set; }
-        public virtual SportKind SportKind { get; set; }
+        public virtual ICollection<Visiting> Visiting { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Abonement> Abonement { get; set; }
     }
 }
