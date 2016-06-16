@@ -15,7 +15,7 @@ namespace SportLife.Models.IdentityModels {
         #region methods
 
         public static MyUserManager Create ( IdentityFactoryOptions<MyUserManager> options, IOwinContext context ) {
-            var manager = new MyUserManager(new UserStore<User, Role, int, UserLogin, UserRole, UserClaim>(context.Get<ApplicationDbContext>()));
+            var manager = new MyUserManager(new MyUserStore(context.Get<ApplicationDbContext>()));
             // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<User, int>(manager) {
                 AllowOnlyAlphanumericUserNames = false,

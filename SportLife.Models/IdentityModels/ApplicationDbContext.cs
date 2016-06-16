@@ -7,12 +7,15 @@ namespace SportLife.Models.IdentityModels {
         #region constructors and destructors
 
         public ApplicationDbContext ()
-            : base("SportLifeEntities") {
+            : base("name=SportLifeEntities") {
         }
 
         #endregion
 
         #region methods
+        static ApplicationDbContext () {
+            Database.SetInitializer(new ApplicationDbInitializer());
+        }
 
         public static ApplicationDbContext Create () {
             return new ApplicationDbContext();
