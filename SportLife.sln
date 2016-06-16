@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportLife.Repositories", "SportLife.Core\SportLife.Repositories.csproj", "{BEA53AF0-BD7D-4F9D-A383-2A97B2288C7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportLife.Web", "SportLife.Web\SportLife.Web.csproj", "{CA99DCC1-8B07-4DD7-BB0E-B8CF9296F9CE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportLife.Models", "SportLife.Models\SportLife.Models.csproj", "{A7B2FE4B-DD57-493C-B9D1-5E205CBE1C69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportLife.Web", "SportLife.Web\SportLife.Web.csproj", "{D9494AB5-D2DF-4CD3-AF21-5499D853B5F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +19,14 @@ Global
 		{BEA53AF0-BD7D-4F9D-A383-2A97B2288C7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BEA53AF0-BD7D-4F9D-A383-2A97B2288C7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BEA53AF0-BD7D-4F9D-A383-2A97B2288C7B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CA99DCC1-8B07-4DD7-BB0E-B8CF9296F9CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CA99DCC1-8B07-4DD7-BB0E-B8CF9296F9CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CA99DCC1-8B07-4DD7-BB0E-B8CF9296F9CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CA99DCC1-8B07-4DD7-BB0E-B8CF9296F9CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7B2FE4B-DD57-493C-B9D1-5E205CBE1C69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7B2FE4B-DD57-493C-B9D1-5E205CBE1C69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7B2FE4B-DD57-493C-B9D1-5E205CBE1C69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7B2FE4B-DD57-493C-B9D1-5E205CBE1C69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9494AB5-D2DF-4CD3-AF21-5499D853B5F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9494AB5-D2DF-4CD3-AF21-5499D853B5F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9494AB5-D2DF-4CD3-AF21-5499D853B5F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9494AB5-D2DF-4CD3-AF21-5499D853B5F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

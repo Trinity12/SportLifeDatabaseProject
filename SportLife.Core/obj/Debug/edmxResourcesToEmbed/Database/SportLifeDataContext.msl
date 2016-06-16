@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SportLifeModelStoreContainer" CdmEntityContainer="SportLifeEntities">
+    <EntitySetMapping Name="Abonement">
+      <EntityTypeMapping TypeName="SportLifeModel.Abonement">
+        <MappingFragment StoreEntitySet="Abonement">
+          <ScalarProperty Name="AbonementId" ColumnName="AbonementId" />
+          <ScalarProperty Name="AbonementName" ColumnName="AbonementName" />
+          <ScalarProperty Name="AbonementDuring" ColumnName="AbonementDuring" />
+          <ScalarProperty Name="AbonementTrainings" ColumnName="AbonementTrainings" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AbonementOrder">
+      <EntityTypeMapping TypeName="SportLifeModel.AbonementOrder">
+        <MappingFragment StoreEntitySet="AbonementOrder">
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="PriceId" ColumnName="PriceId" />
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Adress">
+      <EntityTypeMapping TypeName="SportLifeModel.Adress">
+        <MappingFragment StoreEntitySet="Adress">
+          <ScalarProperty Name="AdressId" ColumnName="AdressId" />
+          <ScalarProperty Name="AdressStreet" ColumnName="AdressStreet" />
+          <ScalarProperty Name="AdressCity" ColumnName="AdressCity" />
+          <ScalarProperty Name="AdressState" ColumnName="AdressState" />
+          <ScalarProperty Name="AdressBuilding" ColumnName="AdressBuilding" />
+          <ScalarProperty Name="AdressApartament" ColumnName="AdressApartament" />
+          <ScalarProperty Name="AdressLatitude" ColumnName="AdressLatitude" />
+          <ScalarProperty Name="AdressLongtitude" ColumnName="AdressLongtitude" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Client">
+      <EntityTypeMapping TypeName="SportLifeModel.Client">
+        <MappingFragment StoreEntitySet="Client">
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Coach">
+      <EntityTypeMapping TypeName="SportLifeModel.Coach">
+        <MappingFragment StoreEntitySet="Coach">
+          <ScalarProperty Name="CoachId" ColumnName="CoachId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Hall">
+      <EntityTypeMapping TypeName="SportLifeModel.Hall">
+        <MappingFragment StoreEntitySet="Hall">
+          <ScalarProperty Name="HallId" ColumnName="HallId" />
+          <ScalarProperty Name="AdressId" ColumnName="AdressId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Price">
+      <EntityTypeMapping TypeName="SportLifeModel.Price">
+        <MappingFragment StoreEntitySet="Price">
+          <ScalarProperty Name="PriceId" ColumnName="PriceId" />
+          <ScalarProperty Name="Price1" ColumnName="Price" />
+          <ScalarProperty Name="AbonementId" ColumnName="AbonementId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Role">
+      <EntityTypeMapping TypeName="SportLifeModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Shedule">
+      <EntityTypeMapping TypeName="SportLifeModel.Shedule">
+        <MappingFragment StoreEntitySet="Shedule">
+          <ScalarProperty Name="ShedulId" ColumnName="ShedulId" />
+          <ScalarProperty Name="SheduleDay" ColumnName="SheduleDay" />
+          <ScalarProperty Name="SheduleTime" ColumnName="SheduleTime" />
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="HallId" ColumnName="HallId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SportCategory">
+      <EntityTypeMapping TypeName="SportLifeModel.SportCategory">
+        <MappingFragment StoreEntitySet="SportCategory">
+          <ScalarProperty Name="SportCategoryId" ColumnName="SportCategoryId" />
+          <ScalarProperty Name="SportCategoryName" ColumnName="SportCategoryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SportGroup">
+      <EntityTypeMapping TypeName="SportLifeModel.SportGroup">
+        <MappingFragment StoreEntitySet="SportGroup">
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="GroupMaxMembers" ColumnName="GroupMaxMembers" />
+          <ScalarProperty Name="CoachId" ColumnName="CoachId" />
+          <ScalarProperty Name="SportId" ColumnName="SportId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SportKind">
+      <EntityTypeMapping TypeName="SportLifeModel.SportKind">
+        <MappingFragment StoreEntitySet="SportKind">
+          <ScalarProperty Name="SportId" ColumnName="SportId" />
+          <ScalarProperty Name="SportName" ColumnName="SportName" />
+          <ScalarProperty Name="SportCategoryId" ColumnName="SportCategoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="SportLifeModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserFirstName" ColumnName="UserFirstName" />
+          <ScalarProperty Name="UserSurname" ColumnName="UserSurname" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserClaim">
+      <EntityTypeMapping TypeName="SportLifeModel.UserClaim">
+        <MappingFragment StoreEntitySet="UserClaim">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserLogin">
+      <EntityTypeMapping TypeName="SportLifeModel.UserLogin">
+        <MappingFragment StoreEntitySet="UserLogin">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Visiting">
+      <EntityTypeMapping TypeName="SportLifeModel.Visiting">
+        <MappingFragment StoreEntitySet="Visiting">
+          <ScalarProperty Name="VisitingId" ColumnName="VisitingId" />
+          <ScalarProperty Name="VisitingDateTime" ColumnName="VisitingDateTime" />
+          <ScalarProperty Name="SheduleId" ColumnName="SheduleId" />
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="ClientAbonement" TypeName="SportLifeModel.ClientAbonement" StoreEntitySet="ClientAbonement">
+      <EndProperty Name="Abonement">
+        <ScalarProperty Name="AbonementId" ColumnName="AbonementId" />
+      </EndProperty>
+      <EndProperty Name="Client">
+        <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="SportAbonement" TypeName="SportLifeModel.SportAbonement" StoreEntitySet="SportAbonement">
+      <EndProperty Name="Abonement">
+        <ScalarProperty Name="AbonementId" ColumnName="AbonementId" />
+      </EndProperty>
+      <EndProperty Name="SportKind">
+        <ScalarProperty Name="SportId" ColumnName="SportId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserRole" TypeName="SportLifeModel.UserRole" StoreEntitySet="UserRole">
+      <EndProperty Name="Role">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+      <EndProperty Name="User">
+        <ScalarProperty Name="UserId" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

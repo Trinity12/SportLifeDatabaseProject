@@ -37,9 +37,11 @@ namespace SportLife.Core.Database
         public virtual DbSet<SportCategory> SportCategory { get; set; }
         public virtual DbSet<SportGroup> SportGroup { get; set; }
         public virtual DbSet<SportKind> SportKind { get; set; }
+
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<UserClaim> UserClaim { get; set; }
         public virtual DbSet<UserLogin> UserLogin { get; set; }
+
         public virtual DbSet<Visiting> Visiting { get; set; }
     }
 }

@@ -1,11 +1,13 @@
-﻿using SportLife.Core.Database;
+﻿using System;
+using SportLife.Core.Database;
 using SportLife.Core.Interfaces;
 using SportLife.Core.SportLifeRepositories.Interfaces;
 
 namespace SportLife.Core.Generic {
     public class UnitOfWork : IUnitOfWork {
 
-        private readonly SportLifeEntities _dbEntities;
+        private readonly SportLifeEntities _dbEntities = new SportLifeEntities();
+        private bool _disposed;
 
         private IAbonementOrderRepository _abonementOrderRepository;
         private IAbonementRepository _abonementRepository;
@@ -32,17 +34,22 @@ namespace SportLife.Core.Generic {
         public IUserRepository UserRepository { get; }
         public IVisitingRepository VisitingRepository { get; }
 
-        public UnitOfWork ( SportLifeEntities dbEntities ) {
-            _dbEntities = dbEntities;
-
+        public void Dispose () {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         public void SaveChanges () {
             _dbEntities.SaveChanges();
         }
 
-        public void Dispose () {
-            _dbEntities.SaveChanges();
+        protected virtual void Dispose ( bool disposing ) {
+            if ( !_disposed ) {
+                if ( disposing ) {
+                    _dbEntities.Dispose();
+                }
+            }
+            _disposed = true;
         }
     }
 }
