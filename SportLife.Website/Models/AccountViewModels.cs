@@ -79,6 +79,22 @@ namespace SportLife.Website.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        [RegularExpression(@"[\u\l]+", ErrorMessage = "Dont input external characters into Your name!")]
+        [Display(Name = "Your firstname")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        [RegularExpression(@"[\u\l]+", ErrorMessage = "Dont input external characters into Your name!")]
+        [Display(Name = "Your surname")]
+        public string Surname { get; set; }
+
+        [DataType(DataType.PhoneNumber)]
+        [Display(Name = "Phone number")]
+        public string PhoneNumber { get; set; }
     }
 
     public class ResetPasswordViewModel

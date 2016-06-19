@@ -1,37 +1,24 @@
+CREATE DATABASE [SportLifeDatabase]
+GO
 
+USE [SportLifeDatabase]
+GO
 -- IDENTITY TABLES
-
-CREATE TYPE [dbo].[Flag]
-    FROM BIT NOT NULL;
-GO
-
-CREATE TYPE [dbo].[Name]
-    FROM NVARCHAR (50) NOT NULL;
-GO
-
-CREATE TYPE [dbo].[Email]
-    FROM NVARCHAR (100) NULL;
-GO
-
-CREATE TYPE [dbo].[Phone]
-    FROM NVARCHAR (25) NULL;
-GO
-
 CREATE TABLE [dbo].[User]
 (
     [UserId]               INT IDENTITY (1000, 1) NOT NULL,
-    [UserName]             [dbo].[Name]           NOT NULL,
-    [UserFirstName]		   [dbo].[Name]			NULL,
-    [UserSurname]		   [dbo].[Name]			NULL,
-    [Email]                [dbo].[Email]          NULL,
-    [EmailConfirmed]       [dbo].[Flag]           NOT NULL,
-    [PasswordHash]         NVARCHAR (100)         NULL,
-    [SecurityStamp]        NVARCHAR (100)         NULL,
-    [PhoneNumber]          [dbo].[Phone]          NULL,
-    [PhoneNumberConfirmed] [dbo].[Flag]           NOT NULL,
-    [TwoFactorEnabled]     [dbo].[Flag]           NOT NULL,
+    [UserName]             NVARCHAR (256)           NOT NULL,
+    [UserFirstName]		   NVARCHAR (MAX)			NULL,
+    [UserSurname]		   NVARCHAR (MAX)			NULL,
+    [Email]                NVARCHAR (256)          NULL,
+    [EmailConfirmed]       BIT					NOT NULL,
+    [PasswordHash]         NVARCHAR (MAX)         NULL,
+    [SecurityStamp]        NVARCHAR (MAX)         NULL,
+    [PhoneNumber]          NVARCHAR (MAX)          NULL,
+    [PhoneNumberConfirmed] BIT					NOT NULL,
+    [TwoFactorEnabled]     BIT					NOT NULL,
     [LockoutEndDateUtc]    DATETIME               NULL,
-    [LockoutEnabled]       [dbo].[Flag]           NOT NULL,
+    [LockoutEnabled]       BIT					NOT NULL,
     [AccessFailedCount]    INT                    NOT NULL,
 
     CONSTRAINT [PK_User_UserID] PRIMARY KEY CLUSTERED ([UserID] ASC),
@@ -96,16 +83,6 @@ CREATE TABLE [dbo].[Coach] (
 )
 GO
 
-CREATE TABLE [dbo].[Client] (
-    [ClientId]  INT  NOT NULL,
-    [GroupId]   INT  NULL,
-    [BirthDate] DATE NULL,
-    CONSTRAINT [PK_Client] PRIMARY KEY NONCLUSTERED ([ClientId] ASC),
-    CONSTRAINT [FK_Client_User] FOREIGN KEY ([ClientId]) REFERENCES [dbo].[User] ([UserId]),
-    CONSTRAINT [FK_Client_SportGroup] FOREIGN KEY ([GroupId]) REFERENCES [dbo].[SportGroup] ([GroupId])
-)
-GO
-
 CREATE TABLE [dbo].[SportCategory] (
     [SportCategoryId]   INT           IDENTITY (1, 1) NOT NULL,
     [SportCategoryName] VARCHAR (MAX) NOT NULL,
@@ -132,6 +109,17 @@ CREATE TABLE [dbo].[SportGroup] (
     CONSTRAINT [FK_SportGroup_SportId] FOREIGN KEY ([SportId]) REFERENCES [dbo].[SportKind] ([SportId])
 )
 GO
+
+CREATE TABLE [dbo].[Client] (
+    [ClientId]  INT  NOT NULL,
+    [GroupId]   INT  NULL,
+    [BirthDate] DATE NULL,
+    CONSTRAINT [PK_Client] PRIMARY KEY NONCLUSTERED ([ClientId] ASC),
+    CONSTRAINT [FK_Client_User] FOREIGN KEY ([ClientId]) REFERENCES [dbo].[User] ([UserId]),
+    CONSTRAINT [FK_Client_SportGroup] FOREIGN KEY ([GroupId]) REFERENCES [dbo].[SportGroup] ([GroupId])
+)
+GO
+
 
 CREATE TABLE [dbo].[Abonement] (
     [AbonementId]        INT           IDENTITY (1, 1) NOT NULL,

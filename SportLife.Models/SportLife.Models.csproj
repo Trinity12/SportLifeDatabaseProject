@@ -131,7 +131,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IdentityModels\IdentityDbInitializer.cs" />
     <Compile Include="IdentityModels\ApplicationDbContext.cs" />
     <Compile Include="IdentityModels\EmailService.cs" />
     <Compile Include="IdentityModels\MyUserManager.cs" />

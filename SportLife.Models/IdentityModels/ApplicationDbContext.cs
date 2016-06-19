@@ -7,16 +7,12 @@ namespace SportLife.Models.IdentityModels {
         #region constructors and destructors
 
         public ApplicationDbContext ()
-            : base("name=SportLifeEntities") {
+            : base("name=IdentityConnection") {
         }
 
         #endregion
 
         #region methods
-        static ApplicationDbContext () {
-            Database.SetInitializer(new ApplicationDbInitializer());
-        }
-
         public static ApplicationDbContext Create () {
             return new ApplicationDbContext();
         }
@@ -33,8 +29,10 @@ namespace SportLife.Models.IdentityModels {
             modelBuilder.Entity<User>().Property(r => r.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             modelBuilder.Entity<UserClaim>().Property(r => r.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             modelBuilder.Entity<Role>().Property(r => r.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-            // Override some column mappings that do not match our default
+            //Override some column mappings that do not match our default
             modelBuilder.Entity<User>().Property(r => r.Id).HasColumnName("UserId");
+            modelBuilder.Entity<User>().Property(r => r.UserFirstName).HasColumnName("UserFirstName");
+            modelBuilder.Entity<User>().Property(r => r.UserSurname).HasColumnName("UserSurname");
         }
 
         #endregion

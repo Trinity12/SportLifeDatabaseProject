@@ -7,11 +7,41 @@ namespace SportLife.Website.Models
 {
     public class IndexViewModel
     {
-        public bool HasPassword { get; set; }
-        public IList<UserLoginInfo> Logins { get; set; }
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password")]
+        public string Password { get; set; }
+
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirm password")]
+        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        public string ConfirmPassword { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        [RegularExpression(@"[\u\l]+", ErrorMessage = "Dont input external characters into Your name!")]
+        [Display(Name = "Your firstname")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        [RegularExpression(@"[\u\l]+", ErrorMessage = "Dont input external characters into Your name!")]
+        [Display(Name = "Your surname")]
+        public string Surname { get; set; }
+
+        [DataType(DataType.PhoneNumber)]
+        [Display(Name = "Phone number")]
         public string PhoneNumber { get; set; }
-        public bool TwoFactor { get; set; }
-        public bool BrowserRemembered { get; set; }
+
+        [DataType(DataType.Date)]
+        [Display(Name = "Your birth date")]
+        public string BirthDate { get; set; }
     }
 
     public class ManageLoginsViewModel

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1e45585a94e442f3b8e030d73cee2b2c" Name="Diagram1">
+      <Diagram DiagramId="1e45585a94e442f3b8e030d73cee2b2c" Name="Diagram1" ZoomLevel="64">
         <EntityTypeShape EntityType="SportLifeModel.Abonement" Width="1.5" PointX="3" PointY="17" IsExpanded="true" />
         <EntityTypeShape EntityType="SportLifeModel.AbonementOrder" Width="1.5" PointX="7.5" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SportLifeModel.Adress" Width="1.5" PointX="5.25" PointY="22" IsExpanded="true" />
@@ -12,34 +12,34 @@
         <EntityTypeShape EntityType="SportLifeModel.Coach" Width="1.5" PointX="5.25" PointY="8.625" IsExpanded="true" />
         <EntityTypeShape EntityType="SportLifeModel.Hall" Width="1.5" PointX="7.5" PointY="22.5" IsExpanded="true" />
         <EntityTypeShape EntityType="SportLifeModel.Price" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SportLifeModel.Role" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="SportLifeModel.Shedule" Width="1.5" PointX="9.75" PointY="8.125" IsExpanded="true" />
         <EntityTypeShape EntityType="SportLifeModel.SportCategory" Width="1.5" PointX="3" PointY="20.125" IsExpanded="true" />
         <EntityTypeShape EntityType="SportLifeModel.SportGroup" Width="1.5" PointX="7.5" PointY="8.125" IsExpanded="true" />
         <EntityTypeShape EntityType="SportLifeModel.SportKind" Width="1.5" PointX="5.25" PointY="18.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SportLifeModel.User" Width="1.5" PointX="3" PointY="6.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SportLifeModel.UserClaim" Width="1.5" PointX="5.25" PointY="11" IsExpanded="true" />
-        <EntityTypeShape EntityType="SportLifeModel.UserLogin" Width="1.5" PointX="5.25" PointY="13.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SportLifeModel.Visiting" Width="1.5" PointX="7.5" PointY="1.625" IsExpanded="true" />
         <AssociationConnector Association="SportLifeModel.FK_Price_Abonement" ManuallyRouted="false" />
         <AssociationConnector Association="SportLifeModel.FK_AbonementOrder_Client" ManuallyRouted="false" />
         <AssociationConnector Association="SportLifeModel.FK_AbonementOrder_Price" ManuallyRouted="false" />
         <AssociationConnector Association="SportLifeModel.FK_Hall_Adress" ManuallyRouted="false" />
         <AssociationConnector Association="SportLifeModel.FK_Client_SportGroup" ManuallyRouted="false" />
-        <AssociationConnector Association="SportLifeModel.FK_Client_User" ManuallyRouted="false" />
         <AssociationConnector Association="SportLifeModel.FK_Visiting_Client" ManuallyRouted="false" />
-        <AssociationConnector Association="SportLifeModel.FK_Coach_User" ManuallyRouted="false" />
         <AssociationConnector Association="SportLifeModel.FK_SportGroup_Coach" ManuallyRouted="false" />
         <AssociationConnector Association="SportLifeModel.FK_Shedule_Hall" ManuallyRouted="false" />
         <AssociationConnector Association="SportLifeModel.FK_Shedule_SportGroup" ManuallyRouted="false" />
         <AssociationConnector Association="SportLifeModel.FK_Visiting_Shedule" ManuallyRouted="false" />
         <AssociationConnector Association="SportLifeModel.FK_SportKind_SportCategory" ManuallyRouted="false" />
         <AssociationConnector Association="SportLifeModel.FK_SportGroup_SportId" ManuallyRouted="false" />
-        <AssociationConnector Association="SportLifeModel.FK_UserClaim_User" ManuallyRouted="false" />
-        <AssociationConnector Association="SportLifeModel.FK_UserLogin_User" ManuallyRouted="false" />
         <AssociationConnector Association="SportLifeModel.ClientAbonement" ManuallyRouted="false" />
         <AssociationConnector Association="SportLifeModel.SportAbonement" ManuallyRouted="false" />
-        <AssociationConnector Association="SportLifeModel.UserRole" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SportLifeModel.Role" Width="1.5" PointX="0.75" PointY="6.625" />
+        <EntityTypeShape EntityType="SportLifeModel.User" Width="1.5" PointX="3" PointY="5" />
+        <EntityTypeShape EntityType="SportLifeModel.UserClaim" Width="1.5" PointX="5.25" PointY="11.125" />
+        <EntityTypeShape EntityType="SportLifeModel.UserLogin" Width="1.5" PointX="5.25" PointY="13.875" />
+        <AssociationConnector Association="SportLifeModel.FK_Client_User" />
+        <AssociationConnector Association="SportLifeModel.FK_Coach_User" />
+        <AssociationConnector Association="SportLifeModel.FK_UserClaim_User" />
+        <AssociationConnector Association="SportLifeModel.FK_UserLogin_User" />
+        <AssociationConnector Association="SportLifeModel.UserRole" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

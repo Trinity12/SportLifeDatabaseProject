@@ -121,14 +121,14 @@
       <PropertyRef Name="UserId" />
     </Key>
     <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="UserFirstName" Type="nvarchar" MaxLength="50" />
-    <Property Name="UserSurname" Type="nvarchar" MaxLength="50" />
-    <Property Name="Email" Type="nvarchar" MaxLength="100" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="UserFirstName" Type="nvarchar(max)" />
+    <Property Name="UserSurname" Type="nvarchar(max)" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
     <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
-    <Property Name="PasswordHash" Type="nvarchar" MaxLength="100" />
-    <Property Name="SecurityStamp" Type="nvarchar" MaxLength="100" />
-    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="25" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
     <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
     <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
     <Property Name="LockoutEndDateUtc" Type="datetime" />

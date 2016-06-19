@@ -6,6 +6,6 @@ using SportLife.Core.Interfaces;
 namespace SportLife.Core.SportLifeRepositories.Interfaces {
     public interface ISportGroupRepository : IRepository<SportGroup> {
         IEnumerable<SportGroup> GetGroupsBySportCategory ( SportCategory sportCategory );
-        IEnumerable<SportGroup> GetGroupsByCoach ( User coachUser );
+        IEnumerable<SportGroup> GetGroupsByCoach ( Coach coachUser );
     }
 }
