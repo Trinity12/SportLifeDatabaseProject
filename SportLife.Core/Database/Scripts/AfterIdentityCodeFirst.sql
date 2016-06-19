@@ -1,0 +1,5 @@
+-- ALTER TABLES WITH CONSTRAINTS FOREIGN KEY TO [dbo].[User]
+
+USE [SportLifeDatabase]
+GO
+
