@@ -116,11 +116,13 @@
       <DependentUpon>SportLifeDataContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Generic\GenericRepository.cs" />
+    <Compile Include="Generic\Repository.cs" />
     <Compile Include="Generic\UnitOfWork.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SportLifeRepositories\ClientRepository.cs" />
     <Compile Include="SportLifeRepositories\Interfaces\IAbonementOrderRepository.cs" />
     <Compile Include="SportLifeRepositories\Interfaces\IAbonementRepository.cs" />
     <Compile Include="SportLifeRepositories\Interfaces\IClientRepository.cs" />

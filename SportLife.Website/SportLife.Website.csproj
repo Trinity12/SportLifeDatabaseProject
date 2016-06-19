@@ -49,6 +49,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -70,6 +72,9 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -122,6 +127,7 @@
       <Private>True</Private>
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
@@ -179,13 +185,21 @@
     <Compile Include="App_Start\SighInManager.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Areas\CustomerProfile\CustomerProfileAreaRegistration.cs" />
+    <Compile Include="AreasOffices\AdminOffice\Models\Client.cs" />
+    <Compile Include="Areas\AboutUs\AboutUsAreaRegistration.cs" />
+    <Compile Include="AreasOffices\AdminOffice\AdminOfficeAreaRegistration.cs" />
+    <Compile Include="AreasOffices\ClientOffice\ClientOfficeAreaRegistration.cs" />
+    <Compile Include="AreasOffices\CoachOffice\CoachOfficeAreaRegistration.cs" />
+    <Compile Include="Areas\Halls\HallsAreaRegistration.cs" />
+    <Compile Include="Areas\Pricelist\PricelistAreaRegistration.cs" />
+    <Compile Include="Areas\Programs\ProgramsAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Converters\ImagePathConverter.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -200,7 +214,13 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Areas\CustomerProfile\Views\web.config" />
+    <Content Include="Areas\AboutUs\Views\web.config" />
+    <Content Include="Areas\Halls\Views\web.config" />
+    <Content Include="Areas\Pricelist\Views\web.config" />
+    <Content Include="AreasOffices\ClientOffice\Views\web.config" />
+    <Content Include="AreasOffices\AdminOffice\Views\web.config" />
+    <Content Include="AreasOffices\CoachOffice\Views\web.config" />
+    <Content Include="Areas\Programs\Views\web.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -241,18 +261,37 @@
     <Content Include="Views\Account\VerifyCode.cshtml" />
     <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
     <Content Include="Views\Manage\ChangePassword.cshtml" />
-    <Content Include="Views\Manage\Index.cshtml" />
     <Content Include="Views\Manage\ManageLogins.cshtml" />
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\_EditProfile.cshtml" />
+    <Content Include="Views\Shared\_Navbar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\CustomerProfile\Controllers\" />
-    <Folder Include="Areas\CustomerProfile\Models\" />
-    <Folder Include="Areas\CustomerProfile\Views\Shared\" />
+    <Folder Include="AreasOffices\AdminOffice\Controllers\" />
+    <Folder Include="AreasOffices\AdminOffice\Views\Shared\" />
+    <Folder Include="AreasOffices\ClientOffice\Controllers\" />
+    <Folder Include="AreasOffices\ClientOffice\Models\" />
+    <Folder Include="AreasOffices\ClientOffice\Views\Shared\" />
+    <Folder Include="AreasOffices\CoachOffice\Controllers\" />
+    <Folder Include="AreasOffices\CoachOffice\Models\" />
+    <Folder Include="AreasOffices\CoachOffice\Views\Shared\" />
+    <Folder Include="Areas\AboutUs\Controllers\" />
+    <Folder Include="Areas\AboutUs\Models\" />
+    <Folder Include="Areas\AboutUs\Views\Shared\" />
+    <Folder Include="Areas\Halls\Controllers\" />
+    <Folder Include="Areas\Halls\Models\" />
+    <Folder Include="Areas\Halls\Views\Shared\" />
+    <Folder Include="Areas\Pricelist\Controllers\" />
+    <Folder Include="Areas\Pricelist\Models\" />
+    <Folder Include="Areas\Pricelist\Views\Shared\" />
+    <Folder Include="Areas\Programs\Controllers\" />
+    <Folder Include="Areas\Programs\Models\" />
+    <Folder Include="Areas\Programs\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -3,35 +3,22 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
-namespace SportLife.Website.Models
-{
-    public class IndexViewModel
-    {
+namespace SportLife.Website.Models {
+    public class IndexViewModel {
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
-        [DataType(DataType.Password)]
-        [Display(Name = "Password")]
-        public string Password { get; set; }
-
-        [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-        public string ConfirmPassword { get; set; }
-
-        [Required]
         [DataType(DataType.Text)]
-        [RegularExpression(@"[\u\l]+", ErrorMessage = "Dont input external characters into Your name!")]
+        //[RegularExpression(@"[\u\l]+", ErrorMessage = "Dont input external characters into Your name!")]
         [Display(Name = "Your firstname")]
         public string FirstName { get; set; }
 
         [Required]
         [DataType(DataType.Text)]
-        [RegularExpression(@"[\u\l]+", ErrorMessage = "Dont input external characters into Your name!")]
+       // [RegularExpression(@"[\u\l]+", ErrorMessage = "Dont input external characters into Your name!")]
         [Display(Name = "Your surname")]
         public string Surname { get; set; }
 
@@ -39,24 +26,19 @@ namespace SportLife.Website.Models
         [Display(Name = "Phone number")]
         public string PhoneNumber { get; set; }
 
-        [DataType(DataType.Date)]
-        [Display(Name = "Your birth date")]
-        public string BirthDate { get; set; }
+
     }
 
-    public class ManageLoginsViewModel
-    {
+    public class ManageLoginsViewModel {
         public IList<UserLoginInfo> CurrentLogins { get; set; }
         public IList<AuthenticationDescription> OtherLogins { get; set; }
     }
 
-    public class FactorViewModel
-    {
+    public class FactorViewModel {
         public string Purpose { get; set; }
     }
 
-    public class SetPasswordViewModel
-    {
+    public class SetPasswordViewModel {
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
@@ -69,8 +51,7 @@ namespace SportLife.Website.Models
         public string ConfirmPassword { get; set; }
     }
 
-    public class ChangePasswordViewModel
-    {
+    public class ChangePasswordViewModel {
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Current password")]
@@ -88,16 +69,14 @@ namespace SportLife.Website.Models
         public string ConfirmPassword { get; set; }
     }
 
-    public class AddPhoneNumberViewModel
-    {
+    public class AddPhoneNumberViewModel {
         [Required]
         [Phone]
         [Display(Name = "Phone Number")]
         public string Number { get; set; }
     }
 
-    public class VerifyPhoneNumberViewModel
-    {
+    public class VerifyPhoneNumberViewModel {
         [Required]
         [Display(Name = "Code")]
         public string Code { get; set; }
@@ -108,8 +87,7 @@ namespace SportLife.Website.Models
         public string PhoneNumber { get; set; }
     }
 
-    public class ConfigureTwoFactorViewModel
-    {
+    public class ConfigureTwoFactorViewModel {
         public string SelectedProvider { get; set; }
         public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
     }

@@ -77,6 +77,7 @@ D:\Mariia personal\SportLifeDatabaseProject\SportLife.Website\bin\System.Web.Htt
 D:\Mariia personal\SportLifeDatabaseProject\SportLife.Website\bin\System.Net.Http.Formatting.xml
 D:\Mariia personal\SportLifeDatabaseProject\SportLife.Website\bin\System.Web.Http.xml
 D:\Mariia personal\SportLifeDatabaseProject\SportLife.Website\bin\System.Web.Http.Owin.xml
+D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\obj\Debug\SportLife.Website.csprojResolveAssemblyReference.cache
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\roslyn\csc.exe
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
@@ -153,6 +154,5 @@ D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Websit
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\Microsoft.Owin.Security.Google.xml
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\Microsoft.Owin.Security.Twitter.xml
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\obj\Debug\SportLife.Website.csprojResolveAssemblyReference.cache
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\obj\Debug\SportLife.Website.dll
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\obj\Debug\SportLife.Website.pdb
