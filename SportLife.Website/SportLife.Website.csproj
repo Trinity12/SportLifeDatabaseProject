@@ -185,6 +185,7 @@
     <Compile Include="App_Start\SighInManager.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="AreasOffices\AdminOffice\Controllers\AdminOfficeController.cs" />
     <Compile Include="AreasOffices\AdminOffice\Models\Client.cs" />
     <Compile Include="Areas\AboutUs\AboutUsAreaRegistration.cs" />
     <Compile Include="AreasOffices\AdminOffice\AdminOfficeAreaRegistration.cs" />
@@ -194,6 +195,7 @@
     <Compile Include="Areas\Pricelist\PricelistAreaRegistration.cs" />
     <Compile Include="Areas\Programs\ProgramsAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ControllerBase.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -202,7 +204,11 @@
     <Compile Include="Helpers\Converters\ImagePathConverter.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\OfficeCommon\Officer.cs" />
+    <Compile Include="Models\OfficeCommon\Role.cs" />
+    <Compile Include="Models\OfficeCommon\UserProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resouses\Enums.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -221,6 +227,9 @@
     <Content Include="AreasOffices\AdminOffice\Views\web.config" />
     <Content Include="AreasOffices\CoachOffice\Views\web.config" />
     <Content Include="Areas\Programs\Views\web.config" />
+    <Content Include="AreasOffices\AdminOffice\Views\Shared\AdminOffice.cshtml" />
+    <Content Include="Content\Offices.less" />
+    <Content Include="AreasOffices\AdminOffice\Views\Shared\_NavigationAside.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -269,11 +278,12 @@
     <Content Include="Views\Manage\Index.cshtml" />
     <Content Include="Views\Manage\_EditProfile.cshtml" />
     <Content Include="Views\Shared\_Navbar.cshtml" />
+    <Content Include="Views\OfficeCommon\OfficeLayout.cshtml" />
+    <Content Include="Views\OfficeCommon\_UserProfileAside.cshtml" />
+    <Content Include="Views\OfficeCommon\_RoleList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="AreasOffices\AdminOffice\Controllers\" />
-    <Folder Include="AreasOffices\AdminOffice\Views\Shared\" />
     <Folder Include="AreasOffices\ClientOffice\Controllers\" />
     <Folder Include="AreasOffices\ClientOffice\Models\" />
     <Folder Include="AreasOffices\ClientOffice\Views\Shared\" />
@@ -292,6 +302,7 @@
     <Folder Include="Areas\Programs\Controllers\" />
     <Folder Include="Areas\Programs\Models\" />
     <Folder Include="Areas\Programs\Views\Shared\" />
+    <Folder Include="Views\AdminOffice\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

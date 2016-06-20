@@ -1,0 +1,13 @@
+﻿@model SportLife.Website.Models.OfficeCommon.UserProfile
+
+<div class="panel">
+    <div class="panel-heading row">
+        <div class="col-md-4">
+            <img class="img-circle" src="@Model.Avatar"/>
+        </div>
+        <div class="col-md-8">@Model.FullName</div>
+    </div>
+    <div class="panel-body">
+        @Html.Partial("_RoleList", Model.Roles);
+    </div>
+</div> 
