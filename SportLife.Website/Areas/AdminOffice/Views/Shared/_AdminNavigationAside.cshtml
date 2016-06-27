@@ -1,0 +1,13 @@
+﻿@model IEnumerable<SportLife.Website.Models.OfficeCommon.NavItem>
+
+<ul class="nav nav-pills nav-stacked ">
+    @foreach ( var item in Model ) {
+        <li class = "presentation">
+            @Html.RouteLink(item.Label, new {
+               controller = item.Controller,
+               action = item.Method
+           })
+        </li>
+    }
+</ul>
+

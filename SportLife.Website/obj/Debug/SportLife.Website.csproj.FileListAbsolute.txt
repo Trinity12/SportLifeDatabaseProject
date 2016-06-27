@@ -77,7 +77,6 @@ D:\Mariia personal\SportLifeDatabaseProject\SportLife.Website\bin\System.Web.Htt
 D:\Mariia personal\SportLifeDatabaseProject\SportLife.Website\bin\System.Net.Http.Formatting.xml
 D:\Mariia personal\SportLifeDatabaseProject\SportLife.Website\bin\System.Web.Http.xml
 D:\Mariia personal\SportLifeDatabaseProject\SportLife.Website\bin\System.Web.Http.Owin.xml
-D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\obj\Debug\SportLife.Website.csprojResolveAssemblyReference.cache
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\roslyn\csc.exe
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
@@ -94,6 +93,7 @@ D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Websit
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\SportLife.Website.dll
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\SportLife.Website.pdb
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\Antlr3.Runtime.dll
+D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\Castle.Core.dll
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\EntityFramework.dll
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\EntityFramework.SqlServer.dll
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\Microsoft.AspNet.Identity.Core.dll
@@ -110,7 +110,11 @@ D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Websit
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\Microsoft.Owin.Security.OAuth.dll
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\Microsoft.Owin.Security.Twitter.dll
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\Microsoft.Web.Infrastructure.dll
+D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\Moq.dll
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\Newtonsoft.Json.dll
+D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\Ninject.dll
+D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\Ninject.Web.Common.dll
+D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\Ninject.Web.Mvc.dll
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\Owin.dll
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\SportLife.Core.dll
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\SportLife.Models.dll
@@ -124,10 +128,17 @@ D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Websit
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\System.Web.WebPages.Deployment.dll
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\System.Web.WebPages.dll
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\System.Web.WebPages.Razor.dll
+D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\System.Windows.Interactivity.dll
+D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\WebActivatorEx.dll
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\WebGrease.dll
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\SportLife.Core.pdb
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\SportLife.Models.pdb
+D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\Castle.Core.xml
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\Moq.xml
+D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\Ninject.xml
+D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\Ninject.Web.Common.xml
+D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\Ninject.Web.Mvc.xml
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\System.Net.Http.Formatting.xml
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\System.Web.Http.xml
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\System.Web.Http.Owin.xml
@@ -154,5 +165,18 @@ D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Websit
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\Microsoft.Owin.Security.Google.xml
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\Microsoft.Owin.Security.Twitter.xml
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\de\System.Windows.Interactivity.resources.dll
+D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\en\System.Windows.Interactivity.resources.dll
+D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\es\System.Windows.Interactivity.resources.dll
+D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\fr\System.Windows.Interactivity.resources.dll
+D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\it\System.Windows.Interactivity.resources.dll
+D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\ja\System.Windows.Interactivity.resources.dll
+D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\ko\System.Windows.Interactivity.resources.dll
+D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\ru\System.Windows.Interactivity.resources.dll
+D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\zh-Hans\System.Windows.Interactivity.resources.dll
+D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\zh-Hant\System.Windows.Interactivity.resources.dll
+D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\obj\Debug\SportLife.Website.csprojResolveAssemblyReference.cache
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\obj\Debug\SportLife.Website.dll
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\obj\Debug\SportLife.Website.pdb
+D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\AutoMapper.dll
+D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\AutoMapper.xml

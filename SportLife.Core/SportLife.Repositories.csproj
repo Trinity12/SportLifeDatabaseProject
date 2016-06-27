@@ -135,7 +135,12 @@
     <Compile Include="SportLifeRepositories\Interfaces\IUserRepository.cs" />
     <Compile Include="SportLifeRepositories\Interfaces\IVisitingRepository.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\SportLife.Models\SportLife.Models.csproj">
+      <Project>{a7b2fe4b-dd57-493c-b9d1-5e205cbe1c69}</Project>
+      <Name>SportLife.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.Config">
       <SubType>Designer</SubType>

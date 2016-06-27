@@ -30,6 +30,7 @@ namespace SportLife.Core.Generic {
         public IPriceRepository PriceRepository { get; }
         public ISheduleRepository SheduleRepository { get; }
         public ISportCategoryRepository SportCategoryRepository { get; }
+        public ISportGroupRepository SportGroupRepository { get; }
         public ISportRepository SportRepository { get; }
         public IUserRepository UserRepository { get; }
         public IVisitingRepository VisitingRepository { get; }

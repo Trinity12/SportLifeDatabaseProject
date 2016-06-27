@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 using Ninject;
+using SportLife.Core.Generic;
+using SportLife.Core.Interfaces;
 
 namespace SportLife.Website {
     public class NinjectDependencyResolver : IDependencyResolver {
@@ -13,7 +15,7 @@ namespace SportLife.Website {
         }
 
         private void AddBindings () {
-            throw new NotImplementedException();
+            _kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
         }
 
         public object GetService ( Type serviceType ) {

@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <div class="col-md-2">
+        <aside>
+           <div class="panel">
+               @Html.Action("Navigation", "AdminHome")
+            </div>
+        </aside>
+    </div>
+    <div class="col-md-10">
+        @RenderBody();
+    </div>
+</div>
+

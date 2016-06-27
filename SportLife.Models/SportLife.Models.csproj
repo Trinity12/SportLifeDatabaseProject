@@ -142,6 +142,7 @@
     <Compile Include="IdentityModels\UserLogin.cs" />
     <Compile Include="IdentityModels\UserRole.cs" />
     <Compile Include="IdentityModels\MyUserStore.cs" />
+    <Compile Include="LogicModel\OperationResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IdentityModels\RoleStore.cs" />
   </ItemGroup>

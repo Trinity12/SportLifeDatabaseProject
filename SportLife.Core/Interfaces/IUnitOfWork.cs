@@ -11,6 +11,7 @@ namespace SportLife.Core.Interfaces {
         IPriceRepository PriceRepository { get; }
         ISheduleRepository SheduleRepository { get; }
         ISportCategoryRepository SportCategoryRepository { get; }
+        ISportGroupRepository SportGroupRepository { get; }
         ISportRepository SportRepository { get; }
         IUserRepository UserRepository { get; }
         IVisitingRepository VisitingRepository { get; }

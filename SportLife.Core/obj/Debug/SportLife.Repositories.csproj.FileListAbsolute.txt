@@ -15,6 +15,6 @@ D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Core\b
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Core\bin\Debug\EntityFramework.SqlServer.dll
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Core\bin\Debug\EntityFramework.xml
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Core\bin\Debug\EntityFramework.SqlServer.xml
-D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Core\obj\Debug\SportLife.Repositories.csprojResolveAssemblyReference.cache
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Core\obj\Debug\SportLife.Core.dll
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Core\obj\Debug\SportLife.Core.pdb
+D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Core\obj\Debug\SportLife.Repositories.csprojResolveAssemblyReference.cache

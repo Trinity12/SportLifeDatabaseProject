@@ -7,6 +7,8 @@ namespace SportLife.Core.Generic {
     public class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : class {
         protected readonly DbContext Context;
 
+        public virtual string TableName => string.Empty;
+
         public GenericRepository ( DbContext dbContext ) {
             Context = dbContext;
         }

@@ -2,7 +2,7 @@
 @model SportLife.Website.Models.OfficeCommon.Officer
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div>
@@ -11,14 +11,17 @@
             @Html.Partial("_UserProfileAside", Model.Profile)
             <div class="panel">
                 @switch ( Model.Role ) {
-                    case MainRoles.Administrator: 
-                        Html.RenderPartial("_NavigationAside");
+                    case MainRoles.Administrator:
+                        @Html.Action("Navigation", "AdminOffice")
+                        ;
                         break;
                     case MainRoles.Client:
-                        Html.RenderPartial("_NavigationAside");
+                        @Html.Action("Navigation", "AdminOffice")
+                        ;
                         break;
                     case MainRoles.Coach:
-                        Html.RenderPartial("_NavigationAside");
+                        @Html.Action("Navigation", "AdminOffice")
+                        ;
                         break;
                 }
             </div>

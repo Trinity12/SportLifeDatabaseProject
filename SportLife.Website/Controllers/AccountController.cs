@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using SportLife.Core.Interfaces;
 using SportLife.Models.IdentityModels;
 using SportLife.Website.Models;
 
@@ -18,6 +19,9 @@ namespace SportLife.Website.Controllers
     {
         private SignInManager _signInManager;
         private MyUserManager _userManager;
+        private IUnitOfWork _unitOfWork;
+
+        private IUnitOfWork UnitOfWork => _unitOfWork ?? (_unitOfWork = DependencyResolver.Current.GetService<IUnitOfWork>());
 
         public AccountController()
         {
@@ -113,7 +117,7 @@ namespace SportLife.Website.Controllers
         public async Task<ActionResult> VerifyCode(VerifyCodeViewModel model)
         {
             if (!ModelState.IsValid)
-            {
+                {
                 return View(model);
             }
 
@@ -154,17 +158,15 @@ namespace SportLife.Website.Controllers
             {
                 var user = new User { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                if (result.Succeeded) {
+                    var userCreatedId = UserManager.FindByEmail(user.Email).Id;
+                    UserManager.AddToRole(userCreatedId, "Client");
 
-                    return RedirectToAction("Index", "Home");
+                    UnitOfWork.ClientRepository.Add(userCreatedId);
+                    UnitOfWork.SaveChanges();
+
+                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    return RedirectToAction("Index", "AdminHome");
                 }
                 AddErrors(result);
             }
@@ -393,7 +395,7 @@ namespace SportLife.Website.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "AdminHome");
         }
 
         //

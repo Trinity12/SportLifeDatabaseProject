@@ -1,11 +1,10 @@
 ﻿using System;
 
 namespace SportLife.Website.Helpers.Converters {
-    public class ImagePathConverter {
+    public static class ImagePathConverter {
         private static readonly string PathToAvatars = "../Media/Avatars/UserAvatar_";
 
-        public object ConvertUserAvatar ( object value  ) {
-            var username = (string) value;
+        public static Uri ConvertUserAvatar ( string username  ) {
             return new Uri( $@"{PathToAvatars}{username}.jpeg" );
         }
     }
