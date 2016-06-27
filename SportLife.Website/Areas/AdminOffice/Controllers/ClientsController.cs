@@ -12,8 +12,7 @@ using SportLife.Models.IdentityModels;
 using SportLife.Website.Areas.AdminOffice.Models;
 using SportLife.Website.Resouses;
 
-namespace SportLife.Website.Areas.AdminOffice.Controllers
-{
+namespace SportLife.Website.Areas.AdminOffice.Controllers {
     public class ClientsController : Controller {
         private IUnitOfWork _unitOfWork;
         private MyUserManager _userManager;
@@ -33,40 +32,65 @@ namespace SportLife.Website.Areas.AdminOffice.Controllers
         private IUnitOfWork UnitOfWork => _unitOfWork ?? (_unitOfWork = DependencyResolver.Current.GetService<IUnitOfWork>());
 
         // GET: AdminOffice/Clients
-        public ActionResult Index() {
+        public ActionResult Index () {
             var clientModel = UnitOfWork.ClientRepository.GetAll();
             var client = Mapper.Map<IEnumerable<Client>, IEnumerable<ClientViewModel>>(clientModel);
             return View(client.ToList());
         }
 
         // GET: AdminOffice/Clients/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
+        public ActionResult Details ( int? id, OperationSuccess message = OperationSuccess.Default ) {
+            ViewBag.StatusMessage =
+                message == OperationSuccess.Success
+                    ? _successMesage
+                    : message == OperationSuccess.Fail
+                        ? _failMesage
+                        : string.Empty;
+
+            if ( id == null ) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var client = Mapper.Map<Client, ClientFullViewModel>( UnitOfWork.ClientRepository.Get(id.Value));
+            var client = Mapper.Map<Client, ClientFullViewModel>(UnitOfWork.ClientRepository.Get(id.Value));
 
-            if (client == null)
-            {
+            if ( client == null ) {
                 return HttpNotFound();
             }
             return View(client);
         }
 
         [HttpPost]
-        public Task<ActionResult> AddToRole ( int userId, MainRoles role ) {
+        public ActionResult AddToRole ( int userId, MainRoles role ) {
+            var message = OperationSuccess.Default;
+
             if ( RoleManager.FindByNameAsync(role.ToString()) == null ) {
                 var roleInstanse = new SportLife.Models.IdentityModels.Role();
                 roleInstanse.Name = role.ToString();
 
                 var result = RoleManager.CreateAsync(roleInstanse);
-                //if (!result.Result.Succeeded)
-                //    return new 
-            } else if ( !UserManager.IsInRoleAsync(userId, role.ToString()).Result )
-                if ( !UserManager.AddToRoleAsync(userId, role.ToString()).Result.Succeeded )
-                    return RedirectToAction("Details", new { id = userId});
+                if ( !result.Result.Succeeded )
+                    message = OperationSuccess.Fail;
+            } else
+                if ( !UserManager.IsInRoleAsync(userId, role.ToString()).Result )
+                message = !UserManager.AddToRoleAsync(userId, role.ToString()).Result.Succeeded
+                    ? OperationSuccess.Fail
+                    : OperationSuccess.Success;
+
+            return RedirectToAction("Details", new { userId, message });
         }
+
+        #region Helpers and resourses
+
+        public enum OperationSuccess {
+            Success,
+            Fail,
+            Default
+        }
+
+        private const string _successMesage = "Your operation has being finished successfully!";
+        private const string _failMesage = "There is an error! Your operation hasn't being finished successfully!";
+
+        #endregion
+
     }
+
 }

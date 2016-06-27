@@ -11,9 +11,18 @@ namespace SportLife.Website {
                 .ForMember(vm => vm.Surname, option => option.MapFrom(client => client.User.UserSurname))
                 .ForMember(vm => vm.Email, option => option.MapFrom(client => client.User.Email))
                 .ForMember(vm => vm.PhoneNumber, option => option.MapFrom(client => client.User.PhoneNumber))
+                .ForMember(vm => vm.BirthDate, option => option.MapFrom(client => client.BirthDate.Value))
+                .ForMember(vm => vm.IsActive, option => option.MapFrom(client => client.Abonement.Count > 0))
+                .ReverseMap().ForSourceMember(viewModel => viewModel.IsActive, option => option.Ignore());
+
+            Mapper.CreateMap<Client, ClientFullViewModel>()
+                .ForMember(vm => vm.ID, option => option.MapFrom(client => client.ClientId))
                 .ForMember(vm => vm.FirstName, option => option.MapFrom(client => client.User.UserFirstName))
-                .ForMember(vm => vm.BirthDate, option => option.MapFrom(client => client.BirthDate))
-                .ForMember(vm => vm.BirthDate, option => option.MapFrom(client => client.Abonement.Count > 0))
+                .ForMember(vm => vm.Surname, option => option.MapFrom(client => client.User.UserSurname))
+                .ForMember(vm => vm.Email, option => option.MapFrom(client => client.User.Email))
+                .ForMember(vm => vm.PhoneNumber, option => option.MapFrom(client => client.User.PhoneNumber))
+                .ForMember(vm => vm.BirthDate, option => option.MapFrom(client => client.BirthDate.Value))
+                .ForMember(vm => vm.IsActive, option => option.MapFrom(client => client.Abonement.Count > 0))
                 .ReverseMap().ForSourceMember(viewModel => viewModel.IsActive, option => option.Ignore());
         }
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using SportLife.Core.Database;
 using SportLife.Core.Interfaces;
+using SportLife.Core.SportLifeRepositories;
 using SportLife.Core.SportLifeRepositories.Interfaces;
 
 namespace SportLife.Core.Generic {
@@ -24,7 +25,10 @@ namespace SportLife.Core.Generic {
 
         public IAbonementOrderRepository AbonementOrderRepository { get; }
         public IAbonementRepository AbonementRepository { get; }
-        public IClientRepository ClientRepository { get; }
+
+        public IClientRepository ClientRepository
+            => _clientRepository ?? (_clientRepository = new ClientRepository(_dbEntities));
+
         public ICoachRepository CoachRepository { get; }
         public IHallRepository HallRepository { get; }
         public IPriceRepository PriceRepository { get; }

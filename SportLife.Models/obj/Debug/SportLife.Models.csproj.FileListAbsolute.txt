@@ -93,3 +93,4 @@ D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Models
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Models\bin\Debug\System.Web.WebPages.Razor.xml
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Models\obj\Debug\SportLife.Models.dll
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Models\obj\Debug\SportLife.Models.pdb
+D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Models\obj\Debug\SportLife.Models.csprojResolveAssemblyReference.cache
