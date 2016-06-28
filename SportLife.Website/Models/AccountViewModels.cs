@@ -82,13 +82,13 @@ namespace SportLife.Website.Models
 
         [Required]
         [DataType(DataType.Text)]
-        [RegularExpression(@"[\u\l]+", ErrorMessage = "Dont input external characters into Your name!")]
+        //[RegularExpression(@"[\u\l]+", ErrorMessage = "Dont input external characters into Your name!")]
         [Display(Name = "Your firstname")]
         public string FirstName { get; set; }
 
         [Required]
         [DataType(DataType.Text)]
-        [RegularExpression(@"[\u\l]+", ErrorMessage = "Dont input external characters into Your name!")]
+        //[RegularExpression(@"[\u\l]+", ErrorMessage = "Dont input external characters into Your name!")]
         [Display(Name = "Your surname")]
         public string Surname { get; set; }
 

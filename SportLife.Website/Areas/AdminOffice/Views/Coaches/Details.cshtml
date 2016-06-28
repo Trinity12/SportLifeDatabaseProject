@@ -1,0 +1,64 @@
+﻿@using SportLife.Website.Resouses
+@model SportLife.Website.Areas.AdminOffice.Models.CoachFullViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/AdminOffice/Views/AdminHome/Index.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <hr/>
+    <p class="text-success">@ViewBag.StatusMessage</p>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Surname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Surname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+
+    </dl>
+    <hr/>
+</div>
+<div class="btn-group" role="group">
+    @Html.ActionLink("Add to admins", "AddToRole", new { userId = Model.ID, role = MainRoles.Administrator }, new { @class = "btn btn-default" })
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

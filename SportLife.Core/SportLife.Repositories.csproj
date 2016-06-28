@@ -123,6 +123,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SportLifeRepositories\ClientRepository.cs" />
+    <Compile Include="SportLifeRepositories\CoachRepository.cs" />
     <Compile Include="SportLifeRepositories\Interfaces\IAbonementOrderRepository.cs" />
     <Compile Include="SportLifeRepositories\Interfaces\IAbonementRepository.cs" />
     <Compile Include="SportLifeRepositories\Interfaces\IClientRepository.cs" />

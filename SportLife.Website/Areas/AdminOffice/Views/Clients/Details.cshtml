@@ -64,9 +64,9 @@
 
     </dl>
     <hr/>
-    <div class="dropdown-menu">
-        @Html.ActionLink("Add to coaches", "AddToRole", new { userId = Model.ID, role = MainRoles.Coach}, new { @class = "dropdown-item" })
-        @Html.ActionLink("Add to admins", "AddToRole", new { userId = Model.ID, role = MainRoles.Administrator }, new { @class = "dropdown-item" })
+    <div class="btn-group" role="group">
+        @Html.ActionLink("Add to coaches", "AddToRole", new { userId = Model.ID, role = MainRoles.Coach}, new { @class = "btn btn-default" })
+        @Html.ActionLink("Add to admins", "AddToRole", new { userId = Model.ID, role = MainRoles.Administrator }, new { @class = "btn btn-default" })
     </div>
 </div>
 <p>

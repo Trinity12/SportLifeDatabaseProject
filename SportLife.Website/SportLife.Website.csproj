@@ -217,10 +217,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\AdminOffice\Controllers\ClientsController.cs" />
+    <Compile Include="Areas\AdminOffice\Controllers\CoachesController.cs" />
     <Compile Include="Areas\AdminOffice\Models\ClientViewModel.cs" />
     <Compile Include="Areas\AboutUs\AboutUsAreaRegistration.cs" />
     <Compile Include="Areas\AdminOffice\AdminOfficeAreaRegistration.cs" />
     <Compile Include="Areas\AdminOffice\Controllers\HomeController.cs" />
+    <Compile Include="Areas\AdminOffice\Models\CoachViewModel.cs" />
     <Compile Include="Areas\ClientOffice\ClientOfficeAreaRegistration.cs" />
     <Compile Include="Areas\CoachOffice\CoachOfficeAreaRegistration.cs" />
     <Compile Include="Areas\Halls\HallsAreaRegistration.cs" />
@@ -267,6 +269,9 @@
     <Content Include="Areas\AdminOffice\Views\AdminHome\Index.cshtml" />
     <Content Include="Areas\AdminOffice\Views\Clients\Details.cshtml" />
     <Content Include="Areas\AdminOffice\Views\Clients\Index.cshtml" />
+    <Content Include="Areas\AdminOffice\Views\Coaches\Details.cshtml" />
+    <Content Include="Areas\AdminOffice\Views\Coaches\Edit.cshtml" />
+    <Content Include="Areas\AdminOffice\Views\Coaches\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

@@ -31,3 +31,16 @@ D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Core\b
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Core\bin\Debug\Microsoft.AspNet.Identity.Owin.xml
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Core\bin\Debug\Microsoft.Owin.xml
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Core\bin\Debug\Microsoft.Owin.Security.xml
+D:\Mariia personal\SportLifeDatabaseProject\SportLife.Core\bin\Debug\SportLife.Models.dll
+D:\Mariia personal\SportLifeDatabaseProject\SportLife.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Mariia personal\SportLifeDatabaseProject\SportLife.Core\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\Mariia personal\SportLifeDatabaseProject\SportLife.Core\bin\Debug\Microsoft.AspNet.Identity.Owin.dll
+D:\Mariia personal\SportLifeDatabaseProject\SportLife.Core\bin\Debug\Microsoft.Owin.dll
+D:\Mariia personal\SportLifeDatabaseProject\SportLife.Core\bin\Debug\Microsoft.Owin.Security.dll
+D:\Mariia personal\SportLifeDatabaseProject\SportLife.Core\bin\Debug\Owin.dll
+D:\Mariia personal\SportLifeDatabaseProject\SportLife.Core\bin\Debug\SportLife.Models.pdb
+D:\Mariia personal\SportLifeDatabaseProject\SportLife.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Mariia personal\SportLifeDatabaseProject\SportLife.Core\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+D:\Mariia personal\SportLifeDatabaseProject\SportLife.Core\bin\Debug\Microsoft.AspNet.Identity.Owin.xml
+D:\Mariia personal\SportLifeDatabaseProject\SportLife.Core\bin\Debug\Microsoft.Owin.xml
+D:\Mariia personal\SportLifeDatabaseProject\SportLife.Core\bin\Debug\Microsoft.Owin.Security.xml

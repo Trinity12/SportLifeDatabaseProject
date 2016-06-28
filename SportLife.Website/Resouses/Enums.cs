@@ -4,4 +4,11 @@
         Coach,
         Client
     }
+
+
+    public enum OperationSuccess {
+        Success,
+        Fail,
+        Default
+    }
 }

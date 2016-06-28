@@ -18,11 +18,14 @@ namespace SportLife.Website.Areas.AdminOffice.Controllers {
         private MyUserManager _userManager;
         private RoleManager _roleManager;
 
-        public MyUserManager UserManager {
-            get {
+        public MyUserManager UserManager
+        {
+            get
+            {
                 return _userManager ?? (_userManager = HttpContext.GetOwinContext().GetUserManager<MyUserManager>());
             }
-            private set {
+            private set
+            {
                 _userManager = value;
             }
         }
@@ -58,33 +61,25 @@ namespace SportLife.Website.Areas.AdminOffice.Controllers {
             return View(client);
         }
 
-        [HttpPost]
         public ActionResult AddToRole ( int userId, MainRoles role ) {
             var message = OperationSuccess.Default;
-
-            if ( RoleManager.FindByNameAsync(role.ToString()) == null ) {
+            if ( RoleManager.FindByNameAsync(role.ToString()).Result == null ) {
                 var roleInstanse = new SportLife.Models.IdentityModels.Role();
                 roleInstanse.Name = role.ToString();
 
                 var result = RoleManager.CreateAsync(roleInstanse);
                 if ( !result.Result.Succeeded )
                     message = OperationSuccess.Fail;
-            } else
-                if ( !UserManager.IsInRoleAsync(userId, role.ToString()).Result )
+            }
+            if ( !UserManager.IsInRoleAsync(userId, role.ToString()).Result )
                 message = !UserManager.AddToRoleAsync(userId, role.ToString()).Result.Succeeded
                     ? OperationSuccess.Fail
                     : OperationSuccess.Success;
 
-            return RedirectToAction("Details", new { userId, message });
+            return RedirectToAction("Details", new { id = userId, message });
         }
 
         #region Helpers and resourses
-
-        public enum OperationSuccess {
-            Success,
-            Fail,
-            Default
-        }
 
         private const string _successMesage = "Your operation has being finished successfully!";
         private const string _failMesage = "There is an error! Your operation hasn't being finished successfully!";

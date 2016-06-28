@@ -2,22 +2,23 @@
 using System.Web.Mvc;
 using SportLife.Website.Models.OfficeCommon;
 
-namespace SportLife.Website.Areas.AdminOffice.Controllers
-{
-    public class AdminHomeController : Controller
-    {
-        private List<NavItem> _navigation;
+namespace SportLife.Website.Areas.AdminOffice.Controllers {
+    public class AdminHomeController : Controller {
+        private readonly List<NavItem> _navigation;
+
+        public AdminHomeController () {
+            _navigation = new List<NavItem>() {
+                new NavItem() { Controller = "Clients", Method = "Index", Label = "Clients" },
+                new NavItem() { Controller = "Coaches", Method = "Index", Label = "Coaches" }
+            };
+        }
 
         // GET: AdminOffice/Home
-        public ActionResult Index()
-        {
+        public ActionResult Index () {
             return View();
         }
 
         public PartialViewResult Navigation () {
-            _navigation = new List<NavItem>() {
-                new NavItem() {Controller = "Clients", Method = "Index", Label = "Clients"}
-            };
             return PartialView("_AdminNavigationAside", _navigation);
         }
     }

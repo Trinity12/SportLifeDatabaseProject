@@ -180,3 +180,25 @@ D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Websit
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\obj\Debug\SportLife.Website.pdb
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\AutoMapper.dll
 D:\Mariia\Edu\SportLifeDatabaseProject\SportLifeDatabaseProject\SportLife.Website\bin\AutoMapper.xml
+D:\Mariia personal\SportLifeDatabaseProject\SportLife.Website\bin\AutoMapper.dll
+D:\Mariia personal\SportLifeDatabaseProject\SportLife.Website\bin\Castle.Core.dll
+D:\Mariia personal\SportLifeDatabaseProject\SportLife.Website\bin\Moq.dll
+D:\Mariia personal\SportLifeDatabaseProject\SportLife.Website\bin\Ninject.dll
+D:\Mariia personal\SportLifeDatabaseProject\SportLife.Website\bin\Ninject.Web.Common.dll
+D:\Mariia personal\SportLifeDatabaseProject\SportLife.Website\bin\System.Windows.Interactivity.dll
+D:\Mariia personal\SportLifeDatabaseProject\SportLife.Website\bin\WebActivatorEx.dll
+D:\Mariia personal\SportLifeDatabaseProject\SportLife.Website\bin\AutoMapper.xml
+D:\Mariia personal\SportLifeDatabaseProject\SportLife.Website\bin\Castle.Core.xml
+D:\Mariia personal\SportLifeDatabaseProject\SportLife.Website\bin\Moq.xml
+D:\Mariia personal\SportLifeDatabaseProject\SportLife.Website\bin\Ninject.xml
+D:\Mariia personal\SportLifeDatabaseProject\SportLife.Website\bin\Ninject.Web.Common.xml
+D:\Mariia personal\SportLifeDatabaseProject\SportLife.Website\bin\de\System.Windows.Interactivity.resources.dll
+D:\Mariia personal\SportLifeDatabaseProject\SportLife.Website\bin\en\System.Windows.Interactivity.resources.dll
+D:\Mariia personal\SportLifeDatabaseProject\SportLife.Website\bin\es\System.Windows.Interactivity.resources.dll
+D:\Mariia personal\SportLifeDatabaseProject\SportLife.Website\bin\fr\System.Windows.Interactivity.resources.dll
+D:\Mariia personal\SportLifeDatabaseProject\SportLife.Website\bin\it\System.Windows.Interactivity.resources.dll
+D:\Mariia personal\SportLifeDatabaseProject\SportLife.Website\bin\ja\System.Windows.Interactivity.resources.dll
+D:\Mariia personal\SportLifeDatabaseProject\SportLife.Website\bin\ko\System.Windows.Interactivity.resources.dll
+D:\Mariia personal\SportLifeDatabaseProject\SportLife.Website\bin\ru\System.Windows.Interactivity.resources.dll
+D:\Mariia personal\SportLifeDatabaseProject\SportLife.Website\bin\zh-Hans\System.Windows.Interactivity.resources.dll
+D:\Mariia personal\SportLifeDatabaseProject\SportLife.Website\bin\zh-Hant\System.Windows.Interactivity.resources.dll
