@@ -40,7 +40,9 @@ namespace SportLife.Core.Generic {
         public IFileTypeRepository FileTypeRepository
             => _fileTypeRepository ?? (_fileTypeRepository = new FileTypeRepository(_dbEntities));
 
-        public IHallRepository HallRepository { get; }
+        public IHallRepository HallRepository
+            => _hallRepository ?? (_hallRepository = new HallRepository(_dbEntities));
+
         public IPriceRepository PriceRepository { get; }
         public ISheduleRepository SheduleRepository { get; }
 

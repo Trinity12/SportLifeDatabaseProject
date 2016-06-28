@@ -218,7 +218,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\AdminOffice\Controllers\ClientsController.cs" />
     <Compile Include="Areas\AdminOffice\Controllers\CoachesController.cs" />
+    <Compile Include="Areas\AdminOffice\Controllers\HallsController.cs" />
     <Compile Include="Areas\AdminOffice\Controllers\SportKindsController.cs" />
+    <Compile Include="Areas\AdminOffice\Models\HallViewModel.cs" />
     <Compile Include="Areas\AdminOffice\Models\SportCategoryViewModel.cs" />
     <Compile Include="Areas\AdminOffice\Models\SportKindViewModel.cs" />
     <Compile Include="Controllers\ImageController.cs" />
@@ -284,6 +286,11 @@
     <Content Include="Areas\AdminOffice\Views\SportKinds\Index.cshtml" />
     <Content Include="Areas\AdminOffice\Views\SportKinds\EditSportKind.cshtml" />
     <Content Include="Areas\AdminOffice\Views\SportKinds\CreateSportKind.cshtml" />
+    <Content Include="Areas\AdminOffice\Views\Halls\Create.cshtml" />
+    <Content Include="Areas\AdminOffice\Views\Halls\Delete.cshtml" />
+    <Content Include="Areas\AdminOffice\Views\Halls\Details.cshtml" />
+    <Content Include="Areas\AdminOffice\Views\Halls\Edit.cshtml" />
+    <Content Include="Areas\AdminOffice\Views\Halls\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

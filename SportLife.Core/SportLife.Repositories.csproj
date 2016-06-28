@@ -130,6 +130,7 @@
     <Compile Include="SportLifeRepositories\ClientRepository.cs" />
     <Compile Include="SportLifeRepositories\CoachRepository.cs" />
     <Compile Include="SportLifeRepositories\FileTypeRepository.cs" />
+    <Compile Include="SportLifeRepositories\HallRepository.cs" />
     <Compile Include="SportLifeRepositories\ImageRepository.cs" />
     <Compile Include="SportLifeRepositories\Interfaces\IAbonementOrderRepository.cs" />
     <Compile Include="SportLifeRepositories\Interfaces\IAbonementRepository.cs" />

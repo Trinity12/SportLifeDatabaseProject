@@ -70,7 +70,7 @@ namespace SportLife.Website.Areas.AdminOffice.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateSportKind (SportKindViewModel sportKind, HttpPostedFileBase upload ) {
+        public ActionResult CreateSportKind ( [Bind(Include = "ID,Name,SportCategoryId")] SportKindViewModel sportKind, HttpPostedFileBase upload ) {
             if ( ModelState.IsValid ) {
                 var sportKindDb = Mapper.Map<SportKindViewModel, SportKind>(sportKind);
 
@@ -85,6 +85,8 @@ namespace SportLife.Website.Areas.AdminOffice.Controllers
                     }
                     sportKindDb.Image1 = avatar;
                 }
+                // todo: resolve it!
+                sportKindDb.SportCategoryId = ViewBag.SportCategoryId;
                 UnitOfWork.SportRepository.Add(sportKindDb);
                 UnitOfWork.SaveChanges();
                 return RedirectToAction("Index");
