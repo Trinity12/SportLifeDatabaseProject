@@ -9,7 +9,8 @@ namespace SportLife.Website.Areas.AdminOffice.Controllers {
         public AdminHomeController () {
             _navigation = new List<NavItem>() {
                 new NavItem() { Controller = "Clients", Method = "Index", Label = "Clients" },
-                new NavItem() { Controller = "Coaches", Method = "Index", Label = "Coaches" }
+                new NavItem() { Controller = "Coaches", Method = "Index", Label = "Coaches" },
+                new NavItem() { Controller = "SportKinds", Method = "Index", Label = "Sport kinds and categories" },
             };
         }
 

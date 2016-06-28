@@ -14,6 +14,7 @@ using SportLife.Core.Interfaces;
 using SportLife.Models.IdentityModels;
 using SportLife.Website.Areas.AdminOffice.Models;
 using SportLife.Website.Resouses;
+using FileType = SportLife.Website.Resouses.FileType;
 
 namespace SportLife.Website.Areas.AdminOffice.Controllers {
     public class CoachesController : Controller {
@@ -27,10 +28,9 @@ namespace SportLife.Website.Areas.AdminOffice.Controllers {
         private RoleManager RoleManager
             => _roleManager ?? (_roleManager = HttpContext.GetOwinContext().Get<RoleManager>());
 
-        private IUnitOfWork UnitOfWork 
+        private IUnitOfWork UnitOfWork
             => _unitOfWork ?? (_unitOfWork = DependencyResolver.Current.GetService<IUnitOfWork>());
-
-        private SportLifeEntities db = new SportLifeEntities();
+       
 
         // GET: AdminOffice/Coaches
         public ActionResult Index () {
@@ -51,34 +51,37 @@ namespace SportLife.Website.Areas.AdminOffice.Controllers {
         }
 
         // GET: AdminOffice/Coaches/Edit/5
-        // todo: allow to edit only photo!
-        public ActionResult Edit ( int? id ) {
+        public ActionResult AddAvatar ( int? id ) {
             if ( id == null ) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            // var coach = Mapper.Map<Coach, CoachFullViewModel>(UnitOfWork.CoachRepository.Get(id.Value));
-            var coach = UnitOfWork.CoachRepository.Get(id.Value);
-            if ( coach == null ) {
-                return HttpNotFound();
-            }
-            ViewBag.CoachId = new SelectList(db.User, "UserId", "UserName", coach.CoachId);
+            var coach = new CoachEditViewModel() { ID = id.Value };
             return View(coach);
         }
 
         // POST: AdminOffice/Coaches/Edit/5
-        // todo: allow to edit only photo!
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit ( [Bind(Include = "CoachId")] Coach coach ) {
+        public ActionResult AddAvatar ( CoachEditViewModel coach, HttpPostedFileBase upload ) {
             if ( ModelState.IsValid ) {
-                db.Entry(coach).State = EntityState.Modified;
-                db.SaveChanges();
+                if ( upload != null && upload.ContentLength > 0 ) {
+                    var avatar = new Image {
+                        FileName = System.IO.Path.GetFileName(upload.FileName),
+                        FileType = UnitOfWork.FileTypeRepository.GetByName(FileType.Avatar.ToString()).FileTypeId,
+                        ContentType = upload.ContentType
+                    };
+                    using ( var reader = new System.IO.BinaryReader(upload.InputStream) ) {
+                        avatar.Content = reader.ReadBytes(upload.ContentLength);
+                    }
+                    UnitOfWork.UserRepository.Get(coach.ID).Image.Add(avatar);
+                    UnitOfWork.SaveChanges();
+                }
                 return RedirectToAction("Index");
             }
-            ViewBag.CoachId = new SelectList(db.User, "UserId", "UserName", coach.CoachId);
             return View(coach);
         }
 
+        [HttpPost]
         public ActionResult AddToRole ( int userId, MainRoles role ) {
             var message = OperationSuccess.Default;
             if ( RoleManager.FindByNameAsync(role.ToString()).Result == null ) {
@@ -89,17 +92,23 @@ namespace SportLife.Website.Areas.AdminOffice.Controllers {
                 if ( !result.Result.Succeeded )
                     message = OperationSuccess.Fail;
             }
-            if ( !UserManager.IsInRoleAsync(userId, role.ToString()).Result )
+            if (!UserManager.IsInRoleAsync(userId, role.ToString()).Result)
                 message = !UserManager.AddToRoleAsync(userId, role.ToString()).Result.Succeeded
                     ? OperationSuccess.Fail
                     : OperationSuccess.Success;
+            else message = OperationSuccess.Success;
+
+            if (role == MainRoles.Coach && message == OperationSuccess.Success)
+            {
+                UnitOfWork.CoachRepository.Add(userId);
+            }
 
             return RedirectToAction("Details", new { id = userId, message });
         }
 
         protected override void Dispose ( bool disposing ) {
             if ( disposing ) {
-                db.Dispose();
+                UnitOfWork.Dispose();
             }
             base.Dispose(disposing);
         }

@@ -13,6 +13,14 @@
     <p class="text-success">@ViewBag.StatusMessage</p>
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.Avatar)
+        </dt>
+
+        <dd> 
+            <img class="img-circle avatar" src="@Url.Action("Index", "Image", new {area = "", id = Model.Avatar})" alt="Avatar"/>
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.FirstName)
         </dt>
 
@@ -59,6 +67,6 @@
     @Html.ActionLink("Add to admins", "AddToRole", new { userId = Model.ID, role = MainRoles.Administrator }, new { @class = "btn btn-default" })
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Change avatar", "AddAvatar", new { id = Model.ID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

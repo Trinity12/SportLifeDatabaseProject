@@ -37,8 +37,8 @@ namespace SportLife.Website.Areas.AdminOffice.Controllers {
         // GET: AdminOffice/Clients
         public ActionResult Index () {
             var clientModel = UnitOfWork.ClientRepository.GetAll();
-            var client = Mapper.Map<IEnumerable<Client>, IEnumerable<ClientViewModel>>(clientModel);
-            return View(client.ToList());
+            var clients = Mapper.Map<IEnumerable<Client>, List<ClientViewModel>>(clientModel);
+            return View(clients);
         }
 
         // GET: AdminOffice/Clients/Details/5
@@ -75,6 +75,12 @@ namespace SportLife.Website.Areas.AdminOffice.Controllers {
                 message = !UserManager.AddToRoleAsync(userId, role.ToString()).Result.Succeeded
                     ? OperationSuccess.Fail
                     : OperationSuccess.Success;
+            else message = OperationSuccess.Success;
+
+            if ( role == MainRoles.Coach && message == OperationSuccess.Success ) {
+                UnitOfWork.CoachRepository.Add(userId);
+                UnitOfWork.SaveChanges();
+            }
 
             return RedirectToAction("Details", new { id = userId, message });
         }

@@ -41,5 +41,7 @@ namespace SportLife.Core.Database
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<UserClaim> UserClaim { get; set; }
         public virtual DbSet<UserLogin> UserLogin { get; set; }
+        public virtual DbSet<FileType> FileType { get; set; }
+        public virtual DbSet<Image> Image { get; set; }
     }
 }

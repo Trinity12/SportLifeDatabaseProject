@@ -14,6 +14,8 @@ namespace SportLife.Core.Generic {
         private IAbonementRepository _abonementRepository;
         private IClientRepository _clientRepository;
         private ICoachRepository _coachRepository;
+        private IImageRepository _imageRepository;
+        private IFileTypeRepository _fileTypeRepository;
         private IHallRepository _hallRepository;
         private IPriceRepository _priceRepository;
         private ISheduleRepository _sheduleRepository;
@@ -29,14 +31,30 @@ namespace SportLife.Core.Generic {
         public IClientRepository ClientRepository
             => _clientRepository ?? (_clientRepository = new ClientRepository(_dbEntities));
 
-        public ICoachRepository CoachRepository { get; }
+        public ICoachRepository CoachRepository
+            => _coachRepository ?? (_coachRepository = new CoachRepository(_dbEntities));
+
+        public IImageRepository ImageRepository
+            => _imageRepository ?? (_imageRepository = new ImageRepository(_dbEntities));
+
+        public IFileTypeRepository FileTypeRepository
+            => _fileTypeRepository ?? (_fileTypeRepository = new FileTypeRepository(_dbEntities));
+
         public IHallRepository HallRepository { get; }
         public IPriceRepository PriceRepository { get; }
         public ISheduleRepository SheduleRepository { get; }
-        public ISportCategoryRepository SportCategoryRepository { get; }
+
+        public ISportCategoryRepository SportCategoryRepository
+            => _categoryRepository ?? (_categoryRepository = new SportCategoryRepository(_dbEntities));
+
         public ISportGroupRepository SportGroupRepository { get; }
-        public ISportRepository SportRepository { get; }
-        public IUserRepository UserRepository { get; }
+
+        public ISportRepository SportRepository
+            => _sportRepository ?? (_sportRepository = new SportRepository(_dbEntities));
+
+        public IUserRepository UserRepository
+            => _userRepository ?? (_userRepository = new UserRepository(_dbEntities));
+
         public IVisitingRepository VisitingRepository { get; }
 
         public void Dispose () {

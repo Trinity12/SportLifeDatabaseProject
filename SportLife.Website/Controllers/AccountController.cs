@@ -146,26 +146,27 @@ namespace SportLife.Website.Controllers {
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register ( RegisterViewModel model ) {
             if ( ModelState.IsValid ) {
-                var user = new User 
-                    { UserName = model.Email, Email = model.Email, UserFirstName = model.FirstName, UserSurname = model.Surname, PhoneNumber = model.PhoneNumber };
+                var user = new User { UserName = model.Email, Email = model.Email, UserFirstName = model.FirstName, UserSurname = model.Surname, PhoneNumber = model.PhoneNumber };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if ( result.Succeeded ) {
                     var userCreatedId = UserManager.FindByEmail(user.Email).Id;
                     MainRoles role = MainRoles.Client;
 
-                    if ( RoleManager.FindByNameAsync(role.ToString()) == null ) {
+                    if ( RoleManager.FindByNameAsync(role.ToString()).Result == null ) {
                         var roleInstanse = new Role { Name = role.ToString() };
                         var roleResult = RoleManager.CreateAsync(roleInstanse);
                         if ( !roleResult.Result.Succeeded )
                             AddErrors(result);
-                    } else {
-                        if ( !UserManager.IsInRoleAsync(userCreatedId, role.ToString()).Result )
-                            if ( !UserManager.AddToRoleAsync(userCreatedId, role.ToString()).Result.Succeeded )
-                                AddErrors(result);
                     }
+                    if (!UserManager.IsInRoleAsync(userCreatedId, role.ToString()).Result)
+                    {
+                        if (!UserManager.AddToRoleAsync(userCreatedId, role.ToString()).Result.Succeeded)
+                            AddErrors(result);
+                    }
+                    UnitOfWork.ClientRepository.Add(userCreatedId);
 
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                    return RedirectToAction("Index", "AdminHome");
+                    return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
             }

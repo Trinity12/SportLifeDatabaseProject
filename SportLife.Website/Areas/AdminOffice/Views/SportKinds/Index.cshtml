@@ -1,0 +1,52 @@
+﻿@model IEnumerable<IGrouping<SportLife.Website.Areas.AdminOffice.Models.SportCategoryViewModel, SportLife.Website.Areas.AdminOffice.Models.SportKindViewModel>>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/AdminOffice/Views/AdminHome/Index.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create new category", "CreateSportCategory")
+    @Html.ActionLink("Create new sport kind", "CreateSportCategory")
+</p>
+@foreach ( var category in Model ) {
+    <div class="panel">
+        <div class="page-header">
+            <table class="table">
+                <tr>
+                    <td>
+                        <img class="img-round avatar" src="@Url.Action("Index", "Image", new {area = "", id = category.Key.ImageId})" alt="categoryPicture"/>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => category.Key.Name)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "EditCategory", new {id = category.Key.ID})
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="panel-body">
+            <table>
+                @foreach (var sport in category)
+                {
+                    <tr>
+                        <td>
+                            <img class="img-round avatar" src="@Url.Action("Index", "Image", new {area = "", id = sport.ImageId})" alt="categoryPicture"/>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => sport.Name)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "EditSportKind", new { id = sport.ID })
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+}
+
+

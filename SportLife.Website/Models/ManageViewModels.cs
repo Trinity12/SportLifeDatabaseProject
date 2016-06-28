@@ -5,6 +5,8 @@ using Microsoft.Owin.Security;
 
 namespace SportLife.Website.Models {
     public class IndexViewModel {
+        public int Avatar { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

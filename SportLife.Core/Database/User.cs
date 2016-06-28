@@ -20,6 +20,7 @@ namespace SportLife.Core.Database
             this.UserClaim = new HashSet<UserClaim>();
             this.UserLogin = new HashSet<UserLogin>();
             this.Role = new HashSet<Role>();
+            this.Image = new HashSet<Image>();
         }
     
         public int UserId { get; set; }
@@ -45,5 +46,7 @@ namespace SportLife.Core.Database
         public virtual ICollection<UserLogin> UserLogin { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Role> Role { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Image> Image { get; set; }
     }
 }

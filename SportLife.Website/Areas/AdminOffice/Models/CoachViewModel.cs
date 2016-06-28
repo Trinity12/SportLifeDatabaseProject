@@ -27,6 +27,8 @@ namespace SportLife.Website.Areas.AdminOffice.Models {
     public class CoachFullViewModel {
         public int ID { get; set; }
 
+        public int? Avatar { get; set; }
+
         [ReadOnly(true)]
         [DataType(DataType.Text)]
         public string FirstName { get; set; }
@@ -46,7 +48,7 @@ namespace SportLife.Website.Areas.AdminOffice.Models {
         public bool IsActive { get; set; }
     }
 
-    public class CoachCreateViewModel
+    public class CoachEditViewModel
     {
         public int ID { get; set; }
     }

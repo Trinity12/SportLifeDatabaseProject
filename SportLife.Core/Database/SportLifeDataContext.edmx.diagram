@@ -40,6 +40,13 @@
         <AssociationConnector Association="SportLifeModel.FK_UserClaim_User" />
         <AssociationConnector Association="SportLifeModel.FK_UserLogin_User" />
         <AssociationConnector Association="SportLifeModel.UserRole" />
+        <EntityTypeShape EntityType="SportLifeModel.FileType" Width="1.5" PointX="0.75" PointY="10" />
+        <EntityTypeShape EntityType="SportLifeModel.Image" Width="1.5" PointX="0.75" PointY="13.375" />
+        <AssociationConnector Association="SportLifeModel.FK_Image_FileType" />
+        <AssociationConnector Association="SportLifeModel.FK_Hall_Image" />
+        <AssociationConnector Association="SportLifeModel.FK_SportCategory_Image" />
+        <AssociationConnector Association="SportLifeModel.FK_SportKind_Image" />
+        <AssociationConnector Association="SportLifeModel.UserImage" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

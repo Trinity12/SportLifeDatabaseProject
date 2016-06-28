@@ -11,4 +11,9 @@
         Fail,
         Default
     }
+
+    public enum FileType
+    {
+        Avatar = 1
+    }
 }

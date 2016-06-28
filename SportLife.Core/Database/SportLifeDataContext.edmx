@@ -57,12 +57,30 @@
           </Key>
           <Property Name="CoachId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="FileType">
+          <Key>
+            <PropertyRef Name="FileTypeId" />
+          </Key>
+          <Property Name="FileTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
         <EntityType Name="Hall">
           <Key>
             <PropertyRef Name="HallId" />
           </Key>
           <Property Name="HallId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AdressId" Type="int" />
+          <Property Name="Image" Type="int" />
+        </EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="FileId" />
+          </Key>
+          <Property Name="FileId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ContentType" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Content" Type="varbinary(max)" Nullable="false" />
+          <Property Name="FileType" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Price">
           <Key>
@@ -103,6 +121,7 @@
           </Key>
           <Property Name="SportCategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SportCategoryName" Type="varchar(max)" Nullable="false" />
+          <Property Name="Image" Type="int" />
         </EntityType>
         <EntityType Name="SportGroup">
           <Key>
@@ -120,6 +139,7 @@
           <Property Name="SportId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SportName" Type="varchar(max)" Nullable="false" />
           <Property Name="SportCategoryId" Type="int" />
+          <Property Name="Image" Type="int" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -148,6 +168,14 @@
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="ClaimType" Type="nvarchar(max)" />
           <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="UserImage">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="FileId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="FileId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="UserLogin">
           <Key>
@@ -272,6 +300,32 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Hall_Image">
+          <End Role="Image" Type="Self.Image" Multiplicity="0..1" />
+          <End Role="Hall" Type="Self.Hall" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Image">
+              <PropertyRef Name="FileId" />
+            </Principal>
+            <Dependent Role="Hall">
+              <PropertyRef Name="Image" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Image_FileType">
+          <End Role="FileType" Type="Self.FileType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Image" Type="Self.Image" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FileType">
+              <PropertyRef Name="FileTypeId" />
+            </Principal>
+            <Dependent Role="Image">
+              <PropertyRef Name="FileType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Price_Abonement">
           <End Role="Abonement" Type="Self.Abonement" Multiplicity="1" />
           <End Role="Price" Type="Self.Price" Multiplicity="*" />
@@ -332,6 +386,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SportCategory_Image">
+          <End Role="Image" Type="Self.Image" Multiplicity="0..1" />
+          <End Role="SportCategory" Type="Self.SportCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Image">
+              <PropertyRef Name="FileId" />
+            </Principal>
+            <Dependent Role="SportCategory">
+              <PropertyRef Name="Image" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SportGroup_Coach">
           <End Role="Coach" Type="Self.Coach" Multiplicity="1" />
           <End Role="SportGroup" Type="Self.SportGroup" Multiplicity="*" />
@@ -353,6 +419,18 @@
             </Principal>
             <Dependent Role="SportGroup">
               <PropertyRef Name="SportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SportKind_Image">
+          <End Role="Image" Type="Self.Image" Multiplicity="0..1" />
+          <End Role="SportKind" Type="Self.SportKind" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Image">
+              <PropertyRef Name="FileId" />
+            </Principal>
+            <Dependent Role="SportKind">
+              <PropertyRef Name="Image" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -378,6 +456,30 @@
               <PropertyRef Name="UserId" />
             </Principal>
             <Dependent Role="UserClaim">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserImage_Image">
+          <End Role="Image" Type="Self.Image" Multiplicity="1" />
+          <End Role="UserImage" Type="Self.UserImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Image">
+              <PropertyRef Name="FileId" />
+            </Principal>
+            <Dependent Role="UserImage">
+              <PropertyRef Name="FileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserImage_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserImage" Type="Self.UserImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserImage">
               <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
@@ -455,7 +557,9 @@
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ClientAbonement" EntityType="Self.ClientAbonement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Coach" EntityType="Self.Coach" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FileType" EntityType="Self.FileType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hall" EntityType="Self.Hall" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Image" EntityType="Self.Image" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Price" EntityType="Self.Price" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shedule" EntityType="Self.Shedule" Schema="dbo" store:Type="Tables" />
@@ -465,6 +569,7 @@
           <EntitySet Name="SportKind" EntityType="Self.SportKind" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserClaim" EntityType="Self.UserClaim" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserImage" EntityType="Self.UserImage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserLogin" EntityType="Self.UserLogin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Visiting" EntityType="Self.Visiting" Schema="dbo" store:Type="Tables" />
@@ -500,6 +605,14 @@
             <End Role="Adress" EntitySet="Adress" />
             <End Role="Hall" EntitySet="Hall" />
           </AssociationSet>
+          <AssociationSet Name="FK_Hall_Image" Association="Self.FK_Hall_Image">
+            <End Role="Image" EntitySet="Image" />
+            <End Role="Hall" EntitySet="Hall" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Image_FileType" Association="Self.FK_Image_FileType">
+            <End Role="FileType" EntitySet="FileType" />
+            <End Role="Image" EntitySet="Image" />
+          </AssociationSet>
           <AssociationSet Name="FK_Price_Abonement" Association="Self.FK_Price_Abonement">
             <End Role="Abonement" EntitySet="Abonement" />
             <End Role="Price" EntitySet="Price" />
@@ -520,6 +633,10 @@
             <End Role="SportKind" EntitySet="SportKind" />
             <End Role="SportAbonement" EntitySet="SportAbonement" />
           </AssociationSet>
+          <AssociationSet Name="FK_SportCategory_Image" Association="Self.FK_SportCategory_Image">
+            <End Role="Image" EntitySet="Image" />
+            <End Role="SportCategory" EntitySet="SportCategory" />
+          </AssociationSet>
           <AssociationSet Name="FK_SportGroup_Coach" Association="Self.FK_SportGroup_Coach">
             <End Role="Coach" EntitySet="Coach" />
             <End Role="SportGroup" EntitySet="SportGroup" />
@@ -528,6 +645,10 @@
             <End Role="SportKind" EntitySet="SportKind" />
             <End Role="SportGroup" EntitySet="SportGroup" />
           </AssociationSet>
+          <AssociationSet Name="FK_SportKind_Image" Association="Self.FK_SportKind_Image">
+            <End Role="Image" EntitySet="Image" />
+            <End Role="SportKind" EntitySet="SportKind" />
+          </AssociationSet>
           <AssociationSet Name="FK_SportKind_SportCategory" Association="Self.FK_SportKind_SportCategory">
             <End Role="SportCategory" EntitySet="SportCategory" />
             <End Role="SportKind" EntitySet="SportKind" />
@@ -535,6 +656,14 @@
           <AssociationSet Name="FK_UserClaim_User" Association="Self.FK_UserClaim_User">
             <End Role="User" EntitySet="User" />
             <End Role="UserClaim" EntitySet="UserClaim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserImage_Image" Association="Self.FK_UserImage_Image">
+            <End Role="Image" EntitySet="Image" />
+            <End Role="UserImage" EntitySet="UserImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserImage_User" Association="Self.FK_UserImage_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserImage" EntitySet="UserImage" />
           </AssociationSet>
           <AssociationSet Name="FK_UserLogin_User" Association="Self.FK_UserLogin_User">
             <End Role="User" EntitySet="User" />
@@ -626,6 +755,8 @@
           <Property Name="AdressId" Type="Int32" />
           <NavigationProperty Name="Adress" Relationship="Self.FK_Hall_Adress" FromRole="Hall" ToRole="Adress" />
           <NavigationProperty Name="Shedule" Relationship="Self.FK_Shedule_Hall" FromRole="Hall" ToRole="Shedule" />
+          <Property Name="Image" Type="Int32" />
+          <NavigationProperty Name="Image1" Relationship="SportLifeModel.FK_Hall_Image" FromRole="Hall" ToRole="Image" />
         </EntityType>
         <EntityType Name="Price">
           <Key>
@@ -657,6 +788,8 @@
           <Property Name="SportCategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SportCategoryName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="SportKind" Relationship="Self.FK_SportKind_SportCategory" FromRole="SportCategory" ToRole="SportKind" />
+          <Property Name="Image" Type="Int32" />
+          <NavigationProperty Name="Image1" Relationship="SportLifeModel.FK_SportCategory_Image" FromRole="SportCategory" ToRole="Image" />
         </EntityType>
         <EntityType Name="SportGroup">
           <Key>
@@ -681,6 +814,8 @@
           <NavigationProperty Name="SportCategory" Relationship="Self.FK_SportKind_SportCategory" FromRole="SportKind" ToRole="SportCategory" />
           <NavigationProperty Name="SportGroup" Relationship="Self.FK_SportGroup_SportId" FromRole="SportKind" ToRole="SportGroup" />
           <NavigationProperty Name="Abonement" Relationship="Self.SportAbonement" FromRole="SportKind" ToRole="Abonement" />
+          <Property Name="Image" Type="Int32" />
+          <NavigationProperty Name="Image1" Relationship="SportLifeModel.FK_SportKind_Image" FromRole="SportKind" ToRole="Image" />
         </EntityType>
         <EntityType Name="Visiting">
           <Key>
@@ -938,7 +1073,29 @@
             <End Role="Role" EntitySet="Role" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
-        </EntityContainer>
+          <EntitySet Name="FileType" EntityType="SportLifeModel.FileType" />
+          <EntitySet Name="Image" EntityType="SportLifeModel.Image" />
+          <AssociationSet Name="FK_Image_FileType" Association="SportLifeModel.FK_Image_FileType">
+            <End Role="FileType" EntitySet="FileType" />
+            <End Role="Image" EntitySet="Image" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hall_Image" Association="SportLifeModel.FK_Hall_Image">
+            <End Role="Image" EntitySet="Image" />
+            <End Role="Hall" EntitySet="Hall" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SportCategory_Image" Association="SportLifeModel.FK_SportCategory_Image">
+            <End Role="Image" EntitySet="Image" />
+            <End Role="SportCategory" EntitySet="SportCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SportKind_Image" Association="SportLifeModel.FK_SportKind_Image">
+            <End Role="Image" EntitySet="Image" />
+            <End Role="SportKind" EntitySet="SportKind" />
+          </AssociationSet>
+          <AssociationSet Name="UserImage" Association="SportLifeModel.UserImage">
+            <End Role="Image" EntitySet="Image" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="Id" />
@@ -970,6 +1127,7 @@
           <NavigationProperty Name="UserClaim" Relationship="SportLifeModel.FK_UserClaim_User" FromRole="User" ToRole="UserClaim" />
           <NavigationProperty Name="UserLogin" Relationship="SportLifeModel.FK_UserLogin_User" FromRole="User" ToRole="UserLogin" />
           <NavigationProperty Name="Role" Relationship="SportLifeModel.UserRole" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="Image" Relationship="SportLifeModel.UserImage" FromRole="User" ToRole="Image" />
         </EntityType>
         <EntityType Name="UserClaim">
           <Key>
@@ -1048,7 +1206,84 @@
           <End Type="SportLifeModel.Role" Role="Role" Multiplicity="*" />
           <End Type="SportLifeModel.User" Role="User" Multiplicity="*" />
         </Association>
-      </Schema>
+        <EntityType Name="FileType">
+          <Key>
+            <PropertyRef Name="FileTypeId" />
+          </Key>
+          <Property Name="FileTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Image" Relationship="SportLifeModel.FK_Image_FileType" FromRole="FileType" ToRole="Image" />
+        </EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="FileId" />
+          </Key>
+          <Property Name="FileId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ContentType" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="FileType" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="FileType1" Relationship="SportLifeModel.FK_Image_FileType" FromRole="Image" ToRole="FileType" />
+          <NavigationProperty Name="Hall" Relationship="SportLifeModel.FK_Hall_Image" FromRole="Image" ToRole="Hall" />
+          <NavigationProperty Name="SportCategory" Relationship="SportLifeModel.FK_SportCategory_Image" FromRole="Image" ToRole="SportCategory" />
+          <NavigationProperty Name="SportKind" Relationship="SportLifeModel.FK_SportKind_Image" FromRole="Image" ToRole="SportKind" />
+          <NavigationProperty Name="User" Relationship="SportLifeModel.UserImage" FromRole="Image" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Image_FileType">
+          <End Type="SportLifeModel.FileType" Role="FileType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SportLifeModel.Image" Role="Image" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FileType">
+              <PropertyRef Name="FileTypeId" />
+            </Principal>
+            <Dependent Role="Image">
+              <PropertyRef Name="FileType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hall_Image">
+          <End Type="SportLifeModel.Image" Role="Image" Multiplicity="0..1" />
+          <End Type="SportLifeModel.Hall" Role="Hall" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Image">
+              <PropertyRef Name="FileId" />
+            </Principal>
+            <Dependent Role="Hall">
+              <PropertyRef Name="Image" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SportCategory_Image">
+          <End Type="SportLifeModel.Image" Role="Image" Multiplicity="0..1" />
+          <End Type="SportLifeModel.SportCategory" Role="SportCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Image">
+              <PropertyRef Name="FileId" />
+            </Principal>
+            <Dependent Role="SportCategory">
+              <PropertyRef Name="Image" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SportKind_Image">
+          <End Type="SportLifeModel.Image" Role="Image" Multiplicity="0..1" />
+          <End Type="SportLifeModel.SportKind" Role="SportKind" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Image">
+              <PropertyRef Name="FileId" />
+            </Principal>
+            <Dependent Role="SportKind">
+              <PropertyRef Name="Image" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserImage">
+          <End Type="SportLifeModel.Image" Role="Image" Multiplicity="*" />
+          <End Type="SportLifeModel.User" Role="User" Multiplicity="*" />
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -1106,6 +1341,7 @@
           <EntitySetMapping Name="Hall">
             <EntityTypeMapping TypeName="SportLifeModel.Hall">
               <MappingFragment StoreEntitySet="Hall">
+                <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="HallId" ColumnName="HallId" />
                 <ScalarProperty Name="AdressId" ColumnName="AdressId" />
               </MappingFragment>
@@ -1134,6 +1370,7 @@
           <EntitySetMapping Name="SportCategory">
             <EntityTypeMapping TypeName="SportLifeModel.SportCategory">
               <MappingFragment StoreEntitySet="SportCategory">
+                <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="SportCategoryId" ColumnName="SportCategoryId" />
                 <ScalarProperty Name="SportCategoryName" ColumnName="SportCategoryName" />
               </MappingFragment>
@@ -1152,6 +1389,7 @@
           <EntitySetMapping Name="SportKind">
             <EntityTypeMapping TypeName="SportLifeModel.SportKind">
               <MappingFragment StoreEntitySet="SportKind">
+                <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="SportId" ColumnName="SportId" />
                 <ScalarProperty Name="SportName" ColumnName="SportName" />
                 <ScalarProperty Name="SportCategoryId" ColumnName="SportCategoryId" />
@@ -1239,7 +1477,34 @@
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
-        </EntityContainerMapping>
+          <EntitySetMapping Name="FileType">
+            <EntityTypeMapping TypeName="SportLifeModel.FileType">
+              <MappingFragment StoreEntitySet="FileType">
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="FileTypeId" ColumnName="FileTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Image">
+            <EntityTypeMapping TypeName="SportLifeModel.Image">
+              <MappingFragment StoreEntitySet="Image">
+                <ScalarProperty Name="FileType" ColumnName="FileType" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="ContentType" ColumnName="ContentType" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="FileId" ColumnName="FileId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="UserImage" TypeName="SportLifeModel.UserImage" StoreEntitySet="UserImage">
+            <EndProperty Name="User">
+              <ScalarProperty Name="UserId" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="Image">
+              <ScalarProperty Name="FileId" ColumnName="FileId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

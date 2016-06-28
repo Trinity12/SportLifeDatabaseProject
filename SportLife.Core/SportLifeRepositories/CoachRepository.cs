@@ -18,5 +18,11 @@ namespace SportLife.Core.SportLifeRepositories {
             return GetAll()
                 .Where(coach => coach.SportGroup.Any(group => group.SportKind == sport));
         }
+
+        public void Add ( int userId ) {
+            Add(new Coach() {
+                CoachId = userId
+            });
+        }
     }
 }

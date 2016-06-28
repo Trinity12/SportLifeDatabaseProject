@@ -21,7 +21,7 @@ namespace SportLife.Website.Areas.AdminOffice.Models {
 
         [ReadOnly(true)]
         [DataType(DataType.Date)]
-        public DateTime BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
 
         [ReadOnly(true)]
         [DataType(DataType.PhoneNumber)]
@@ -32,6 +32,8 @@ namespace SportLife.Website.Areas.AdminOffice.Models {
 
     public class ClientFullViewModel {
         public int ID { get; set; }
+
+        public int Avatar { get; set; }
 
         [ReadOnly(true)]
         [DataType(DataType.Text)]
@@ -47,7 +49,7 @@ namespace SportLife.Website.Areas.AdminOffice.Models {
 
         [ReadOnly(true)]
         [DataType(DataType.Date)]
-        public DateTime BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
 
         [ReadOnly(true)]
         [DataType(DataType.PhoneNumber)]

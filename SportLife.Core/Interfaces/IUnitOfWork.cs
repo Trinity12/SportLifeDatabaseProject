@@ -7,6 +7,8 @@ namespace SportLife.Core.Interfaces {
         IAbonementRepository AbonementRepository { get; }
         IClientRepository ClientRepository { get; }
         ICoachRepository CoachRepository { get; }
+        IImageRepository ImageRepository { get; }
+        IFileTypeRepository FileTypeRepository { get; }
         IHallRepository HallRepository { get; }
         IPriceRepository PriceRepository { get; }
         ISheduleRepository SheduleRepository { get; }

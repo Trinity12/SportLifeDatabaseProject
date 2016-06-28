@@ -24,11 +24,13 @@ namespace SportLife.Core.Database
         public int SportId { get; set; }
         public string SportName { get; set; }
         public Nullable<int> SportCategoryId { get; set; }
+        public Nullable<int> Image { get; set; }
     
         public virtual SportCategory SportCategory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SportGroup> SportGroup { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Abonement> Abonement { get; set; }
+        public virtual Image Image1 { get; set; }
     }
 }

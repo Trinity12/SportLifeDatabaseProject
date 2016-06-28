@@ -53,6 +53,7 @@
     <EntitySetMapping Name="Hall">
       <EntityTypeMapping TypeName="SportLifeModel.Hall">
         <MappingFragment StoreEntitySet="Hall">
+          <ScalarProperty Name="Image" ColumnName="Image" />
           <ScalarProperty Name="HallId" ColumnName="HallId" />
           <ScalarProperty Name="AdressId" ColumnName="AdressId" />
         </MappingFragment>
@@ -81,6 +82,7 @@
     <EntitySetMapping Name="SportCategory">
       <EntityTypeMapping TypeName="SportLifeModel.SportCategory">
         <MappingFragment StoreEntitySet="SportCategory">
+          <ScalarProperty Name="Image" ColumnName="Image" />
           <ScalarProperty Name="SportCategoryId" ColumnName="SportCategoryId" />
           <ScalarProperty Name="SportCategoryName" ColumnName="SportCategoryName" />
         </MappingFragment>
@@ -99,6 +101,7 @@
     <EntitySetMapping Name="SportKind">
       <EntityTypeMapping TypeName="SportLifeModel.SportKind">
         <MappingFragment StoreEntitySet="SportKind">
+          <ScalarProperty Name="Image" ColumnName="Image" />
           <ScalarProperty Name="SportId" ColumnName="SportId" />
           <ScalarProperty Name="SportName" ColumnName="SportName" />
           <ScalarProperty Name="SportCategoryId" ColumnName="SportCategoryId" />
@@ -184,6 +187,33 @@
       </EndProperty>
       <EndProperty Name="Role">
         <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="FileType">
+      <EntityTypeMapping TypeName="SportLifeModel.FileType">
+        <MappingFragment StoreEntitySet="FileType">
+          <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+          <ScalarProperty Name="FileTypeId" ColumnName="FileTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Image">
+      <EntityTypeMapping TypeName="SportLifeModel.Image">
+        <MappingFragment StoreEntitySet="Image">
+          <ScalarProperty Name="FileType" ColumnName="FileType" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="ContentType" ColumnName="ContentType" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="FileId" ColumnName="FileId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="UserImage" TypeName="SportLifeModel.UserImage" StoreEntitySet="UserImage">
+      <EndProperty Name="User">
+        <ScalarProperty Name="UserId" ColumnName="UserId" />
+      </EndProperty>
+      <EndProperty Name="Image">
+        <ScalarProperty Name="FileId" ColumnName="FileId" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

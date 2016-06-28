@@ -1,13 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using SportLife.Core.Database;
+using SportLife.Core.Generic;
+using SportLife.Core.Interfaces;
 using SportLife.Models.IdentityModels;
 using SportLife.Website.Models;
+using FileType = SportLife.Website.Resouses.FileType;
 
 namespace SportLife.Website.Controllers
 {
@@ -17,6 +23,7 @@ namespace SportLife.Website.Controllers
         #region Constructors and properties
         private SignInManager _signInManager;
         private MyUserManager _userManager;
+        private IUnitOfWork _unitOfWork;
 
         public ManageController()
         {
@@ -27,6 +34,9 @@ namespace SportLife.Website.Controllers
             UserManager = userManager;
             SignInManager = signInManager;
         }
+
+        private IUnitOfWork UnitOfWork
+           => _unitOfWork ?? (_unitOfWork = DependencyResolver.Current.GetService<IUnitOfWork>());
 
         public SignInManager SignInManager
         {
@@ -81,10 +91,22 @@ namespace SportLife.Website.Controllers
         // POST: /Manage/EditProfile
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EditProfile ( IndexViewModel viewModel ) {
+        public async Task<ActionResult> EditProfile ( IndexViewModel viewModel, HttpPostedFileBase upload ) {
             var message = ManageMessageId.Error;
             if ( ModelState.IsValid ) {
                 var user = await UserManager.FindByIdAsync(User.Identity.GetUserId<int>());
+                if ( upload != null && upload.ContentLength > 0 ) {
+                    var avatar = new Image {
+                        FileName = System.IO.Path.GetFileName(upload.FileName),
+                        FileType = UnitOfWork.FileTypeRepository.GetByName(FileType.Avatar.ToString()).FileTypeId,
+                        ContentType = upload.ContentType
+                    };
+                    using ( var reader = new System.IO.BinaryReader(upload.InputStream) ) {
+                        avatar.Content = reader.ReadBytes(upload.ContentLength);
+                    }
+                    UnitOfWork.UserRepository.Get(user.Id).Image.Add(avatar);   
+                }
+
                 if ( user.Email != viewModel.Email )
                     UserManager.SetEmail(user.Id, viewModel.Email);
 
@@ -95,6 +117,8 @@ namespace SportLife.Website.Controllers
                 user.UserSurname = viewModel.Surname;
 
                 UserManager.Update(user);
+                UnitOfWork.SaveChanges();
+
                 message = ManageMessageId.EditProfileSuccess;
             } else {
                 message = ManageMessageId.Error;

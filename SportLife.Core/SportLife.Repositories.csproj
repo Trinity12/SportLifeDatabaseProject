@@ -67,7 +67,13 @@
     <Compile Include="Database\Coach.cs">
       <DependentUpon>SportLifeDataContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Database\FileType.cs">
+      <DependentUpon>SportLifeDataContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Database\Hall.cs">
+      <DependentUpon>SportLifeDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Image.cs">
       <DependentUpon>SportLifeDataContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Price.cs">
@@ -116,7 +122,6 @@
       <DependentUpon>SportLifeDataContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Generic\GenericRepository.cs" />
-    <Compile Include="Generic\Repository.cs" />
     <Compile Include="Generic\UnitOfWork.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
@@ -124,17 +129,24 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SportLifeRepositories\ClientRepository.cs" />
     <Compile Include="SportLifeRepositories\CoachRepository.cs" />
+    <Compile Include="SportLifeRepositories\FileTypeRepository.cs" />
+    <Compile Include="SportLifeRepositories\ImageRepository.cs" />
     <Compile Include="SportLifeRepositories\Interfaces\IAbonementOrderRepository.cs" />
     <Compile Include="SportLifeRepositories\Interfaces\IAbonementRepository.cs" />
     <Compile Include="SportLifeRepositories\Interfaces\IClientRepository.cs" />
     <Compile Include="SportLifeRepositories\Interfaces\ICoachRepository.cs" />
+    <Compile Include="SportLifeRepositories\Interfaces\IFileTypeRepository.cs" />
     <Compile Include="SportLifeRepositories\Interfaces\IHallRepository.cs" />
+    <Compile Include="SportLifeRepositories\Interfaces\IImageRepository.cs" />
     <Compile Include="SportLifeRepositories\Interfaces\IPriceRepository.cs" />
     <Compile Include="SportLifeRepositories\Interfaces\ISheduleRepository.cs" />
     <Compile Include="SportLifeRepositories\Interfaces\ISportGroupRepository.cs" />
     <Compile Include="SportLifeRepositories\Interfaces\ISportRepository.cs" />
     <Compile Include="SportLifeRepositories\Interfaces\IUserRepository.cs" />
     <Compile Include="SportLifeRepositories\Interfaces\IVisitingRepository.cs" />
+    <Compile Include="SportLifeRepositories\SportCategoryRepository.cs" />
+    <Compile Include="SportLifeRepositories\SportRepository.cs" />
+    <Compile Include="SportLifeRepositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SportLife.Models\SportLife.Models.csproj">
