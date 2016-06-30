@@ -90,6 +90,8 @@
     <NavigationProperty Name="Hall" Relationship="Self.FK_Shedule_Hall" FromRole="Shedule" ToRole="Hall" />
     <NavigationProperty Name="SportGroup" Relationship="Self.FK_Shedule_SportGroup" FromRole="Shedule" ToRole="SportGroup" />
     <NavigationProperty Name="Visiting" Relationship="Self.FK_Visiting_Shedule" FromRole="Shedule" ToRole="Visiting" />
+    <Property Name="SheduleDayId" Type="Int32" />
+    <NavigationProperty Name="DaysInWeek" Relationship="SportLifeModel.FK_Shedule_DaysInWeek" FromRole="Shedule" ToRole="DaysInWeek" />
   </EntityType>
   <EntityType Name="SportCategory">
     <Key>
@@ -405,6 +407,11 @@
       <End Role="Image" EntitySet="Image" />
       <End Role="User" EntitySet="User" />
     </AssociationSet>
+    <EntitySet Name="DaysInWeek" EntityType="SportLifeModel.DaysInWeek" />
+    <AssociationSet Name="FK_Shedule_DaysInWeek" Association="SportLifeModel.FK_Shedule_DaysInWeek">
+      <End Role="DaysInWeek" EntitySet="DaysInWeek" />
+      <End Role="Shedule" EntitySet="Shedule" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Role">
     <Key>
@@ -592,5 +599,25 @@
   <Association Name="UserImage">
     <End Type="SportLifeModel.Image" Role="Image" Multiplicity="*" />
     <End Type="SportLifeModel.User" Role="User" Multiplicity="*" />
+  </Association>
+  <EntityType Name="DaysInWeek">
+    <Key>
+      <PropertyRef Name="DayId" />
+    </Key>
+    <Property Name="DayId" Type="Int32" Nullable="false" />
+    <Property Name="DayString" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Shedule" Relationship="SportLifeModel.FK_Shedule_DaysInWeek" FromRole="DaysInWeek" ToRole="Shedule" />
+  </EntityType>
+  <Association Name="FK_Shedule_DaysInWeek">
+    <End Type="SportLifeModel.DaysInWeek" Role="DaysInWeek" Multiplicity="0..1" />
+    <End Type="SportLifeModel.Shedule" Role="Shedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DaysInWeek">
+        <PropertyRef Name="DayId" />
+      </Principal>
+      <Dependent Role="Shedule">
+        <PropertyRef Name="SheduleDayId" />
+      </Dependent>
+    </ReferentialConstraint>
   </Association>
 </Schema>

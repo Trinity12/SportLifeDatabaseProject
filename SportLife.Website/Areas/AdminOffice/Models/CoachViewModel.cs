@@ -52,4 +52,19 @@ namespace SportLife.Website.Areas.AdminOffice.Models {
     {
         public int ID { get; set; }
     }
+
+    public class CoachDropDownViewModel
+    {
+        public int ID { get; set; }
+        public string FullName { get; set; }
+    }
+
+    public class CoachGroupDetailViewModel
+    {
+        public int ID { get; set; }
+
+        public int? Avatar { get; set; }
+
+        public string FullName { get; set; }
+    }
 }

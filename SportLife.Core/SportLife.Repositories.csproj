@@ -67,6 +67,9 @@
     <Compile Include="Database\Coach.cs">
       <DependentUpon>SportLifeDataContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Database\DaysInWeek.cs">
+      <DependentUpon>SportLifeDataContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Database\FileType.cs">
       <DependentUpon>SportLifeDataContext.tt</DependentUpon>
     </Compile>
@@ -145,7 +148,9 @@
     <Compile Include="SportLifeRepositories\Interfaces\ISportRepository.cs" />
     <Compile Include="SportLifeRepositories\Interfaces\IUserRepository.cs" />
     <Compile Include="SportLifeRepositories\Interfaces\IVisitingRepository.cs" />
+    <Compile Include="SportLifeRepositories\SheduleRepository.cs" />
     <Compile Include="SportLifeRepositories\SportCategoryRepository.cs" />
+    <Compile Include="SportLifeRepositories\SportGroupRepository.cs" />
     <Compile Include="SportLifeRepositories\SportRepository.cs" />
     <Compile Include="SportLifeRepositories\UserRepository.cs" />
   </ItemGroup>

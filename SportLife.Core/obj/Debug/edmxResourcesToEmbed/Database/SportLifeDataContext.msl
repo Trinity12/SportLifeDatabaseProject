@@ -71,6 +71,7 @@
     <EntitySetMapping Name="Shedule">
       <EntityTypeMapping TypeName="SportLifeModel.Shedule">
         <MappingFragment StoreEntitySet="Shedule">
+          <ScalarProperty Name="SheduleDayId" ColumnName="SheduleDayId" />
           <ScalarProperty Name="ShedulId" ColumnName="ShedulId" />
           <ScalarProperty Name="SheduleDay" ColumnName="SheduleDay" />
           <ScalarProperty Name="SheduleTime" ColumnName="SheduleTime" />
@@ -216,5 +217,13 @@
         <ScalarProperty Name="FileId" ColumnName="FileId" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="DaysInWeek">
+      <EntityTypeMapping TypeName="SportLifeModel.DaysInWeek">
+        <MappingFragment StoreEntitySet="DaysInWeek">
+          <ScalarProperty Name="DayString" ColumnName="DayString" />
+          <ScalarProperty Name="DayId" ColumnName="DayId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

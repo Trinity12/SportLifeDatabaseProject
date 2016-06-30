@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web;
@@ -83,6 +85,22 @@ namespace SportLife.Website.Areas.AdminOffice.Controllers {
             }
 
             return RedirectToAction("Details", new { id = userId, message });
+        }
+
+        public PartialViewResult ClientSearchBySurname ( string surname )
+        {
+            var result = UnitOfWork.ClientRepository.Find(client => client.User.UserSurname == surname);
+            return PartialView("_ClientSearch", Mapper.Map<IEnumerable<Client>, IEnumerable<ClientViewModel>>(result));
+        }
+
+        public PartialViewResult ClientSearchByEmail ( string name ) {
+            var result = UnitOfWork.ClientRepository.Find(client => client.User.UserFirstName == name);
+            return PartialView("_ClientSearch", Mapper.Map<IEnumerable<Client>, IEnumerable<ClientViewModel>>(result));
+        }
+
+        public PartialViewResult ClientSearchByPhoneNumber ( string phone ) {
+            var result = UnitOfWork.ClientRepository.Find(client => client.User.Email == phone);
+            return PartialView("_ClientSearch", Mapper.Map<IEnumerable<Client>, IEnumerable<ClientViewModel>>(result));
         }
 
         #region Helpers and resourses

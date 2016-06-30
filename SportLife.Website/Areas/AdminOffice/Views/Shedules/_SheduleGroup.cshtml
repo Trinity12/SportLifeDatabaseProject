@@ -1,0 +1,11 @@
+﻿@model SportLife.Website.Areas.AdminOffice.Models.GroupSheduleViewModel
+
+<div class="panel panel-success">
+    <div class="panel-body">
+        <p><h4><span class="label label-success">@Model.CoachFullName</span></h4>
+        </p>
+        <p><h4><span class="label label-primary">@Model.Sport</span></h4>
+        </p>
+        @Html.ActionLink("Details", "Details", new { controller = "SportGroups", id = Model.ID })
+    </div>
+</div>

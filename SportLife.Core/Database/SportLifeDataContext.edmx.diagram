@@ -47,6 +47,8 @@
         <AssociationConnector Association="SportLifeModel.FK_SportCategory_Image" />
         <AssociationConnector Association="SportLifeModel.FK_SportKind_Image" />
         <AssociationConnector Association="SportLifeModel.UserImage" />
+        <EntityTypeShape EntityType="SportLifeModel.DaysInWeek" Width="1.5" PointX="0.75" PointY="0.875" />
+        <AssociationConnector Association="SportLifeModel.FK_Shedule_DaysInWeek" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

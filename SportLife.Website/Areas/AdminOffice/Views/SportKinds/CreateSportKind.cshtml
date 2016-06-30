@@ -1,4 +1,4 @@
-﻿@model SportLife.Website.Areas.AdminOffice.Models.SportKindViewModel
+﻿@model SportLife.Website.Areas.AdminOffice.Models.CreateSportKindViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -7,35 +7,33 @@
 
 <h2>Create sport kind</h2>
 
-@using (Html.BeginForm("CreateSportKind", "SportKinds", null, FormMethod.Post, new { role = "form", enctype = "multipart/form-data" }))
-{
+@using ( Html.BeginForm("CreateSportKind", "SportKinds", null, FormMethod.Post, new { role = "form", enctype = "multipart/form-data" }) ) {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>SportKind</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-        <div class="form-group">
-            @Html.Label("Upload image", new {@class = "col-md-2 control-label"})
-            <div class="col-md-8">
-                <input type="file" id="Avatar" name="upload"/>
-            </div>
-        </div>
-
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.SportCategory, "SportCategoryId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Upload image", new { @class = "col-md-2 control-label" })
+            <div class="col-md-8">
+                <input type="file" id="Avatar" name="upload" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SelectedCategoryId, "SportCategoryId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("SportCategoryId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.SportCategory, "", new { @class = "text-danger" })
+                @Html.DropDownList("SelectedCategoryId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SelectedCategoryId, "", new { @class = "text-danger" })
             </div>
         </div>
 

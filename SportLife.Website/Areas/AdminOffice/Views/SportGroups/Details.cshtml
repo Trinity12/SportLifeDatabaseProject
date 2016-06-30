@@ -1,0 +1,59 @@
+﻿@model SportLife.Website.Areas.AdminOffice.Models.GroupViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/AdminOffice/Views/AdminHome/Index.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SportGroup</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.GroupMaxMembers)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GroupMaxMembers)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Coach)
+        </dt>
+
+        <dd>
+            @{ Html.RenderPartial("_CoachGroupDetail", Model.Coach); }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sport)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sport)
+        </dd>
+
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <strong class="m-r-10">Clients</strong>
+            </div>
+            <div class="panel-body">
+                @{ Html.RenderPartial("_ClientsListGroupDetail", Model.Clients);}
+            </div>
+        </div>
+
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <strong class="m-r-10">AddClient</strong>
+            </div>
+            <div class="panel-body">
+            </div>
+        </div>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

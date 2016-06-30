@@ -1,0 +1,46 @@
+﻿@model IEnumerable<SportLife.Website.Areas.AdminOffice.Models.SheduleAdminViewModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/AdminOffice/Views/AdminHome/Index.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SheduleDay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SheduleTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Group)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SheduleDay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SheduleTime)
+        </td>
+        <td>
+            @{ Html.RenderPartial("_SheduleGroup", item.Group); }
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ShedulId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ShedulId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ShedulId })
+        </td>
+    </tr>
+}
+
+</table>

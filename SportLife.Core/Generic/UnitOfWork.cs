@@ -44,12 +44,15 @@ namespace SportLife.Core.Generic {
             => _hallRepository ?? (_hallRepository = new HallRepository(_dbEntities));
 
         public IPriceRepository PriceRepository { get; }
-        public ISheduleRepository SheduleRepository { get; }
+
+        public ISheduleRepository SheduleRepository
+            => _sheduleRepository ?? (_sheduleRepository = new SheduleRepository(_dbEntities));
 
         public ISportCategoryRepository SportCategoryRepository
             => _categoryRepository ?? (_categoryRepository = new SportCategoryRepository(_dbEntities));
 
-        public ISportGroupRepository SportGroupRepository { get; }
+        public ISportGroupRepository SportGroupRepository
+            => _sportGroupRepository ?? (_sportGroupRepository = new SportGroupRepository(_dbEntities));
 
         public ISportRepository SportRepository
             => _sportRepository ?? (_sportRepository = new SportRepository(_dbEntities));

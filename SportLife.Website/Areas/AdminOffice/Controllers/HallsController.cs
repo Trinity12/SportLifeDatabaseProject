@@ -1,4 +1,6 @@
-﻿using System.Data.Entity;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -22,7 +24,8 @@ namespace SportLife.Website.Areas.AdminOffice.Controllers
         public ActionResult Index()
         {
             var hall = UnitOfWork.HallRepository.GetAll();
-            return View(hall.ToList());
+            var hallVm = Mapper.Map<IEnumerable<Hall>, IEnumerable<HallViewModel>>(hall);
+            return View(hallVm);
         }
 
         // GET: AdminOffice/Halls/Details/5
@@ -49,7 +52,7 @@ namespace SportLife.Website.Areas.AdminOffice.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "HallId,AdressId,Image")] HallViewModel hall, HttpPostedFileBase upload )
+        public ActionResult Create([Bind(Include = "ID,AdressId,Adress,ImageId")] HallViewModel hall, HttpPostedFileBase upload )
         {
             if (ModelState.IsValid)
             {
@@ -139,7 +142,7 @@ namespace SportLife.Website.Areas.AdminOffice.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Hall hall = UnitOfWork.HallRepository.Get(id.Value);
+            Hall hall = UnitOfWork.HallRepository.Get(id);
             UnitOfWork.HallRepository.Remove(hall);
             UnitOfWork.SaveChanges();
             return RedirectToAction("Index");

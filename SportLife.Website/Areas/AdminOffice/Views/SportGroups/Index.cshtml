@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SportLife.Website.Areas.AdminOffice.Models.HallViewModel>
+﻿@model IEnumerable<SportLife.Website.Areas.AdminOffice.Models.GroupListViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -13,10 +13,13 @@
 <table class="table">
     <tr>
         <th>
-            Image
+            @Html.DisplayNameFor(model => model.GroupMaxMembers)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Adress)
+            @Html.DisplayNameFor(model => model.CoachFullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sport)
         </th>
         <th></th>
     </tr>
@@ -24,10 +27,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            <img class="img-rounded" width="80" height="80" src="@Url.Action("Index", "Image", new {area = "", id = item.ImageId})" alt="categoryPicture" />
+            @Html.DisplayFor(modelItem => item.GroupMaxMembers)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Adress.FullAdress)
+            @Html.ActionLink(item.CoachFullName, "Details", new { controller = "Coaches", id = item.CoachId })
+        </td>
+        <td>
+            @Html.ActionLink(item.Sport, "EditSportKind", new { controller = "SportKinds", id = item.SportId })
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |

@@ -12,25 +12,18 @@ namespace SportLife.Core.Database
     using System;
     using System.Collections.Generic;
     
-    public partial class Shedule
+    public partial class DaysInWeek
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Shedule()
+        public DaysInWeek()
         {
-            this.Visiting = new HashSet<Visiting>();
+            this.Shedule = new HashSet<Shedule>();
         }
     
-        public int ShedulId { get; set; }
-        public string SheduleDay { get; set; }
-        public System.TimeSpan SheduleTime { get; set; }
-        public Nullable<int> GroupId { get; set; }
-        public Nullable<int> HallId { get; set; }
-        public Nullable<int> SheduleDayId { get; set; }
+        public int DayId { get; set; }
+        public string DayString { get; set; }
     
-        public virtual Hall Hall { get; set; }
-        public virtual SportGroup SportGroup { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Visiting> Visiting { get; set; }
-        public virtual DaysInWeek DaysInWeek { get; set; }
+        public virtual ICollection<Shedule> Shedule { get; set; }
     }
 }

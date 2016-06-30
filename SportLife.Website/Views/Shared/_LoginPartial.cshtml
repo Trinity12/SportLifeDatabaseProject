@@ -10,10 +10,7 @@
             @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new {title = "Manage"})
         </li>
         <li>
-            @Html.ActionLink("Personal office", "Index", "AdminHome", new {area = "AdminOffice"}, null)
-        </li>
-        <li>
-            @Html.ActionLink("Programs", "Index", "Programs", new { area = "Programs" }, null)
+            @Html.ActionLink("Personal office", "Index", "Clients", new {area = "AdminOffice"}, null)
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
     </ul>

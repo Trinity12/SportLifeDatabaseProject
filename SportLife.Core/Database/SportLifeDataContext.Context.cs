@@ -43,5 +43,6 @@ namespace SportLife.Core.Database
         public virtual DbSet<UserLogin> UserLogin { get; set; }
         public virtual DbSet<FileType> FileType { get; set; }
         public virtual DbSet<Image> Image { get; set; }
+        public virtual DbSet<DaysInWeek> DaysInWeek { get; set; }
     }
 }

@@ -57,6 +57,13 @@
           </Key>
           <Property Name="CoachId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="DaysInWeek">
+          <Key>
+            <PropertyRef Name="DayId" />
+          </Key>
+          <Property Name="DayId" Type="int" Nullable="false" />
+          <Property Name="DayString" Type="nvarchar" MaxLength="25" />
+        </EntityType>
         <EntityType Name="FileType">
           <Key>
             <PropertyRef Name="FileTypeId" />
@@ -106,6 +113,7 @@
           <Property Name="SheduleTime" Type="time" Precision="7" Nullable="false" />
           <Property Name="GroupId" Type="int" />
           <Property Name="HallId" Type="int" />
+          <Property Name="SheduleDayId" Type="int" />
         </EntityType>
         <EntityType Name="SportAbonement">
           <Key>
@@ -338,6 +346,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Shedule_DaysInWeek">
+          <End Role="DaysInWeek" Type="Self.DaysInWeek" Multiplicity="0..1" />
+          <End Role="Shedule" Type="Self.Shedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DaysInWeek">
+              <PropertyRef Name="DayId" />
+            </Principal>
+            <Dependent Role="Shedule">
+              <PropertyRef Name="SheduleDayId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Shedule_Hall">
           <End Role="Hall" Type="Self.Hall" Multiplicity="0..1" />
           <End Role="Shedule" Type="Self.Shedule" Multiplicity="*" />
@@ -557,6 +577,7 @@
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ClientAbonement" EntityType="Self.ClientAbonement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Coach" EntityType="Self.Coach" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DaysInWeek" EntityType="Self.DaysInWeek" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FileType" EntityType="Self.FileType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hall" EntityType="Self.Hall" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Image" EntityType="Self.Image" Schema="dbo" store:Type="Tables" />
@@ -616,6 +637,10 @@
           <AssociationSet Name="FK_Price_Abonement" Association="Self.FK_Price_Abonement">
             <End Role="Abonement" EntitySet="Abonement" />
             <End Role="Price" EntitySet="Price" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shedule_DaysInWeek" Association="Self.FK_Shedule_DaysInWeek">
+            <End Role="DaysInWeek" EntitySet="DaysInWeek" />
+            <End Role="Shedule" EntitySet="Shedule" />
           </AssociationSet>
           <AssociationSet Name="FK_Shedule_Hall" Association="Self.FK_Shedule_Hall">
             <End Role="Hall" EntitySet="Hall" />
@@ -780,6 +805,8 @@
           <NavigationProperty Name="Hall" Relationship="Self.FK_Shedule_Hall" FromRole="Shedule" ToRole="Hall" />
           <NavigationProperty Name="SportGroup" Relationship="Self.FK_Shedule_SportGroup" FromRole="Shedule" ToRole="SportGroup" />
           <NavigationProperty Name="Visiting" Relationship="Self.FK_Visiting_Shedule" FromRole="Shedule" ToRole="Visiting" />
+          <Property Name="SheduleDayId" Type="Int32" />
+          <NavigationProperty Name="DaysInWeek" Relationship="SportLifeModel.FK_Shedule_DaysInWeek" FromRole="Shedule" ToRole="DaysInWeek" />
         </EntityType>
         <EntityType Name="SportCategory">
           <Key>
@@ -1095,6 +1122,11 @@
             <End Role="Image" EntitySet="Image" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
+          <EntitySet Name="DaysInWeek" EntityType="SportLifeModel.DaysInWeek" />
+          <AssociationSet Name="FK_Shedule_DaysInWeek" Association="SportLifeModel.FK_Shedule_DaysInWeek">
+            <End Role="DaysInWeek" EntitySet="DaysInWeek" />
+            <End Role="Shedule" EntitySet="Shedule" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Role">
           <Key>
@@ -1283,6 +1315,26 @@
           <End Type="SportLifeModel.Image" Role="Image" Multiplicity="*" />
           <End Type="SportLifeModel.User" Role="User" Multiplicity="*" />
         </Association>
+        <EntityType Name="DaysInWeek">
+          <Key>
+            <PropertyRef Name="DayId" />
+          </Key>
+          <Property Name="DayId" Type="Int32" Nullable="false" />
+          <Property Name="DayString" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Shedule" Relationship="SportLifeModel.FK_Shedule_DaysInWeek" FromRole="DaysInWeek" ToRole="Shedule" />
+        </EntityType>
+        <Association Name="FK_Shedule_DaysInWeek">
+          <End Type="SportLifeModel.DaysInWeek" Role="DaysInWeek" Multiplicity="0..1" />
+          <End Type="SportLifeModel.Shedule" Role="Shedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DaysInWeek">
+              <PropertyRef Name="DayId" />
+            </Principal>
+            <Dependent Role="Shedule">
+              <PropertyRef Name="SheduleDayId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1359,6 +1411,7 @@
           <EntitySetMapping Name="Shedule">
             <EntityTypeMapping TypeName="SportLifeModel.Shedule">
               <MappingFragment StoreEntitySet="Shedule">
+                <ScalarProperty Name="SheduleDayId" ColumnName="SheduleDayId" />
                 <ScalarProperty Name="ShedulId" ColumnName="ShedulId" />
                 <ScalarProperty Name="SheduleDay" ColumnName="SheduleDay" />
                 <ScalarProperty Name="SheduleTime" ColumnName="SheduleTime" />
@@ -1504,6 +1557,14 @@
               <ScalarProperty Name="FileId" ColumnName="FileId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="DaysInWeek">
+            <EntityTypeMapping TypeName="SportLifeModel.DaysInWeek">
+              <MappingFragment StoreEntitySet="DaysInWeek">
+                <ScalarProperty Name="DayString" ColumnName="DayString" />
+                <ScalarProperty Name="DayId" ColumnName="DayId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

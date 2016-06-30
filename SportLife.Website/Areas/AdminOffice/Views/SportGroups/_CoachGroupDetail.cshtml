@@ -1,0 +1,10 @@
+﻿@model SportLife.Website.Areas.AdminOffice.Models.CoachGroupDetailViewModel
+
+<div class="row panel-success">
+    <div class="col-md-4">
+        <img class="img-circle avatar" src="@Url.Action("Index", "Image", new {area = "", id = Model.Avatar})" alt="Avatar"/>
+    </div>
+    <div class="col-md-4">
+        @Model.FullName
+    </div>
+</div>

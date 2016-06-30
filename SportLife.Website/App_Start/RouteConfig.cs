@@ -11,6 +11,13 @@ namespace SportLife.Website {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+            "AdminOffice",
+            "{controller}/{action}/{id}",
+            new { action = "Index", controller = "Clients", area="AdminOffice" },
+            new { controller = "Clients", area = "AdminOffice" }
+        );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

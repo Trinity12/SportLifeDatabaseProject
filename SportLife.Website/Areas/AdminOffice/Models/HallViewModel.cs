@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Windows.Media;
-
-namespace SportLife.Website.Areas.AdminOffice.Models {
+﻿namespace SportLife.Website.Areas.AdminOffice.Models {
     public class HallViewModel {
         public int ID { get; set; }
         public int AdressId { get; set; }
@@ -19,5 +16,11 @@ namespace SportLife.Website.Areas.AdminOffice.Models {
 
         public string FullAdress
             => $"{State}, {City}, {Street} street, {Building}/{Apartament}";
+    }
+
+    public class HallDropDownViewModel
+    {
+        public int ID { get; set; }
+        public string FullAdress { get; set; }          
     }
 }
