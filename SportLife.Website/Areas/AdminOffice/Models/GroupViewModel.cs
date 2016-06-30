@@ -55,6 +55,8 @@ namespace SportLife.Website.Areas.AdminOffice.Models {
         public int SportId { get; set; }
         public int GroupMaxMembers { get; set; }
         public int SheduleDayId { get; set; }
+
+        [DataType(DataType.Time)]
         public TimeSpan SheduleTime { get; set; }
         public int HallId { get; set; }
     }

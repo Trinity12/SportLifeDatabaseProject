@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -9,6 +10,7 @@ using SportLife.Core.Database;
 using SportLife.Core.Interfaces;
 using SportLife.Website.Areas.AdminOffice.Models;
 using SportLife.Website.Resouses;
+using DayOfWeek = SportLife.Website.Resouses.DayOfWeek;
 
 namespace SportLife.Website.Areas.AdminOffice.Controllers
 {
@@ -43,7 +45,9 @@ namespace SportLife.Website.Areas.AdminOffice.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.SheduleDayId = new SelectList(EnumHelper.GetSelectList(typeof(DayOfWeek)), shedule.SheduleDayId);
+            var days =
+                Mapper.Map<IEnumerable<DaysInWeek>, IEnumerable<DayInWeekDropDown>>(UnitOfWork.DaysInWeekRepository.GetAll());
+            ViewBag.SheduleDayId = new SelectList(days, "DayId", "DayString");
             return View(shedule);
         }
 
@@ -62,7 +66,9 @@ namespace SportLife.Website.Areas.AdminOffice.Controllers
                 UnitOfWork.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.SheduleDayId = new SelectList(EnumHelper.GetSelectList(typeof(DaysInWeek)), shedule.SheduleDayId);
+            var days =
+                Mapper.Map<IEnumerable<DaysInWeek>, IEnumerable<DayInWeekDropDown>>(UnitOfWork.DaysInWeekRepository.GetAll());
+            ViewBag.SheduleDayId = new SelectList(days, "DayId", "DayString");
             return View(shedule);
         }
 

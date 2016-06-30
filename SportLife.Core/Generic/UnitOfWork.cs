@@ -14,6 +14,7 @@ namespace SportLife.Core.Generic {
         private IAbonementRepository _abonementRepository;
         private IClientRepository _clientRepository;
         private ICoachRepository _coachRepository;
+        private IDaysInWeekRepository _daysInWeekRepository;
         private IImageRepository _imageRepository;
         private IFileTypeRepository _fileTypeRepository;
         private IHallRepository _hallRepository;
@@ -33,6 +34,9 @@ namespace SportLife.Core.Generic {
 
         public ICoachRepository CoachRepository
             => _coachRepository ?? (_coachRepository = new CoachRepository(_dbEntities));
+
+        public IDaysInWeekRepository DaysInWeekRepository
+            => _daysInWeekRepository ?? (_daysInWeekRepository = new DayInWeekRepository(_dbEntities));
 
         public IImageRepository ImageRepository
             => _imageRepository ?? (_imageRepository = new ImageRepository(_dbEntities));

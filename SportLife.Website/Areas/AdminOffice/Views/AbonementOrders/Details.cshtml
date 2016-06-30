@@ -1,0 +1,35 @@
+﻿@model SportLife.Core.Database.AbonementOrder
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/AdminOffice/Views/AdminHome/Index.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AbonementOrder</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Client.ClientId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Client.ClientId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price.PriceId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price.PriceId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.OrderId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

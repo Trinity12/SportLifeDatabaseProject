@@ -132,6 +132,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SportLifeRepositories\ClientRepository.cs" />
     <Compile Include="SportLifeRepositories\CoachRepository.cs" />
+    <Compile Include="SportLifeRepositories\DayInWeekRepository.cs" />
     <Compile Include="SportLifeRepositories\FileTypeRepository.cs" />
     <Compile Include="SportLifeRepositories\HallRepository.cs" />
     <Compile Include="SportLifeRepositories\ImageRepository.cs" />
@@ -139,6 +140,7 @@
     <Compile Include="SportLifeRepositories\Interfaces\IAbonementRepository.cs" />
     <Compile Include="SportLifeRepositories\Interfaces\IClientRepository.cs" />
     <Compile Include="SportLifeRepositories\Interfaces\ICoachRepository.cs" />
+    <Compile Include="SportLifeRepositories\Interfaces\IDaysInWeekRepository.cs" />
     <Compile Include="SportLifeRepositories\Interfaces\IFileTypeRepository.cs" />
     <Compile Include="SportLifeRepositories\Interfaces\IHallRepository.cs" />
     <Compile Include="SportLifeRepositories\Interfaces\IImageRepository.cs" />

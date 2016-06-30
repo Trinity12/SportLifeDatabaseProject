@@ -1,4 +1,5 @@
 ﻿using System;
+using SportLife.Core.SportLifeRepositories;
 using SportLife.Core.SportLifeRepositories.Interfaces;
 
 namespace SportLife.Core.Interfaces {
@@ -7,6 +8,7 @@ namespace SportLife.Core.Interfaces {
         IAbonementRepository AbonementRepository { get; }
         IClientRepository ClientRepository { get; }
         ICoachRepository CoachRepository { get; }
+        IDaysInWeekRepository DaysInWeekRepository { get; }
         IImageRepository ImageRepository { get; }
         IFileTypeRepository FileTypeRepository { get; }
         IHallRepository HallRepository { get; }

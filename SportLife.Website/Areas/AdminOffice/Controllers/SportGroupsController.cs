@@ -53,8 +53,10 @@ namespace SportLife.Website.Areas.AdminOffice.Controllers
                 Mapper.Map<IEnumerable<SportKind>, IEnumerable<SportDropDownViewModel>>(UnitOfWork.SportRepository.GetAll());
             var halls =
                 Mapper.Map<IEnumerable<Hall>, IEnumerable<HallDropDownViewModel>>(UnitOfWork.HallRepository.GetAll());
+            var days =
+                Mapper.Map<IEnumerable<DaysInWeek>, IEnumerable<DayInWeekDropDown>>(UnitOfWork.DaysInWeekRepository.GetAll());
             ViewBag.CoachId = new SelectList(coaches, "ID", "FullName");
-            ViewBag.SheduleDayId = new SelectList(EnumHelper.GetSelectList(typeof(DayOfWeek)), DayOfWeek.Monday);
+            ViewBag.SheduleDayId = new SelectList(days, "DayId", "DayString");
             ViewBag.HallId = new SelectList(halls, "ID", "FullAdress");
             ViewBag.SportId = new SelectList(sportKinds, "SportId", "SportName");
             return View();
@@ -70,9 +72,11 @@ namespace SportLife.Website.Areas.AdminOffice.Controllers
                 var group = Mapper.Map<CreateGroupViewModel, SportGroup>(sportGroup);
                 var shedule = new Shedule();
                 shedule.SheduleDayId = sportGroup.SheduleDayId;
-                shedule.SportGroup = group;
                 shedule.SheduleTime = sportGroup.SheduleTime;
                 shedule.HallId = sportGroup.HallId;
+                UnitOfWork.SportGroupRepository.Add(group);
+                var groupId = UnitOfWork.SportGroupRepository.GetAll().Last().GroupId;
+                shedule.SheduleDayId = groupId;
                 UnitOfWork.SheduleRepository.Add(shedule);
                 UnitOfWork.SaveChanges();
                 return RedirectToAction("Index");
@@ -84,8 +88,10 @@ namespace SportLife.Website.Areas.AdminOffice.Controllers
                 Mapper.Map<IEnumerable<SportKind>, IEnumerable<SportDropDownViewModel>>(UnitOfWork.SportRepository.GetAll());
             var halls =
                 Mapper.Map<IEnumerable<Hall>, IEnumerable<HallDropDownViewModel>>(UnitOfWork.HallRepository.GetAll());
+            var days =
+                Mapper.Map<IEnumerable<DaysInWeek>, IEnumerable<DayInWeekDropDown>>(UnitOfWork.DaysInWeekRepository.GetAll());
             ViewBag.CoachId = new SelectList(coaches, "ID", "FullName");
-            ViewBag.SheduleDayId = new SelectList(EnumHelper.GetSelectList(typeof(DayOfWeek)), DayOfWeek.Monday);
+            ViewBag.SheduleDayId = new SelectList(days, "DayId", "DayString");
             ViewBag.HallId = new SelectList(halls, "ID", "FullAdress");
             ViewBag.SportId = new SelectList(sportKinds, "SportId", "SportName");
             return View(sportGroup);

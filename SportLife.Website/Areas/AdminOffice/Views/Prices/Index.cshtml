@@ -1,0 +1,40 @@
+﻿@model IEnumerable<SportLife.Core.Database.Price>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/AdminOffice/Views/AdminHome/Index.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Price1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Abonement.AbonementName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Abonement.AbonementName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PriceId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PriceId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PriceId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -178,6 +178,7 @@ namespace SportLife.Website {
                             hall =>
                                 $"{hall.Adress.AdressState}, {hall.Adress.AdressCity}, {hall.Adress.AdressStreet} street, {hall.Adress.AdressBuilding}/{hall.Adress.AdressApartament}"));
 
+            Mapper.CreateMap<DaysInWeek, DayInWeekDropDown>();
         }
     }
 }
